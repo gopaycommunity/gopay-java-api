@@ -1,0 +1,71 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>cz.gopay</groupId>
+	
+    <artifactId>gp-java-api-v3-common</artifactId>
+    <version>3.3.0</version>
+
+    <description>
+        GOPAY project - java api
+    </description>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>  
+    
+    <packaging>jar</packaging>
+    <parent>
+        <groupId>cz.gopay</groupId>
+        <artifactId>gp-java-api-v3-parent</artifactId>
+        <version>3.3.0-SNAPSHOT</version>
+        <relativePath>../</relativePath>
+    </parent>
+
+    
+    <dependencies>
+                 
+        <!-- Base64 -->
+        <dependency>
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
+            <version>1.9</version>
+        </dependency>
+                
+        <dependency>
+            <groupId>javax.ws.rs</groupId>
+            <artifactId>javax.ws.rs-api</artifactId>
+            <version>2.0</version>
+        </dependency> 
+
+        <!-- JAXB -->
+        <dependency>
+            <groupId>javax.xml.bind</groupId>
+            <artifactId>jaxb-api</artifactId>
+            <version>2.0</version>
+        </dependency>
+                             
+        <!-- Logging -->
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.16</version>
+        </dependency>
+		
+        <!-- Utils -->		
+        <dependency>
+            <groupId>com.neovisionaries</groupId>
+            <artifactId>nv-i18n</artifactId>
+            <version>1.13</version>
+        </dependency>
+
+        <!-- TESTING -->              
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.8.1</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+	
+    <name>gp-java-api-common</name>
+</project>
