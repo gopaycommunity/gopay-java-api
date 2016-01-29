@@ -30,6 +30,10 @@ Pro interakci s  platební bránou je potřeba vytvořit instanci GPConnectoru a
      
         connector.getAppToken("CLIENT_ID","CLIENT_SECRET");
 
+Metoda `getAppToken(String,String)` vytvoří token ve scope payment_create, pro ostatní typy tokenů je k dispozici metoda `connector.getAppToken(String clientID, String clientSecret, String scope)`
+
+Získaný token je automaticky uložen do cache.
+
 - ### Založení platby ###
 
 
@@ -50,7 +54,7 @@ Pro interakci s  platební bránou je potřeba vytvořit instanci GPConnectoru a
                 .order("123", 10L, Currency.EUR, "description")
                 .inLang(Lang.EN)
                 .addAdditionalParameter("AKey2", "AValue")
-                .addItem("An item", 1L, 1L, 1L)
+                .addItem("An item", 1L, 1L, 1L) //name,amount,fee,count
                 .toEshop("GO_ID")
                 .payer(payer).build();
 
@@ -81,14 +85,18 @@ Pro interakci s  platební bránou je potřeba vytvořit instanci GPConnectoru a
 
            Payment response = connector.paymentStatus(PAYMENT_ID);
 
-* #### Zrušení stržení platby
+* #### Stržení předautorizované platby
 
            PaymentResult response = connector.capturePayment(PAYMENT_ID);
 
-* #### Zrušení předautorizované platby
+* #### Zrušení opakování platby
 
            PaymentResult response = connector.voidRecurrency(PAYMENT_ID);
 
 * #### Zrušení předautorizované platby 
 
            PaymentResult response = connector.voidAuthorization(PAYMENT_ID);
+
+* #### Vyjímky 
+
+  Při chybách s komunikaci s branou je použita vyjímka GPClientException
