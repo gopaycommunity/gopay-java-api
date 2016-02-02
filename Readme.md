@@ -110,40 +110,49 @@ Each integration has its own maven module.
                 .payer(<Payer>).build();
     ```
 
-  * ##### Payer builder
+* ##### Payer builder
   
     ```Java
             Payer payer = new PayerBuilder()
             .withAllowedPaymentInstruments(Arrays.asList(PaymentInstrument.BANK_ACCOUNT))
-            .addAllowedSwift("FIOBCZPP").build();
+            .addAllowedSwift(<SWIFT>).build();
        ```         
 
-  * #### Create a payment
-
-           ```Java
-            HttpClientGPConnector.build(<API_URL>).getAppToken(<CLIENT_ID>,<CLIENT_CREDENTIALS>).createPayment(payment);
-            ```
-* #### Create preauthorized payment
-            ```Java
-           PaymentFactory.createPaymentBuilder().preauthorize()...
-           ```
-* #### Payment refund
-           
-           ```Java
-           HttpClientGPConnector.build(<API_URL>).getAppToken(<CLIENT_ID>,<CLIENT_CREDENTIALS>).connector.refundPayment("PAYMENT_ID", "AMOUNT");
-           ```
-* #### Recurrent payment 
+* #### Create a payment
 
 ```Java
-           Calendar calendar = Calendar.getInstance();
-           calendar.set(Calendar.YEAR, 2016);
-           calendar.set(Calendar.MONTH, 2);
-           calendar.set(Calendar.DAY_OF_MONTH, 1);
-           Recurrence r = Recurrence.build(calendar.getTime())
-                     .withTimeInterval(RecurrenceCycle.WEEK, 1)
-                     .inState(Recurrence.RecurrenceState.STARTED);
-           payment.setRecurrence(r);
+HttpClientGPConnector.build(<API_URL>).getAppToken(<CLIENT_ID>,<CLIENT_CREDENTIALS>).createPayment(payment);
+```
+
+* #### Create preauthorized payment
+
+ ```Java
+PaymentFactory.createPaymentBuilder().preauthorize()...
  ```
+ 
+* #### Payment refund
+
+
+```Java
+HttpClientGPConnector.build(<API_URL>).getAppToken(<CLIENT_ID>,<CLIENT_CREDENTIALS>)
+            .refundPayment(<PAYMENT_ID>, <AMOUNT>);
+ ```
+
+ 
+* #### Recurrent payment
+
+
+```Java
+Calendar calendar = Calendar.getInstance();
+calendar.set(Calendar.YEAR, 2016);
+calendar.set(Calendar.MONTH, 2);
+calendar.set(Calendar.DAY_OF_MONTH, 1);
+Recurrence r = Recurrence.build(calendar.getTime())
+     .withTimeInterval(RecurrenceCycle.WEEK, 1)
+     .inState(Recurrence.RecurrenceState.STARTED);
+payment.setRecurrence(r);
+ ```
+ 
 ## Contributing
 
 Contributions from others would be very much appreciated! Send pull request/ issue. Thanks!
