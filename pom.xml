@@ -75,6 +75,6 @@
     <scm>
       <connection>scm:git:https://github.com/gopaycommunity/gopay-java-api.git</connection>
       <url>https://github.com/gopaycommunity/gopay-java-api.git</url>
-      <tag>HEAD</tag>
+      <developerConnection>https://github.com/gopaycommunity/gopay-java-api.git</developerConnection>
     </scm>
 </project>
