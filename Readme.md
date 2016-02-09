@@ -51,6 +51,7 @@ mvn package
  try {
      IGPConnector connector = HttpClientGPConnector.build(<API_URL>).getAppToken(<CLIENT_ID>,<CLIENT_CREDENTIALS>).createPayment(payment);
  } catch (GPClientException e) {
+     GPExceptionHandler.handleException(e);
      //
  }
  ```
@@ -65,7 +66,7 @@ mvn package
      IGPConnector connector = HttpClientGPConnector.build(<API_URL>);
      connector.getAppToken(<CLIENT_ID>,<CLIENT_CREDENTIALS>); 
      ```
-     The token gets cached in GPConnector object and its lifetime is 30 minutes. The method ` getAppToken(String, String)` creates token in a scope `"payment-create"`. If you would like to create a token in a different scope call method `getAppToken(<CLIENT_ID>,<CLIENT_CREDENTIALS>,<SCOPE>)` 
+     The token gets cached in GPConnector object and its lifetime is 30 minutes. The method ` getAppToken(String, String)` creates token in a scope `"payment-create"`. If you would like to create a token in a different scope call method `getAppToken(<CLIENT_ID>,<CLIENT_CREDENTIALS>,<SCOPE>)` Once the token expires its required to obtain a new one by calling the method getAppToken.
      
     
 # Framework support #
