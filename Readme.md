@@ -22,7 +22,27 @@ git clone https://github.com/gopaycommunity/gopay-java-api.git
 cd gopay-java-api/<module-name>
 mvn package
 ```
- 
+# Maven #
+
+All artifacts are located in the maven central repository. 
+
+http://mvnrepository.com/artifact/cz.gopay
+
+    <!-- GPAPI common -->
+    <dependency>
+        <groupId>cz.gopay</groupId>
+        <artifactId>gp-java-api-v3-common</artifactId>
+        <version>3.3.0</version>
+    </dependency>
+    <!-- GPAPI Apache Http Client -->
+    <dependency>
+       	<groupId>cz.gopay</groupId>
+       	<artifactId>gp-java-api-v3-apache-http-client</artifactId>
+       	<version>3.3.0</version>
+    </dependency>
+
+
+
 # Basic usage 
 
   - ## Creating an instance of GPConnector
@@ -66,7 +86,7 @@ mvn package
      IGPConnector connector = HttpClientGPConnector.build(<API_URL>);
      connector.getAppToken(<CLIENT_ID>,<CLIENT_CREDENTIALS>); 
      ```
-     The token gets cached in GPConnector object and its lifetime is 30 minutes. The method ` getAppToken(String, String)` creates token in a scope `"payment-create"`. If you would like to create a token in a different scope call method `getAppToken(<CLIENT_ID>,<CLIENT_CREDENTIALS>,<SCOPE>)` Once the token expires its required to obtain a new one by calling the method getAppToken.
+     The token gets cached in GPConnector object and its lifetime is 30 minutes. The method ` getAppToken(String, String)` creates token in a scope `"payment-create"`. If you would like to create a token in a different scope call method `getAppToken(<CLIENT_ID>,<CLIENT_CREDENTIALS>,<SCOPE>)` Once the token expires its required to obtain a new one by calling the method getAppToken again.
      
     
 # Framework support #
@@ -83,12 +103,30 @@ Each integration has its own maven module.
     ```Java
     IGPConnector connector = ResteasyGPConnector.build(<API_URL>);
     ```
-  
+ 
+ Requires resteasy connector:
+ ```
+<dependency>
+    <groupId>cz.gopay</groupId>
+    <artifactId>gp-java-api-v3-resteasy</artifactId>
+    <version>3.3.0</version>
+</dependency>
+```
  - Creating Apache CXF connector
  
     ```Java
     IGPConnector connector = CXFGPConnector.build(<API_URL>);
     ```
+    
+     Requires apache cxf connector:
+    ```
+ <dependency>
+     <groupId>cz.gopay</groupId>
+     <artifactId>gp-java-api-v3-apache-cxf</artifactId>
+     <version>3.3.0</version>
+ </dependency>
+```
+ 
  
  If you would like to create your own GPConnector, inherit from a class AbstractGPConnector and override a method 
  `T createRESTClientProxy(String apiUrl, Class<T> proxy)`.The proxy parameter is either an interface PaymentClient or AuthClient. You must create implementations of both and return instance of correct class. 
