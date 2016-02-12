@@ -107,9 +107,9 @@ Each integration has its own maven module.
  Requires resteasy connector:
  ```
 <dependency>
-    <groupId>cz.gopay</groupId>
-    <artifactId>gp-java-api-v3-resteasy</artifactId>
-    <version>3.3.0</version>
+        <groupId>cz.gopay</groupId>
+        <artifactId>gp-java-api-v3-resteasy</artifactId>
+        <version>3.3.0</version>
 </dependency>
 ```
  - Creating Apache CXF connector
