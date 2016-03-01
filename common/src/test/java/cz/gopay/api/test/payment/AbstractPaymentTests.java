@@ -7,6 +7,7 @@ package cz.gopay.api.test.payment;
 import cz.gopay.api.test.utils.TestUtils;
 import cz.gopay.api.v3.GPClientException;
 import cz.gopay.api.v3.IGPConnector;
+import cz.gopay.api.v3.model.ErrorElement;
 import cz.gopay.api.v3.model.access.OAuth;
 import cz.gopay.api.v3.model.common.Currency;
 import cz.gopay.api.v3.model.payment.BasePayment;
@@ -128,6 +129,7 @@ public class AbstractPaymentTests {
             PaymentResult voidAuthorization = connector
                     .getAppToken(TestUtils.CLIENT_ID, TestUtils.CLIENT_SECRET, OAuth.SCOPE_PAYMENT_ALL).
                     voidAuthorization(id);
+            
             Assert.assertNotNull(voidAuthorization);
             Assert.assertTrue(voidAuthorization.getId() > 0);
         } catch (GPClientException ex) {
