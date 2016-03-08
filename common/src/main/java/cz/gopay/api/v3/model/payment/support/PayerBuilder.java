@@ -23,7 +23,13 @@ public class PayerBuilder implements Builder<Payer> {
     
     @Override
     public Payer build() {
-        return new Payer();
+        Payer payer = new Payer();
+        payer.setAllowedPaymentInstruments(allowedPaymentInstruments);
+        payer.setDefaultPaymentInstrument(defaultPaymentInstrument);
+        payer.setContact(contact);
+        payer.setAllowedSwifts(allowedSwifts);
+        payer.setPaymentInstrument(paymentInstrument);
+        return payer;
     }
     
     public PayerBuilder withPaymentInstrument(PaymentInstrument paymentInstrument) {
