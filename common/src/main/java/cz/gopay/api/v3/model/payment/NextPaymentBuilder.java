@@ -24,6 +24,7 @@ public class NextPaymentBuilder extends AbstractPaymentBuilder<NextPayment, Next
         payment.setOrderDescription(orderDescription);
         payment.setOrderNumber(orderNumber);
         payment.setAdditionalParams(additionalParams);
+        payment.setAmount(amount);
         return payment;
     }
     

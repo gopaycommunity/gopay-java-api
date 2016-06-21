@@ -1,7 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties. To change this
- * template file, choose Tools | Templates and open the template in the editor.
- */
 package cz.gopay.api.test.payment;
 
 import cz.gopay.api.test.utils.TestUtils;
@@ -44,7 +40,7 @@ public class AbstractPaymentTests {
                .inLang(Lang.EN)
                .addAdditionalParameter("AKey2", "AValue")
                .addItem("An item", 1L, 1L, 1L)
-               .toEshop(TestUtils.GOID)
+              .toEshop(TestUtils.GOID)
                .payer(payer).build();
     }
 
@@ -108,7 +104,7 @@ public class AbstractPaymentTests {
             recurrence.setRecurrenceState(Recurrence.RecurrenceState.STARTED);
             recurrence.setRecurrenceCycle(RecurrenceCycle.WEEK);
             Calendar calendar = Calendar.getInstance();
-            calendar.set(Calendar.YEAR, 2016);
+            calendar.set(Calendar.YEAR, 2017);
             calendar.set(Calendar.MONTH, 2);
             calendar.set(Calendar.DAY_OF_MONTH, 1);
             recurrence.setRecurrenceDateTo(calendar.getTime());

@@ -29,7 +29,7 @@
         <dependency>
             <groupId>cz.gopay</groupId>
             <artifactId>gp-java-api-v3-common</artifactId>
-            <version>3.3.0</version>
+            <version>3.3.1</version>
         </dependency>
                 
         <!-- jackson -->

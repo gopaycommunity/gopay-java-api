@@ -6,9 +6,9 @@ import cz.gopay.api.v3.IGPConnector;
 import junit.framework.Assert;
 
 import org.apache.log4j.Logger;
-import org.junit.Test;
 
 import cz.gopay.api.v3.impl.apacheclient.HttpClientGPConnector;
+import org.junit.Test;
 
 public class LoginTest {
 

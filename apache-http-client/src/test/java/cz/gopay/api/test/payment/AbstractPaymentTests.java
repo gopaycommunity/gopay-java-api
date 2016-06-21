@@ -10,7 +10,6 @@ import cz.gopay.api.v3.IGPConnector;
 import cz.gopay.api.v3.model.access.OAuth;
 import cz.gopay.api.v3.model.common.Currency;
 import cz.gopay.api.v3.model.payment.BasePayment;
-import cz.gopay.api.v3.model.payment.Lang;
 import cz.gopay.api.v3.model.payment.Payment;
 import cz.gopay.api.v3.model.payment.BasePaymentBuilder;
 import cz.gopay.api.v3.model.payment.PaymentFactory;
@@ -18,6 +17,7 @@ import cz.gopay.api.v3.model.payment.PaymentResult;
 import cz.gopay.api.v3.model.payment.support.Payer;
 import cz.gopay.api.v3.model.payment.support.PaymentInstrument;
 import cz.gopay.api.v3.model.payment.support.PayerBuilder;
+import cz.gopay.api.v3.model.payment.support.PayerContact;
 import cz.gopay.api.v3.model.payment.support.Recurrence;
 import cz.gopay.api.v3.model.payment.support.RecurrenceCycle;
 import java.util.Arrays;
@@ -34,18 +34,24 @@ public class AbstractPaymentTests {
     private static final Logger logger = Logger.getLogger(AbstractPaymentTests.class);
 
     private BasePayment createTestBasePayment() {
-        String url = "https://www.espon123.cz/";
-        
-        Payer payer = new PayerBuilder().withAllowedPaymentInstruments(Arrays.asList(PaymentInstrument.BANK_ACCOUNT))
-                .addAllowedSwift("FIOBCZPP").build();
+        String url = "https://www.eshop123.cz/";
+        PayerContact c = new PayerContact();
+        c.withContactInfo("rest@test.gopay.cz", "+420645654456");
+        Payer payer = new PayerBuilder()
+                .withContactData(c)
+                .withPaymentInstrument(PaymentInstrument.PAYMENT_CARD)
+                .withAllowedPaymentInstruments(Arrays.asList(PaymentInstrument.PAYMENT_CARD,PaymentInstrument.ACCOUNT))
+                .build();
         BasePaymentBuilder builder = PaymentFactory.createBasePaymentBuilder();
         return builder.withCallback(url+"success", url+"fail", url+"notify", url+"return")
-               .order("123", 10L, Currency.EUR, "description")
-               .inLang(Lang.EN)
+               .order("123", 100000L, Currency.EUR, "description")
+               .withPaymentInstrument(PaymentInstrument.PAYMENT_CARD)
+                .inLang("cs")
                .addAdditionalParameter("AKey2", "AValue")
                .addItem("An item", 1L, 1L, 1L)
                .toEshop(TestUtils.GOID)
-               .payer(payer).build();
+                .payer(payer)
+                .build();
     }
 
     protected long testConnectorCreatePayment(IGPConnector connector) {
@@ -78,8 +84,8 @@ public class AbstractPaymentTests {
         try {
             PaymentResult refundPayment = connector.
                     getAppToken(TestUtils.CLIENT_ID, TestUtils.CLIENT_SECRET, OAuth.SCOPE_PAYMENT_ALL).
-                    refundPayment(3000027082L, 2L);
-            Assert.assertTrue(refundPayment.getId() == 3000027082L);
+                    refundPayment(3000030735L, 100000L);
+            Assert.assertTrue(refundPayment.getId() == 3000030735L);
         } catch (GPClientException ex) {
             TestUtils.handleException(ex, logger);
         }
@@ -108,7 +114,7 @@ public class AbstractPaymentTests {
             recurrence.setRecurrenceState(Recurrence.RecurrenceState.STARTED);
             recurrence.setRecurrenceCycle(RecurrenceCycle.WEEK);
             Calendar calendar = Calendar.getInstance();
-            calendar.set(Calendar.YEAR, 2016);
+            calendar.set(Calendar.YEAR, 2017);
             calendar.set(Calendar.MONTH, 2);
             calendar.set(Calendar.DAY_OF_MONTH, 1);
             recurrence.setRecurrenceDateTo(calendar.getTime());
