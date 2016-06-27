@@ -72,6 +72,7 @@
         </pluginManagement>
     </build>
     <name>gp-java-api-parent</name>
+    <url>https://www.gopay.com/</url>
     <scm>
       <connection>scm:git:https://github.com/gopaycommunity/gopay-java-api.git</connection>
       <url>https://github.com/gopaycommunity/gopay-java-api.git</url>
