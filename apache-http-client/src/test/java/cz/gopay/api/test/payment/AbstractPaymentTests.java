@@ -43,7 +43,7 @@ public class AbstractPaymentTests {
                 .withAllowedPaymentInstruments(Arrays.asList(PaymentInstrument.PAYMENT_CARD,PaymentInstrument.ACCOUNT))
                 .build();
         BasePaymentBuilder builder = PaymentFactory.createBasePaymentBuilder();
-        return builder.withCallback(url+"success", url+"fail", url+"notify", url+"return")
+        return builder.withCallback(url+"notify", url+"return")
                .order("123", 100000L, Currency.EUR, "description")
                .withPaymentInstrument(PaymentInstrument.PAYMENT_CARD)
                 .inLang("cs")

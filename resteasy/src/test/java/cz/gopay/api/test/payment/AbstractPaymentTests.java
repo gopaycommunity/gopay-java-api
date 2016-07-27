@@ -31,12 +31,12 @@ public class AbstractPaymentTests {
     private static final Logger logger = Logger.getLogger(AbstractPaymentTests.class);
 
     private BasePayment createTestBasePayment() {
-        String url = "https://www.espon123.cz/";
+        String url = "https://www.eshon123.cz/";
         
         Payer payer = new PayerBuilder().withAllowedPaymentInstruments(Arrays.asList(PaymentInstrument.BANK_ACCOUNT))
                 .addAllowedSwift("FIOBCZPP").build();
         BasePaymentBuilder builder = PaymentFactory.createBasePaymentBuilder();
-        return builder.withCallback(url+"success", url+"fail", url+"notify", url+"return")
+        return builder.withCallback(url+"notify", url+"return")
                .order("123", 10L, Currency.EUR, "description")
                .inLang(Lang.EN)
                .addAdditionalParameter("AKey2", "AValue")

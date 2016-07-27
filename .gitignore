@@ -1,1 +1,4 @@
 /common/target/
+/apache-cxf/target/
+/resteasy/target/
+/apache-http-client/target/

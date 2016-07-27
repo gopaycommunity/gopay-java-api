@@ -35,7 +35,7 @@ public class AbstractPaymentTests {
         Payer payer = new PayerBuilder().withAllowedPaymentInstruments(Arrays.asList(PaymentInstrument.BANK_ACCOUNT))
                 .addAllowedSwift("FIOBCZPP").build();
         BasePaymentBuilder builder = PaymentFactory.createBasePaymentBuilder();
-        return builder.withCallback(url+"success", url+"fail", url+"notify", url+"return")
+        return builder.withCallback(url+"notify", url+"return")
                .order("123", 10L, Currency.EUR, "description")
                .inLang(Lang.EN)
                .addAdditionalParameter("AKey2", "AValue")
