@@ -222,7 +222,7 @@ Each integration has its own maven module.
      <dependency>
         <groupId>cz.gopay</groupId>
         <artifactId>gp-java-api-v3-resteasy</artifactId>
-        <version>3.3.1</version>
+        <version>3.3.2</version>
     </dependency>
     ```
 
@@ -238,7 +238,7 @@ Each integration has its own maven module.
      <dependency>
          <groupId>cz.gopay</groupId>
          <artifactId>gp-java-api-v3-apache-cxf</artifactId>
-         <version>3.3.1</version>
+         <version>3.3.2</version>
      </dependency>
     ```
  
