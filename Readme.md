@@ -177,6 +177,18 @@ try {
 }
 ```
 
+###### Charge recurrent payment on demand <a id="dmrec">
+
+```Java
+try {
+    NextPaymentBuilder builder = PaymentFactory.createNextPaymentBuilder();
+    ...
+    PaymentResult voidRecurrency = connector.createRecurrentPayment(<ID>, builder.build());
+} catch (GPClientException ex) {
+     //
+}
+```
+
 
 
 All methods above throw checked exception GPClientException on a failure.
