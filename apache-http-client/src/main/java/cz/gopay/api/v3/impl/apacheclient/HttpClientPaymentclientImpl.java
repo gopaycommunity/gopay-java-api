@@ -1,7 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties. To change this
- * template file, choose Tools | Templates and open the template in the editor.
- */
 package cz.gopay.api.v3.impl.apacheclient;
 
 import cz.gopay.api.v3.PaymentClient;
@@ -69,7 +65,7 @@ public class HttpClientPaymentclientImpl extends AbstractImpl implements Payment
     @Override
     public Payment createRecurrentPayment(AuthHeader authHeader, Long id, NextPayment createPayment) {
         Response response = null;
-
+        
         try {
             response = Request.
                     Post(apiUrl + "/payments/payment/" + id + "/create-recurrence")

@@ -57,8 +57,8 @@ public class BasePaymentBuilder extends AbstractPaymentBuilder<BasePayment,BaseP
         return this;
     }
 
-    public BasePaymentBuilder withCallback(String successfullUrl, String failedUrl, String returnUrl, String notificationUrl) {
-        return withCallback(Callback.of(successfullUrl, failedUrl, notificationUrl, returnUrl));
+    public BasePaymentBuilder withCallback(String returnUrl, String notificationUrl) {
+        return withCallback(Callback.of(notificationUrl, returnUrl));
     }
 
     public BasePaymentBuilder withCallback(Callback callback) {

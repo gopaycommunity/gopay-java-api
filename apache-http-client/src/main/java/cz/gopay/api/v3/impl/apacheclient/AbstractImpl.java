@@ -1,7 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties. To change this
- * template file, choose Tools | Templates and open the template in the editor.
- */
+
 package cz.gopay.api.v3.impl.apacheclient;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -52,8 +49,7 @@ public class AbstractImpl {
             JsonNode tree = mapper.readTree(json);
             APIError error = mapper.treeToValue(tree, APIError.class);
             if (error.getDateIssued() != null) {
-                javax.ws.rs.core.Response javaxresponse = javax.ws.rs.core.Response.status(code).entity(error).build();
-                throw new WebApplicationException(javaxresponse);
+                throw new WebApplicationException(new APIResponse(error,code));
             }                    
             return mapper.treeToValue(tree, entity);
         } catch (IOException ex) {

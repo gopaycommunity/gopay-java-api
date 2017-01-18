@@ -5,6 +5,7 @@ import java.util.List;
 
 import cz.gopay.api.v3.model.APIError;
 import cz.gopay.api.v3.model.ErrorElement;
+import java.util.Collections;
 
 /**
  *
@@ -30,6 +31,8 @@ public class GPClientException extends Exception {
     }
 
     public List<ErrorElement> getErrorMessages() {
+        if (error.getErrorMessages() == null) 
+            return Collections.EMPTY_LIST;
         return error.getErrorMessages();
     }
 
