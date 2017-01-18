@@ -11,8 +11,10 @@ import cz.gopay.api.v3.model.payment.BasePayment;
 import cz.gopay.api.v3.model.payment.NextPayment;
 import cz.gopay.api.v3.model.payment.Payment;
 import cz.gopay.api.v3.model.payment.PaymentResult;
-import javax.ws.rs.WebApplicationException;
+
 import org.apache.log4j.Logger;
+
+import javax.ws.rs.WebApplicationException;
 
 /**
  * @author Zbynek Novak novak.zbynek@gmail.com
@@ -220,5 +222,10 @@ public abstract class AbstractGPConnector implements IGPConnector {
     @Override
     public AccessToken getAccessToken() {
         return accessToken;
+    }
+    
+    @Override
+    public void setAccessToken(AccessToken accessToken) {
+        this.accessToken = accessToken;
     }
 }

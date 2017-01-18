@@ -1,4 +1,7 @@
-/common/target/
-/apache-cxf/target/
 /resteasy/target/
+/apache-cxf/target/
 /apache-http-client/target/
+/common/target/
+.settings
+
+*.iml

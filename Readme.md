@@ -33,13 +33,13 @@ http://mvnrepository.com/artifact/cz.gopay
 <dependency>
     <groupId>cz.gopay</groupId>
     <artifactId>gp-java-api-v3-common</artifactId>
-    <version>3.3.2</version>
+    <version>3.3.3</version>
 </dependency>
 <!-- GPAPI Apache Http Client -->
 <dependency>
    	<groupId>cz.gopay</groupId>
    	<artifactId>gp-java-api-v3-apache-http-client</artifactId>
-   	<version>3.3.2</version>
+   	<version>3.3.3</version>
 </dependency>
 ```
 ## OAuth
@@ -177,18 +177,6 @@ try {
 }
 ```
 
-###### Charge recurrent payment on demand <a id="dmrec">
-
-```Java
-try {
-    NextPaymentBuilder builder = PaymentFactory.createNextPaymentBuilder();
-    ...
-    PaymentResult voidRecurrency = connector.createRecurrentPayment(<ID>, builder.build());
-} catch (GPClientException ex) {
-     //
-}
-```
-
 
 
 All methods above throw checked exception GPClientException on a failure.
@@ -234,7 +222,7 @@ Each integration has its own maven module.
      <dependency>
         <groupId>cz.gopay</groupId>
         <artifactId>gp-java-api-v3-resteasy</artifactId>
-        <version>3.3.2</version>
+        <version>3.3.3</version>
     </dependency>
     ```
 
@@ -250,7 +238,7 @@ Each integration has its own maven module.
      <dependency>
          <groupId>cz.gopay</groupId>
          <artifactId>gp-java-api-v3-apache-cxf</artifactId>
-         <version>3.3.2</version>
+         <version>3.3.3</version>
      </dependency>
     ```
  

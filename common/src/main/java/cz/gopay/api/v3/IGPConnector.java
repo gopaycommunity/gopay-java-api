@@ -17,26 +17,28 @@ import cz.gopay.api.v3.model.payment.PaymentResult;
  */
 public interface IGPConnector {
 
-    public IGPConnector getAppToken(String clientId, String clientCredentials) throws GPClientException;
+    IGPConnector getAppToken(String clientId, String clientCredentials) throws GPClientException;
 
-    public IGPConnector getAppToken(String clientId, String clientCredentials,
+    IGPConnector getAppToken(String clientId, String clientCredentials,
             String scope) throws GPClientException;
 
-    public Payment createPayment(BasePayment payment) throws GPClientException;
+    Payment createPayment(BasePayment payment) throws GPClientException;
 
-    public PaymentResult refundPayment(Long id, Long amount) throws GPClientException;
+    PaymentResult refundPayment(Long id, Long amount) throws GPClientException;
 
-    public Payment createRecurrentPayment(Long id, NextPayment nextPayment) throws GPClientException;
+    Payment createRecurrentPayment(Long id, NextPayment nextPayment) throws GPClientException;
 
-    public PaymentResult voidRecurrency(Long id) throws GPClientException;
+    PaymentResult voidRecurrency(Long id) throws GPClientException;
 
-    public PaymentResult capturePayment(Long id) throws GPClientException;
+    PaymentResult capturePayment(Long id) throws GPClientException;
 
-    public PaymentResult voidAuthorization(Long id) throws GPClientException;
+    PaymentResult voidAuthorization(Long id) throws GPClientException;
 
-    public Payment paymentStatus(Long id) throws GPClientException;
+    Payment paymentStatus(Long id) throws GPClientException;
 
-    public String getApiUrl();
+    String getApiUrl();
 
-    public AccessToken getAccessToken();
+    AccessToken getAccessToken();
+    
+    void setAccessToken(AccessToken accessToken);
 }
