@@ -14,19 +14,19 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlAccessorType(XmlAccessType.NONE)
 public class PayerPaymentCard {
     
-    @XmlElement(name="")
+    @XmlElement(name="card_number")
     private String cardNumber;
     
-    @XmlElement(name="")
+    @XmlElement(name="card_expiration")
     private String cardExpiration;
     
-    @XmlElement(name="")
+    @XmlElement(name="card_brand")
     private String cardBrand;
     
-    @XmlElement(name="")
+    @XmlElement(name="card_issuer_country")
     private String cardIssuerCountry;
     
-    @XmlElement(name="")
+    @XmlElement(name="card_issuer_bank")
     private String cardIssuerBank;
     
     public String getCardNumber() {
