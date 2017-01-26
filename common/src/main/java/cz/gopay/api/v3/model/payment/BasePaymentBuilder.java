@@ -8,10 +8,12 @@ package cz.gopay.api.v3.model.payment;
 import cz.gopay.api.v3.model.payment.support.Callback;
 import cz.gopay.api.v3.model.payment.support.Payer;
 import cz.gopay.api.v3.model.payment.support.PayerContact;
+import cz.gopay.api.v3.model.payment.support.PayerPaymentCard;
 import cz.gopay.api.v3.model.payment.support.PaymentInstrument;
 import cz.gopay.api.v3.model.payment.support.Recurrence;
 import cz.gopay.api.v3.model.payment.support.RecurrenceCycle;
 import cz.gopay.api.v3.model.payment.support.Target;
+
 import java.util.Date;
 
 /**
@@ -99,7 +101,15 @@ public class BasePaymentBuilder extends AbstractPaymentBuilder<BasePayment,BaseP
         this.payer.setContact(contact);
         return this;
     }
-
+    
+    public BasePaymentBuilder withPayerPaymentCard(PayerPaymentCard payerPaymentCard) {
+        if (this.payer == null) {
+            this.payer = Payer.build();
+        }
+        this.payer.setPaymentCard(payerPaymentCard);
+        return this;
+    }
+    
     public BasePaymentBuilder withPaymentInstrument(PaymentInstrument paymentInstrument) {
         if (this.payer == null) {
             this.payer = Payer.build();

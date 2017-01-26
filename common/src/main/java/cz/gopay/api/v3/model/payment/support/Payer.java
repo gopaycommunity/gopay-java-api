@@ -33,6 +33,9 @@ public class Payer {
 
     @XmlElement(name = "contact")
     private PayerContact contact;
+    
+    @XmlElement(name="payment_card")
+    private PayerPaymentCard paymentCard;
 
     public PaymentInstrument getPaymentInstrument() {
         return paymentInstrument;
@@ -81,12 +84,20 @@ public class Payer {
     public void setContact(PayerContact contact) {
         this.contact = contact;
     }
-
+    
+    public PayerPaymentCard getPaymentCard() {
+        return paymentCard;
+    }
+    
+    public void setPaymentCard(PayerPaymentCard paymentCard) {
+        this.paymentCard = paymentCard;
+    }
+    
     @Override
     public String toString() {
         return String.format(
-                "PayerParty [paymentInstrument=%s, allowedPaymentInstruments=%s, allowedSwifts=%s, defaultPaymentInstrument=%s, defaultSwift=%s, contact=%s]",
-                paymentInstrument, allowedPaymentInstruments, allowedSwifts, defaultPaymentInstrument, defaultSwift, contact);
+                "PayerParty [paymentInstrument=%s, allowedPaymentInstruments=%s, allowedSwifts=%s, defaultPaymentInstrument=%s, defaultSwift=%s, contact=%s, paymentCard=%s]",
+                paymentInstrument, allowedPaymentInstruments, allowedSwifts, defaultPaymentInstrument, defaultSwift, contact, paymentCard);
     }
 
     public static Payer build() {

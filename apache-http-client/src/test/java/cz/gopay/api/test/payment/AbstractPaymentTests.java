@@ -10,20 +10,24 @@ import cz.gopay.api.v3.IGPConnector;
 import cz.gopay.api.v3.model.access.OAuth;
 import cz.gopay.api.v3.model.common.Currency;
 import cz.gopay.api.v3.model.payment.BasePayment;
-import cz.gopay.api.v3.model.payment.Payment;
 import cz.gopay.api.v3.model.payment.BasePaymentBuilder;
+import cz.gopay.api.v3.model.payment.Lang;
+import cz.gopay.api.v3.model.payment.Payment;
 import cz.gopay.api.v3.model.payment.PaymentFactory;
 import cz.gopay.api.v3.model.payment.PaymentResult;
 import cz.gopay.api.v3.model.payment.support.Payer;
-import cz.gopay.api.v3.model.payment.support.PaymentInstrument;
 import cz.gopay.api.v3.model.payment.support.PayerBuilder;
+import cz.gopay.api.v3.model.payment.support.PaymentInstrument;
 import cz.gopay.api.v3.model.payment.support.PayerContact;
 import cz.gopay.api.v3.model.payment.support.Recurrence;
 import cz.gopay.api.v3.model.payment.support.RecurrenceCycle;
+
+import junit.framework.Assert;
+
+import org.apache.log4j.Logger;
+
 import java.util.Arrays;
 import java.util.Calendar;
-import junit.framework.Assert;
-import org.apache.log4j.Logger;
 
 /**
  *
@@ -79,7 +83,21 @@ public class AbstractPaymentTests {
 
         Assert.assertNotNull(payment.getId());
     }
-
+    
+    protected void testPaymentStatus(IGPConnector connector, Long id) {
+        Payment payment = null;
+        try {
+            payment = connector
+                    .getAppToken(TestUtils.CLIENT_ID, TestUtils.CLIENT_SECRET)
+                    .paymentStatus(id);
+            
+        } catch (GPClientException e) {
+            TestUtils.handleException(e, logger);
+        }
+        
+        Assert.assertNotNull(payment.getId());
+    }
+    
     protected void testPaymentRefund(IGPConnector connector) {
         try {
             PaymentResult refundPayment = connector.

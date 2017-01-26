@@ -22,7 +22,12 @@ public class PaymentTest extends AbstractPaymentTests {
     public void testHttpClientPaymentStataus() {
         testPaymentStatus(HttpClientGPConnector.build(TestUtils.API_URL));
     }
-
+    
+    @Test
+    public void testHttpClientPaymentStatausWithId() {
+        testPaymentStatus(HttpClientGPConnector.build(TestUtils.API_URL), 3000023078L);
+    }
+    
     @Test
     public void testHttpClientPaymentPreAuthorization() {
         testPaymentPreAuthorization(HttpClientGPConnector.build(TestUtils.API_URL));

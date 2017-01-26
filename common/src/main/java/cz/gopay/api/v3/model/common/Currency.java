@@ -5,17 +5,22 @@ import java.util.EnumSet;
 /**
  *
  * @author Zbynek Novak | novak.zbynek@gmail.com
+ * @author Pavel Valenta (pavel.valenta@gopay.cz) - pouze doplnen enum o PLN, HUF, USD, GBP
  *
  * splnuje ISO 4217
  *
  */
 public enum Currency {
     CZK(203),
-    EUR(978);
-    
+    EUR(978),
+    PLN(985),
+    HUF(348),
+    USD(840),
+    GBP(826);
+        
     public static final String CODE_CZK = String.valueOf(CZK);
     public static final String CODE_EUR = String.valueOf(EUR);
-    
+
     private Integer numericalCode;
 
     private Currency(Integer numericalCode) {
