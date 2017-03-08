@@ -18,9 +18,13 @@ import org.apache.log4j.Logger;
 public class TestUtils {
 
     public static final String API_URL = "https://gw.sandbox.gopay.com/api";
-    public static final String CLIENT_ID = "1744960415";
-    public static final String CLIENT_SECRET = "h9wyRz2s";
-    public static final Long GOID = 8339303643L;
+    public static final String CLIENT_ID = "1689337452";
+    public static final String CLIENT_SECRET = "CKr7FyEE";
+    public static final Long GOID = 8712700986L;
+
+    public static final String CLIENT_ID_EET = "1365575992";
+    public static final String CLIENT_SECRET_EET = "NUVsrv4W";
+    public static final Long GOID_EET = 8289213768L;
 
     public static void handleException(GPClientException e, Logger logger) {
         List<ErrorElement> errorMessages = e.getErrorMessages();

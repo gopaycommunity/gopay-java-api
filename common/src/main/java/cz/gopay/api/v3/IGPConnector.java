@@ -1,15 +1,22 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package cz.gopay.api.v3;
 
 import cz.gopay.api.v3.model.access.AccessToken;
+import cz.gopay.api.v3.model.common.Currency;
+import cz.gopay.api.v3.model.access.AuthHeader;
+import cz.gopay.api.v3.model.eet.EETReceipt;
+import cz.gopay.api.v3.model.eet.EETReceiptFilter;
 import cz.gopay.api.v3.model.payment.BasePayment;
 import cz.gopay.api.v3.model.payment.NextPayment;
 import cz.gopay.api.v3.model.payment.Payment;
 import cz.gopay.api.v3.model.payment.PaymentResult;
+import cz.gopay.api.v3.model.payment.RefundPayment;
+import cz.gopay.api.v3.model.payment.support.AccountStatement;
+import cz.gopay.api.v3.model.payment.support.PaymentInstrumentRoot;
+
+import java.util.List;
+
+import javax.ws.rs.BeanParam;
+import javax.ws.rs.PathParam;
 
 /**
  *
@@ -35,7 +42,17 @@ public interface IGPConnector {
     PaymentResult voidAuthorization(Long id) throws GPClientException;
 
     Payment paymentStatus(Long id) throws GPClientException;
+    
+    PaymentResult refundPayment(Long id, RefundPayment refundPayment) throws GPClientException;
 
+    List<EETReceipt> findEETREceiptsByFilter(EETReceiptFilter filter) throws GPClientException;
+    
+    PaymentInstrumentRoot generatePaymentInstruments(Long goId, Currency currency) throws GPClientException;
+    
+    List<EETReceipt> getEETReceiptByPaymentId(Long id) throws GPClientException;
+    
+    byte[] generateStatement(AccountStatement accountStatement) throws GPClientException;
+    
     String getApiUrl();
 
     AccessToken getAccessToken();

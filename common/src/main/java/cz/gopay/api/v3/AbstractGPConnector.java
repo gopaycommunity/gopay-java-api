@@ -7,12 +7,20 @@ package cz.gopay.api.v3;
 import cz.gopay.api.v3.model.access.AccessToken;
 import cz.gopay.api.v3.model.access.AuthHeader;
 import cz.gopay.api.v3.model.access.OAuth;
+import cz.gopay.api.v3.model.common.Currency;
+import cz.gopay.api.v3.model.eet.EETReceipt;
+import cz.gopay.api.v3.model.eet.EETReceiptFilter;
 import cz.gopay.api.v3.model.payment.BasePayment;
 import cz.gopay.api.v3.model.payment.NextPayment;
 import cz.gopay.api.v3.model.payment.Payment;
 import cz.gopay.api.v3.model.payment.PaymentResult;
+import cz.gopay.api.v3.model.payment.RefundPayment;
+import cz.gopay.api.v3.model.payment.support.AccountStatement;
+import cz.gopay.api.v3.model.payment.support.PaymentInstrumentRoot;
 
 import org.apache.log4j.Logger;
+
+import java.util.List;
 
 import javax.ws.rs.WebApplicationException;
 
@@ -111,7 +119,27 @@ public abstract class AbstractGPConnector implements IGPConnector {
 
         return null;
     }
-
+    
+    @Override
+    public PaymentResult refundPayment(Long id, RefundPayment refundPayment) throws GPClientException {
+        try {
+            logger.debug(getClass().getSimpleName() + ": refund-payment [" + id + "] amnt[" + refundPayment + "]");
+            
+            PaymentClient paymentClient = createRESTClientProxy(apiUrl, PaymentClient.class);
+            
+            PaymentResult r = paymentClient
+                    .refundPayment(AuthHeader.build(accessToken != null ? accessToken.getAccessToken() : null),
+                            id, refundPayment);
+            return r;
+        } catch (WebApplicationException e) {
+            logger.fatal(getClass().getSimpleName() + ": refund-payment Error [" + id + "] amnt[" + refundPayment + "] RC ["
+                    + e.getResponse().getStatus() + "] Ex: " + e.getResponse().getStatusInfo(), e);
+            GPExceptionHandler.handleException(e);
+        }
+        
+        return null;
+    }
+    
     @Override
     public Payment createRecurrentPayment(Long id, NextPayment nextPayment) throws GPClientException {
         try {
@@ -203,7 +231,7 @@ public abstract class AbstractGPConnector implements IGPConnector {
 
             return paymentClient
                     .getPayment(AuthHeader.build(accessToken != null ? accessToken.getAccessToken() : null), id);
-
+            
         } catch (WebApplicationException e) {
             logger.fatal(getClass().getSimpleName() + ": payment-status Error [" + id + "] RC [" + e.getResponse()
                     .getStatus()
@@ -213,7 +241,85 @@ public abstract class AbstractGPConnector implements IGPConnector {
 
         return null;
     }
+    
+//  TODO   GPMAIN-3351  Nutne snizeni scopu
+    @Override
+    public PaymentInstrumentRoot generatePaymentInstruments(Long goId, Currency currency) throws GPClientException {
+        try {
+            logger.debug(getClass().getSimpleName() + ": payment-instruments [" + goId + "][" + currency + "]");
 
+            PaymentClient paymentClient = createRESTClientProxy(apiUrl, PaymentClient.class);
+
+            return paymentClient
+                    .getPaymentInstruments(AuthHeader.build(accessToken != null ? accessToken.getAccessToken() : null), goId, currency);
+
+        } catch (WebApplicationException e) {
+            logger.fatal(getClass().getSimpleName() + ": payment-instruments Error [" + goId + "][" + currency + "] RC [" + e.getResponse()
+                    .getStatus()
+                    + "] Ex: " + e.getResponse().getStatusInfo(), e);
+            GPExceptionHandler.handleException(e);
+        }
+
+        return null;
+    }
+    
+    @Override
+    public byte[] generateStatement(AccountStatement accountStatement) throws GPClientException {
+        try {
+            logger.debug(getClass().getSimpleName() + ": generate-statement [" + accountStatement + "]");
+            
+            PaymentClient paymentClient = createRESTClientProxy(apiUrl, PaymentClient.class);
+            
+            return paymentClient
+                    .getStatement(AuthHeader.build(accessToken != null ? accessToken.getAccessToken() : null), accountStatement);
+            
+        } catch (WebApplicationException e) {
+            logger.fatal(getClass().getSimpleName() + ": generate-statement Error [" + accountStatement + "] RC [" + e.getResponse()
+                    .getStatus()
+                    + "] Ex: " + e.getResponse().getStatusInfo(), e);
+            GPExceptionHandler.handleException(e);
+        }
+        
+        return null;
+    }
+    
+    
+    @Override
+    public List<EETReceipt> findEETREceiptsByFilter(EETReceiptFilter filter) throws GPClientException {
+        try {
+            logger.debug(getClass().getSimpleName() + "eet-receipt findByFilter " + filter.toString());
+    
+            PaymentClient paymentClient = createRESTClientProxy(apiUrl, PaymentClient.class);
+    
+            return paymentClient.findEETReceiptsByFilter(AuthHeader.build(accessToken != null ? accessToken.getAccessToken() : null), filter);
+            
+        } catch (WebApplicationException e) {
+            logger.fatal(getClass().getSimpleName() + ": eet-receipt findByFilter " + filter.toString() + " RC [" + e.getResponse()
+                    .getStatus()
+                    + "] Ex: " + e.getResponse().getStatusInfo(), e);
+            GPExceptionHandler.handleException(e);
+        }
+        return null;
+    }
+    
+    @Override
+    public List<EETReceipt> getEETReceiptByPaymentId(Long id) throws GPClientException {
+        try {
+            logger.debug(getClass().getSimpleName() + "eet-receipt findByPaymentId PaymentId=[" + id + "]");
+        
+            PaymentClient paymentClient = createRESTClientProxy(apiUrl, PaymentClient.class);
+        
+            return paymentClient.getEETReceiptByPaymentId(AuthHeader.build(accessToken != null ? accessToken.getAccessToken() : null), id);
+        
+        } catch (WebApplicationException e) {
+            logger.fatal(getClass().getSimpleName() + ": eet-receipt findByPaymentId PaymentId=[" + id + "] RC [" + e.getResponse()
+                    .getStatus()
+                    + "] Ex: " + e.getResponse().getStatusInfo(), e);
+            GPExceptionHandler.handleException(e);
+        }
+        return null;
+    }
+    
     @Override
     public String getApiUrl() {
         return apiUrl;

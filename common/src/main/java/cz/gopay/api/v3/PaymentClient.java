@@ -9,11 +9,21 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
 import cz.gopay.api.v3.model.access.AuthHeader;
+import cz.gopay.api.v3.model.common.Currency;
+import cz.gopay.api.v3.model.eet.EETReceipt;
+import cz.gopay.api.v3.model.eet.EETReceiptFilter;
 import cz.gopay.api.v3.model.payment.BasePayment;
 import cz.gopay.api.v3.model.payment.NextPayment;
 import cz.gopay.api.v3.model.payment.Payment;
 import cz.gopay.api.v3.model.payment.PaymentResult;
+import cz.gopay.api.v3.model.payment.RefundPayment;
+import cz.gopay.api.v3.model.payment.support.AccountStatement;
+import cz.gopay.api.v3.model.payment.support.PaymentInstrumentRoot;
+
+import java.util.List;
+
 import javax.ws.rs.BeanParam;
+import javax.ws.rs.core.Form;
 import javax.ws.rs.core.MediaType;
 
 /**
@@ -27,22 +37,31 @@ public interface PaymentClient {
     @Path("/payments/payment")
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     @Consumes(MediaType.APPLICATION_JSON)
-    public Payment createPayment(@BeanParam AuthHeader authHeader,
+    Payment createPayment(@BeanParam AuthHeader authHeader,
             BasePayment createPayment);
 
     @POST
     @Path("/payments/payment/{id}/refund")
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-    public PaymentResult refundPayment(@BeanParam AuthHeader authHeader,
+    PaymentResult refundPayment(@BeanParam AuthHeader authHeader,
             @PathParam("id") Long id,
             @FormParam(value = "amount") Long amount);
+    
+    
+    @POST
+    @Path("/payments/payment/{id}/refund")
+    @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+    @Consumes(MediaType.APPLICATION_JSON)
+    PaymentResult refundPayment(@BeanParam AuthHeader authHeader,
+            @PathParam("id") Long id,
+            RefundPayment refundPayment);
 
     @POST
     @Path("/payments/payment/{id}/create-recurrence")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-    public Payment createRecurrentPayment(@BeanParam AuthHeader authHeader,
+    Payment createRecurrentPayment(@BeanParam AuthHeader authHeader,
             @PathParam("id") Long id,
             NextPayment createPayment);
 
@@ -50,28 +69,56 @@ public interface PaymentClient {
     @Path("/payments/payment/{id}/void-recurrence")
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-    public PaymentResult voidRecurrence(@BeanParam AuthHeader authHeader,
+    PaymentResult voidRecurrence(@BeanParam AuthHeader authHeader,
             @PathParam("id") Long id);
 
     @POST
     @Path("/payments/payment/{id}/capture")
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-    public PaymentResult capturePayment(@BeanParam AuthHeader authHeader,
+    PaymentResult capturePayment(@BeanParam AuthHeader authHeader,
             @PathParam("id") Long id);
 
     @POST
     @Path("/payments/payment/{id}/void-authorization")
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-    public PaymentResult voidAuthorization(@BeanParam AuthHeader authHeader,
+    PaymentResult voidAuthorization(@BeanParam AuthHeader authHeader,
             @PathParam("id") Long id);
 
     @GET
     @Path("/payments/payment/{id}")
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-    public Payment getPayment(@BeanParam AuthHeader authHeader,
+    Payment getPayment(@BeanParam AuthHeader authHeader,
             @PathParam("id") Long id);
-
+    
+    @GET
+    @Path("eshops/eshop/{goid}/payment-instruments/{currency}")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    public PaymentInstrumentRoot getPaymentInstruments(@BeanParam AuthHeader authHeader, @PathParam("goid") Long goId,
+            @PathParam("currency") Currency currency);
+    
+    @POST
+    @Path("accounts/account-statement")
+    @Produces(MediaType.APPLICATION_OCTET_STREAM)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public byte[] getStatement(@BeanParam AuthHeader authHeader, AccountStatement accountStatement);
+    
+    
+    @POST
+    @Path("/eet-receipts")
+    @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+    @Consumes(MediaType.APPLICATION_JSON)
+    List<EETReceipt> findEETReceiptsByFilter(@BeanParam AuthHeader authHeader, EETReceiptFilter filter);
+    
+    
+    @GET
+    @Path("/payments/payment/{id}/eet-receipts")
+    @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+    @Consumes(MediaType.APPLICATION_JSON)
+    List<EETReceipt> getEETReceiptByPaymentId(@BeanParam AuthHeader authHeader, @PathParam("id") Long id);
+    
+    
 }

@@ -3,6 +3,7 @@ package cz.gopay.api.v3.impl.resteasy;
 import cz.gopay.api.v3.AbstractGPConnector;
 import cz.gopay.api.v3.model.access.AccessToken;
 import cz.gopay.api.v3.model.access.OAuth;
+
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Date;
@@ -37,8 +38,7 @@ public class ResteasyGPConnector extends AbstractGPConnector {
 
     public static ResteasyGPConnector build(String api, String accessToken, String refreshToken, Date expiresIn) {
         return new ResteasyGPConnector(api,
-                new AccessToken(OAuth.TOKEN_TYPE_BEARER, accessToken, refreshToken, expiresIn.
-                        getTime()));
+                new AccessToken(OAuth.TOKEN_TYPE_BEARER, accessToken, refreshToken, expiresIn.getTime()));
     }
 
     @Override

@@ -30,12 +30,12 @@ public class HttpClientAuthClientImpl extends AbstractImpl implements AuthClient
         Response respose = null;
 
         try {
-            respose = Request.Post(apiUrl + "/oauth2/token").
-                    addHeader(AUTHORIZATION, authHeader.getAuhorization())
-                    .addHeader(CONTENT_TYPE, "application/x-www-form-urlencoded").
-                    bodyForm(form.build())
-                    .bodyString("grant_type=client_credentials&scope=" + scope, ContentType.APPLICATION_JSON).
-                    execute();
+            respose = Request.Post(apiUrl + "/oauth2/token")
+                    .addHeader(AUTHORIZATION, authHeader.getAuhorization())
+                    .addHeader(CONTENT_TYPE, "application/x-www-form-urlencoded")
+                    .bodyForm(form.build())
+                    .bodyString("grant_type=client_credentials&scope=" + scope, ContentType.APPLICATION_JSON)
+                    .execute();
         } catch (IOException ex) {
             throw new WebApplicationException();
         }

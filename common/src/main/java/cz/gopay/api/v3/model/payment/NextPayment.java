@@ -1,13 +1,15 @@
 package cz.gopay.api.v3.model.payment;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import cz.gopay.api.v3.model.common.Currency;
 import cz.gopay.api.v3.model.payment.support.AdditionalParam;
+import cz.gopay.api.v3.model.eet.EET;
 import cz.gopay.api.v3.model.payment.support.OrderItem;
 
 /**
@@ -36,6 +38,9 @@ public class NextPayment {
     @XmlElement(name = "additional_params")
     private List<AdditionalParam> additionalParams;
 
+    @XmlElement(name = "eet")
+    private EET eet;
+    
     public Long getAmount() {
         return amount;
     }
@@ -79,7 +84,15 @@ public class NextPayment {
     public List<AdditionalParam> getAdditionalParams() {
         return additionalParams;
     }
-
+    
+    public EET getEet() {
+        return eet;
+    }
+    
+    public void setEet(EET eet) {
+        this.eet = eet;
+    }
+    
     public void setAdditionalParams(List<AdditionalParam> additionalParams) {
         this.additionalParams = additionalParams;
     }

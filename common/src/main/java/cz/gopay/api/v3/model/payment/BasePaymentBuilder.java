@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package cz.gopay.api.v3.model.payment;
 
 import cz.gopay.api.v3.model.payment.support.Callback;
@@ -43,12 +38,11 @@ public class BasePaymentBuilder extends AbstractPaymentBuilder<BasePayment,BaseP
         payment.setAmount(amount);
         payment.setCurrency(currency);
         payment.setOrderNumber(orderNumber);
-                     
+        payment.setRecurrence(recurrence);
         payment.setCallback(callback);
         if (preauth != null) {
             payment.setPreAuthorization(preauth);
         }
-        
         payment.setTarget(target);
         payment.setPayer(payer);
         return payment;
@@ -60,7 +54,7 @@ public class BasePaymentBuilder extends AbstractPaymentBuilder<BasePayment,BaseP
     }
 
     public BasePaymentBuilder withCallback(String returnUrl, String notificationUrl) {
-        return withCallback(Callback.of(notificationUrl, returnUrl));
+        return withCallback(Callback.of(returnUrl, notificationUrl));
     }
 
     public BasePaymentBuilder withCallback(Callback callback) {
@@ -102,14 +96,6 @@ public class BasePaymentBuilder extends AbstractPaymentBuilder<BasePayment,BaseP
         return this;
     }
     
-    public BasePaymentBuilder withPayerPaymentCard(PayerPaymentCard payerPaymentCard) {
-        if (this.payer == null) {
-            this.payer = Payer.build();
-        }
-        this.payer.setPaymentCard(payerPaymentCard);
-        return this;
-    }
-    
     public BasePaymentBuilder withPaymentInstrument(PaymentInstrument paymentInstrument) {
         if (this.payer == null) {
             this.payer = Payer.build();
@@ -134,8 +120,8 @@ public class BasePaymentBuilder extends AbstractPaymentBuilder<BasePayment,BaseP
     public BasePaymentBuilder toEWallet(String email) {
         this.target = Target.createEWallet(email);
         return this;
-    }    
-
+    }
+    
     @Override
     protected BasePaymentBuilder getInstance() {
         return this;

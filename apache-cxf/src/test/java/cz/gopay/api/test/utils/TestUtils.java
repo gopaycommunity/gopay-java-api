@@ -16,11 +16,17 @@ import org.apache.log4j.Logger;
  * @author František Sichinger
  */
 public class TestUtils {
-
+/*
     public static final String API_URL = "https://gw.sandbox.gopay.com/api";
     public static final String CLIENT_ID = "1744960415";
     public static final String CLIENT_SECRET = "h9wyRz2s";
     public static final Long GOID = 8339303643L;
+    */
+    
+    public static final String API_URL = "https://gw.sandbox.gopay.com/api";
+    public static final String CLIENT_ID = "1689337452";
+    public static final String CLIENT_SECRET = "CKr7FyEE";
+    public static final Long GOID = 8712700986L;
 
     public static void handleException(GPClientException e, Logger logger) {
         List<ErrorElement> errorMessages = e.getErrorMessages();

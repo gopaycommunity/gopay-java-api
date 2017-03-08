@@ -70,7 +70,7 @@ public class Recurrence {
     @Override
     public String toString() {
         return String.format(
-                "Recurrence [recurrenceCycle=%s, recurrencePeriod=%s, recurrenceDateTo=%s, recurrencState=%s]",
+                "Recurrence [recurrenceCycle=%s, recurrencePeriod=%s, recurrenceDateTo=%s, recurrenceState=%s]",
                 recurrenceCycle, recurrencePeriod, recurrenceDateTo, recurrenceState);
     }
 

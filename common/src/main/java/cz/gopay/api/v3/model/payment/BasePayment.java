@@ -2,12 +2,15 @@ package cz.gopay.api.v3.model.payment;
 
 import java.util.List;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import cz.gopay.api.v3.model.common.Currency;
 import cz.gopay.api.v3.model.payment.support.AdditionalParam;
 import cz.gopay.api.v3.model.payment.support.Callback;
+import cz.gopay.api.v3.model.eet.EET;
 import cz.gopay.api.v3.model.payment.support.OrderItem;
 import cz.gopay.api.v3.model.payment.support.Payer;
 import cz.gopay.api.v3.model.payment.support.Recurrence;
@@ -57,6 +60,9 @@ public class BasePayment {
     @XmlElement(name = "lang")
     private String lang;
 
+    @XmlElement(name = "eet")
+    private EET eet;
+    
     public Long getAmount() {
         return amount;
     }
@@ -152,12 +158,20 @@ public class BasePayment {
     public void setLang(String lang) {
         this.lang = lang;
     }
-
+    
+    
+    public EET getEet() {
+        return eet;
+    }
+    
+    public void setEet(EET eet) {
+        this.eet = eet;
+    }
+    
     @Override
     public String toString() {
         return String.format(
                 "BasePayment [orderNumber=%s, payer=%s, target=%s, amount=%s, currency=%s, callback=%s, recurrence=%s, preAuthorization=%s, lang=%s]",
                 orderNumber, payer, target, amount, currency, callback, recurrence, preAuthorization, lang);
     }
-
 }

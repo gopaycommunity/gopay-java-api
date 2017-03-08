@@ -20,7 +20,11 @@ public enum Currency {
         
     public static final String CODE_CZK = String.valueOf(CZK);
     public static final String CODE_EUR = String.valueOf(EUR);
-
+    public static final String CODE_PLN = String.valueOf(PLN);
+    public static final String CODE_HUF = String.valueOf(HUF);
+    public static final String CODE_USD = String.valueOf(USD);
+    public static final String CODE_GBP = String.valueOf(GBP);
+    
     private Integer numericalCode;
 
     private Currency(Integer numericalCode) {

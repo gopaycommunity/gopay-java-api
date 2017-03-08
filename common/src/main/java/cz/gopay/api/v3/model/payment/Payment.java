@@ -7,6 +7,8 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import cz.gopay.api.v3.model.common.Currency;
+import cz.gopay.api.v3.model.eet.EETCode;
+import cz.gopay.api.v3.model.common.SessionSubState;
 import cz.gopay.api.v3.model.payment.support.*;
 
 @XmlRootElement
@@ -20,7 +22,7 @@ public class Payment {
         CANCELED,
         TIMEOUTED,
         REFUNDED,
-        PARTIALLY_REFUNDED;
+        PARTIALLY_REFUNDED
     }
 
     @XmlElement(name = "id")
@@ -34,6 +36,9 @@ public class Payment {
 
     @XmlElement(name = "state")
     private SessionState state;
+    
+    @XmlElement(name = "sub_state")
+    private SessionSubState subState;
 
     @XmlElement(name = "payment_instrument")
     private PaymentInstrument paymentInstrument;
@@ -65,6 +70,9 @@ public class Payment {
     @XmlElement(name = "gw_url")
     private String gwUrl;
 
+    @XmlElement(name = "eet_code")
+    private EETCode eetCode;
+    
     public Long getId() {
         return id;
     }
@@ -80,7 +88,15 @@ public class Payment {
     public void setState(SessionState state) {
         this.state = state;
     }
-
+    
+    public SessionSubState getSubState() {
+        return subState;
+    }
+    
+    public void setSubState(SessionSubState subState) {
+        this.subState = subState;
+    }
+    
     public PaymentInstrument getPaymentInstrument() {
         return paymentInstrument;
     }
@@ -176,7 +192,15 @@ public class Payment {
     public void setParentId(Long parentId) {
         this.parentId = parentId;
     }
-
+    
+    public EETCode getEetCode() {
+        return eetCode;
+    }
+    
+    public void setEetCode(EETCode eetCode) {
+        this.eetCode = eetCode;
+    }
+    
     @Override
     public String toString() {
         return String.format(
@@ -185,6 +209,8 @@ public class Payment {
                 preAuthorization, lang);
     }
 
+    
+    
     public static Payment create(Long id, Long parentId, SessionState state) {
         Payment result = new Payment();
         result.setId(id);

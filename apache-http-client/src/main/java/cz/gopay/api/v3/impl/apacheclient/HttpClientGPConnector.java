@@ -27,7 +27,7 @@ public class HttpClientGPConnector extends AbstractGPConnector {
         if (proxy == AuthClient.class) {
             return (T) new HttpClientAuthClientImpl(apiUrl);
         } else if (proxy == PaymentClient.class) {
-            return (T) new HttpClientPaymentclientImpl(apiUrl);
+            return (T) new HttpClientPaymentClientImpl(apiUrl);
         }
         throw new IllegalArgumentException("Unknown interface");
     }

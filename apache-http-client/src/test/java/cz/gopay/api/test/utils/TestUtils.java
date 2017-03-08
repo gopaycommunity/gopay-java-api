@@ -25,16 +25,13 @@ public class TestUtils {
   /*  public static final String CLIENT_ID = "app@musicshop.cz";
     public static final String CLIENT_SECRET = "VpnJVcTn";
     public static final Long GOID = 8761908826L;
-   */ 
+   */
     
-    public static final Long GOID = 8588688724L;
-    
-    public static final String CLIENT_ID = "1938878018";
-    public static final String CLIENT_SECRET = "t6tyYzJ8";
-   
+    public static final String API_URL = "https://gw.sandbox.gopay.com/api";
+    public static final String CLIENT_ID = "1689337452";
+    public static final String CLIENT_SECRET = "CKr7FyEE";
+    public static final Long GOID = 8712700986L;
 
-  
-    public static final String API_URL = "http://gopay-gw:8180/gp/api";
     public static void handleException(GPClientException e, Logger logger) {
         List<ErrorElement> errorMessages = e.getErrorMessages();
         StringBuilder builder = new StringBuilder();

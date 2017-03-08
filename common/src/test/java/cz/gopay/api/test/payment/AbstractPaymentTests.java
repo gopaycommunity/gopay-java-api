@@ -10,12 +10,14 @@ import cz.gopay.api.v3.IGPConnector;
 import cz.gopay.api.v3.model.ErrorElement;
 import cz.gopay.api.v3.model.access.OAuth;
 import cz.gopay.api.v3.model.common.Currency;
+import cz.gopay.api.v3.model.common.StatementGeneratingFormat;
 import cz.gopay.api.v3.model.payment.BasePayment;
 import cz.gopay.api.v3.model.payment.Lang;
 import cz.gopay.api.v3.model.payment.Payment;
 import cz.gopay.api.v3.model.payment.BasePaymentBuilder;
 import cz.gopay.api.v3.model.payment.PaymentFactory;
 import cz.gopay.api.v3.model.payment.PaymentResult;
+import cz.gopay.api.v3.model.payment.support.AccountStatement;
 import cz.gopay.api.v3.model.payment.support.Payer;
 import cz.gopay.api.v3.model.payment.support.PaymentInstrument;
 import cz.gopay.api.v3.model.payment.support.PayerBuilder;
@@ -44,7 +46,7 @@ public class AbstractPaymentTests {
                .order("123", 10L, Currency.EUR, "description")
                .inLang(Lang.EN)
                .addAdditionalParameter("AKey2", "AValue")
-               .addItem("An item", 1L, 1L, 1L)
+               .addItem("An item", 1L, 1L)
                .toEshop(TestUtils.GOID)
                .payer(payer).build();
     }

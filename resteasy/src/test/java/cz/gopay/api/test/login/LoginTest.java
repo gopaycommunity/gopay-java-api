@@ -19,6 +19,7 @@ public class LoginTest {
         try {
             IGPConnector connector = ResteasyGPConnector.build(TestUtils.API_URL).getAppToken(TestUtils.CLIENT_ID, TestUtils.CLIENT_SECRET);
             Assert.assertNotNull(connector.getAccessToken());
+            System.out.println(connector.getAccessToken().getAccessToken());;
         } catch (GPClientException ex) {
             TestUtils.handleException(ex, logger);
         }

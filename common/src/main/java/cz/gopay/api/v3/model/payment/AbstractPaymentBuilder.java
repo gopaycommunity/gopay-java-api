@@ -8,6 +8,7 @@ package cz.gopay.api.v3.model.payment;
 import cz.gopay.api.v3.Builder;
 import cz.gopay.api.v3.model.common.Currency;
 import cz.gopay.api.v3.model.payment.support.AdditionalParam;
+import cz.gopay.api.v3.model.payment.support.ItemType;
 import cz.gopay.api.v3.model.payment.support.OrderItem;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -46,8 +47,13 @@ public abstract class AbstractPaymentBuilder<T, U extends AbstractPaymentBuilder
         return getInstance();
     }
 
-    public U addItem(String name, Long amount, Long fee, Long count) {
-        this.items.add(OrderItem.of(name, amount, fee, count));
+    public U addItem(String name, Long amount, Long count) {
+        this.items.add(OrderItem.of(name, amount, count));
+        return getInstance();
+    }
+                    
+    public U addItem(String name, Long amount, Long count, Integer vatRate, ItemType type, String ean, String url) {
+        this.items.add(OrderItem.of(name, amount, count, vatRate, type, ean, url));
         return getInstance();
     }
 

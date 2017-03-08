@@ -1,9 +1,19 @@
 package cz.gopay.api.test.payment;
 
 import cz.gopay.api.test.utils.TestUtils;
+import cz.gopay.api.v3.GPClientException;
+import cz.gopay.api.v3.IGPConnector;
 import cz.gopay.api.v3.impl.apacheclient.HttpClientGPConnector;
+import cz.gopay.api.v3.model.access.OAuth;
+import cz.gopay.api.v3.model.eet.EETReceipt;
+import cz.gopay.api.v3.model.eet.EETReceiptFilter;
+
+import junit.framework.Assert;
 
 import org.junit.Test;
+
+import java.util.Calendar;
+import java.util.List;
 
 
 public class PaymentTest extends AbstractPaymentTests {
@@ -25,7 +35,7 @@ public class PaymentTest extends AbstractPaymentTests {
     
     @Test
     public void testHttpClientPaymentStatausWithId() {
-        testPaymentStatus(HttpClientGPConnector.build(TestUtils.API_URL), 3000023078L);
+        testPaymentStatus(HttpClientGPConnector.build(TestUtils.API_URL), 3048532578L);
     }
     
     @Test
@@ -42,5 +52,28 @@ public class PaymentTest extends AbstractPaymentTests {
     public void testPaymentRefund() {
         testPaymentRefund(HttpClientGPConnector.build(TestUtils.API_URL));
     }
-
+    
+    
+    @Test
+    public void testEETREceiptFindByFilter() {
+        testEETREceiptFindByFilter(HttpClientGPConnector.build(TestUtils.API_URL));
+    }
+    
+   // @Test
+    public void testEETReceiptFindByPayment() {
+        testEETReceiptFindByPayment(HttpClientGPConnector.build(TestUtils.API_URL));
+    }
+    
+    
+    @Test
+    public void testPaymentInstrumentRootHttp(){
+        testPaymentInstrumentRoot(HttpClientGPConnector.build(TestUtils.API_URL));
+    }
+    
+    @Test
+    public void testGenerateStatementHttp() {
+        testGenerateStatement(HttpClientGPConnector.build(TestUtils.API_URL));
+    }
+    
+    
 }

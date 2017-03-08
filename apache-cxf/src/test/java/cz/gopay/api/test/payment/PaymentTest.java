@@ -38,5 +38,26 @@ public class PaymentTest extends AbstractPaymentTests {
     public void testPaymentRefund() {
         testPaymentRefund(CXFGPConnector.build(TestUtils.API_URL));
     }
+    
+    @Test
+    public void testPaymentInstrumentRootCXF(){
+        testPaymentInstrumentRoot(CXFGPConnector.build(TestUtils.API_URL));
+    }
+    
+    @Test
+    public void testGenerateStatementCXF() {
+        testGenerateStatement(CXFGPConnector.build(TestUtils.API_URL));
+    }
 
+    
+    
+    @Test
+    public void testEETREceiptFindByFilter() {
+        testEETREceiptFindByFilter(CXFGPConnector.build(TestUtils.API_URL));
+    }
+    
+    @Test
+    public void testEETReceiptFindByPayment() {
+        testEETReceiptFindByPayment(CXFGPConnector.build(TestUtils.API_URL));
+    }
 }
