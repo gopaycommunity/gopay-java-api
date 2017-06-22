@@ -158,6 +158,11 @@ public class CommonMethodTests {
 					.generateStatement(accountStatement);
 			Assert.assertNotNull(statement);
 			System.out.println("Content of array to string: " + new String(statement));
+			System.out.println("--------------------------------------------------------------------");
+			System.out.println("Byte array: ");
+			for(byte currByte : statement){
+				System.out.print(currByte + " ");
+			}
 		} catch (GPClientException e) {
 			TestUtils.handleException(e, logger);
 		}

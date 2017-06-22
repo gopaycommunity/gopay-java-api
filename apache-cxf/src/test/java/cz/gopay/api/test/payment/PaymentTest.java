@@ -49,8 +49,6 @@ public class PaymentTest extends AbstractPaymentTests {
         testGenerateStatement(CXFGPConnector.build(TestUtils.API_URL));
     }
 
-    
-    
     @Test
     public void testEETREceiptFindByFilter() {
         testEETREceiptFindByFilter(CXFGPConnector.build(TestUtils.API_URL));
@@ -59,5 +57,35 @@ public class PaymentTest extends AbstractPaymentTests {
     @Test
     public void testEETReceiptFindByPayment() {
         testEETReceiptFindByPayment(CXFGPConnector.build(TestUtils.API_URL));
+    }
+    
+    @Test
+    public void testCreateSupercashCoupon() {
+        testCreateSupercashCoupon(CXFGPConnector.build(TestUtils.API_URL));
+    }
+    
+    @Test
+    public void testCreateSupercashCouponBatch() {
+        testCreateSupercashCouponBatch(CXFGPConnector.build(TestUtils.API_URL));
+    }
+    
+    @Test
+    public void testGetSupercashCouponBatchStatus() {
+        testGetSupercashCouponBatchStatus(CXFGPConnector.build(TestUtils.API_URL));
+    }
+    
+    @Test
+    public void testGetSupercashCouponBatch() {
+        testGetSupercashCouponBatch(CXFGPConnector.build(TestUtils.API_URL));
+    }
+    
+    @Test
+    public void testFindSupercashCoupons() {
+        testFindSupercashCoupons(CXFGPConnector.build(TestUtils.API_URL));
+    }
+    
+    @Test
+    public void testGetSupercashCoupon() {
+        testGetSupercashCoupon(CXFGPConnector.build(TestUtils.API_URL));
     }
 }

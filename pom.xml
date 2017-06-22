@@ -2,9 +2,11 @@
 		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>cz.gopay</groupId>
-	
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
 	<artifactId>gp-java-api-v3-parent</artifactId>
-	<version>3.4.1</version>
+	<version>3.4.2</version>
 	
 	<description>
 		GOPAY project - java api
@@ -34,9 +36,6 @@
 			<organizationUrl>http://www.gopay.cz</organizationUrl>
 		</developer>
 	</developers>
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-	</properties>
 	<distributionManagement>
 		<repository>
 			<id>bintray-gopay-maven</id>

@@ -75,5 +75,35 @@ public class PaymentTest extends AbstractPaymentTests {
         testGenerateStatement(HttpClientGPConnector.build(TestUtils.API_URL));
     }
     
+    @Test
+    public void testCreateSupercashCoupon() {
+        testCreateSupercashCoupon(HttpClientGPConnector.build(TestUtils.API_URL));
+    }
+    
+    @Test
+    public void testCreateSupercashCouponBatch() {
+        testCreateSupercashCouponBatch(HttpClientGPConnector.build(TestUtils.API_URL));
+    }
+    
+    @Test
+    public void testGetSupercashCouponBatchStatus() {
+        testGetSupercashCouponBatchStatus(HttpClientGPConnector.build(TestUtils.API_URL));
+    }
+    
+    @Test
+    public void testGetSupercashCouponBatch() {
+        testGetSupercashCouponBatch(HttpClientGPConnector.build(TestUtils.API_URL));
+    }
+    
+    @Test
+    public void testFindSupercashCoupons() {
+        testFindSupercashCoupons(HttpClientGPConnector.build(TestUtils.API_URL));
+    }
+    
+    @Test
+    public void testGetSupercashCoupon() {
+        testGetSupercashCoupon(HttpClientGPConnector.build(TestUtils.API_URL));
+    }
+    
     
 }
