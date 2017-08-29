@@ -348,7 +348,7 @@ public enum CountryCode {
   }
 
   /**
-   * Represents ISO 3166-1 numeric codes for country
+   * @return numeric code ISO 3166-1
    */
   public Integer getNumericCode() {
 

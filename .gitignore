@@ -3,5 +3,5 @@
 /apache-http-client/target/
 /common/target/
 .settings
-
+.idea
 *.iml

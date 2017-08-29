@@ -16,7 +16,10 @@ public enum Currency {
     PLN(985),
     HUF(348),
     USD(840),
-    GBP(826);
+    GBP(826),
+    BGN(975),
+    HRK(191),
+    RON(946);
         
     public static final String CODE_CZK = String.valueOf(CZK);
     public static final String CODE_EUR = String.valueOf(EUR);
@@ -24,6 +27,9 @@ public enum Currency {
     public static final String CODE_HUF = String.valueOf(HUF);
     public static final String CODE_USD = String.valueOf(USD);
     public static final String CODE_GBP = String.valueOf(GBP);
+    public static final String CODE_BGN = String.valueOf(BGN);
+    public static final String CODE_HRK = String.valueOf(HRK);
+    public static final String CODE_RON = String.valueOf(RON);
     
     private Integer numericalCode;
 

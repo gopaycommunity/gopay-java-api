@@ -20,6 +20,9 @@ public class PayerBuilder implements Builder<Payer> {
     private List<PaymentInstrument> allowedPaymentInstruments = new ArrayList<>();
     private List<String> allowedSwifts = new ArrayList<>();
     private PayerContact contact;
+    private String allowedCardToken;
+    private String verifyPin;
+    
     
     @Override
     public Payer build() {
@@ -29,6 +32,8 @@ public class PayerBuilder implements Builder<Payer> {
         payer.setContact(contact);
         payer.setAllowedSwifts(allowedSwifts);
         payer.setPaymentInstrument(paymentInstrument);
+        payer.setAllowedCardToken(allowedCardToken);
+        payer.setVerifyPin(verifyPin);
         return payer;
     }
     
@@ -72,6 +77,16 @@ public class PayerBuilder implements Builder<Payer> {
 
     public PayerBuilder withContactData(PayerContact contact) {
         this.contact = contact;
+        return this;
+    }
+    
+    public PayerBuilder withAllowedCardToken(String cardToken) {
+        this.allowedCardToken = cardToken;
+        return this;
+    }
+    
+    public PayerBuilder withVerificationPin(String verificationPin) {
+        this.verifyPin = verificationPin;
         return this;
     }
 }

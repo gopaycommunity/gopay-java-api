@@ -29,6 +29,12 @@ public class PayerPaymentCard {
     @XmlElement(name="card_issuer_bank")
     private String cardIssuerBank;
     
+    @XmlElement(name="card_token")
+    private String cardToken;
+    
+    @XmlElement(name="3ds_result")
+    private String threeDResult;
+    
     public String getCardNumber() {
         return cardNumber;
     }
@@ -69,12 +75,27 @@ public class PayerPaymentCard {
         this.cardIssuerBank = cardIssuerBank;
     }
     
+    public String getCardToken() {
+        return cardToken;
+    }
+    
+    public void setCardToken(String cardToken) {
+        this.cardToken = cardToken;
+    }
+    
+    public String getThreeDResult() {
+        return threeDResult;
+    }
+    
+    public void setThreeDResult(String threeDResult) {
+        this.threeDResult = threeDResult;
+    }
     
     @Override
     public String toString() {
         return String
-                .format("PayerPaymentCard [cardNumber=%s, cardExpiration=%s, cardBrand=%s, cardIssuerCountry=%s, cardIssuerBank=%s]",
-                        cardNumber, cardExpiration, cardBrand, cardIssuerCountry, cardIssuerBank);
+                .format("PayerPaymentCard [cardNumber=%s, cardExpiration=%s, cardBrand=%s, cardIssuerCountry=%s, cardIssuerBank=%s, cardToken=%s, threeDResult=%s]",
+                        cardNumber, cardExpiration, cardBrand, cardIssuerCountry, cardIssuerBank, cardToken, threeDResult);
     }
     
     

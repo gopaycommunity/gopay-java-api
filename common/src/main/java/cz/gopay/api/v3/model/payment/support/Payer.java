@@ -39,7 +39,14 @@ public class Payer {
     
     @XmlElement(name="bank_account")
     private BankAccount bankAccount;
-
+    
+    @XmlElement(name="allowed_card_token")
+    private String allowedCardToken;
+    
+    @XmlElement(name="verify_pin")
+    private String verifyPin;
+    
+    
     public PaymentInstrument getPaymentInstrument() {
         return paymentInstrument;
     }
@@ -104,11 +111,27 @@ public class Payer {
         this.bankAccount = bankAccount;
     }
     
+    public String getAllowedCardToken() {
+        return allowedCardToken;
+    }
+    
+    public void setAllowedCardToken(String allowedCardToken) {
+        this.allowedCardToken = allowedCardToken;
+    }
+    
+    public String getVerifyPin() {
+        return verifyPin;
+    }
+    
+    public void setVerifyPin(String verifyPin) {
+        this.verifyPin = verifyPin;
+    }
+    
     @Override
     public String toString() {
         return String.format(
-                "PayerParty [paymentInstrument=%s, allowedPaymentInstruments=%s, allowedSwifts=%s, defaultPaymentInstrument=%s, defaultSwift=%s, contact=%s, paymentCard=%s, bankAccount=%s]",
-                paymentInstrument, allowedPaymentInstruments, allowedSwifts, defaultPaymentInstrument, defaultSwift, contact, paymentCard, bankAccount);
+                "PayerParty [paymentInstrument=%s, allowedPaymentInstruments=%s, allowedSwifts=%s, defaultPaymentInstrument=%s, defaultSwift=%s, contact=%s, paymentCard=%s, bankAccount=%s, allowedCardToken=%s, verifyPin=%s]",
+                paymentInstrument, allowedPaymentInstruments, allowedSwifts, defaultPaymentInstrument, defaultSwift, contact, paymentCard, bankAccount, allowedCardToken, verifyPin);
     }
 
     public static Payer build() {
