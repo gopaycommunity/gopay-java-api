@@ -2,10 +2,10 @@ package cz.gopay.api.v3;
 
 import cz.gopay.api.v3.model.access.AccessToken;
 import cz.gopay.api.v3.model.common.Currency;
-import cz.gopay.api.v3.model.access.AuthHeader;
 import cz.gopay.api.v3.model.eet.EETReceipt;
 import cz.gopay.api.v3.model.eet.EETReceiptFilter;
 import cz.gopay.api.v3.model.payment.BasePayment;
+import cz.gopay.api.v3.model.payment.CapturePayment;
 import cz.gopay.api.v3.model.payment.NextPayment;
 import cz.gopay.api.v3.model.payment.Payment;
 import cz.gopay.api.v3.model.payment.PaymentResult;
@@ -21,9 +21,6 @@ import cz.gopay.api.v3.model.supercash.SupercashCouponRequest;
 import cz.gopay.api.v3.model.supercash.SupercashPayment;
 
 import java.util.List;
-
-import javax.ws.rs.BeanParam;
-import javax.ws.rs.PathParam;
 
 /**
  *
@@ -45,6 +42,8 @@ public interface IGPConnector {
     PaymentResult voidRecurrency(Long id) throws GPClientException;
 
     PaymentResult capturePayment(Long id) throws GPClientException;
+    
+    PaymentResult capturePayment(Long id, CapturePayment capturePayment) throws GPClientException;
 
     PaymentResult voidAuthorization(Long id) throws GPClientException;
 
