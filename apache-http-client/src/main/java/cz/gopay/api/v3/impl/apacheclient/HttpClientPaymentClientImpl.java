@@ -6,6 +6,7 @@ import cz.gopay.api.v3.model.common.Currency;
 import cz.gopay.api.v3.model.eet.EETReceipt;
 import cz.gopay.api.v3.model.eet.EETReceiptFilter;
 import cz.gopay.api.v3.model.payment.BasePayment;
+import cz.gopay.api.v3.model.payment.CapturePayment;
 import cz.gopay.api.v3.model.payment.NextPayment;
 import cz.gopay.api.v3.model.payment.Payment;
 import cz.gopay.api.v3.model.payment.PaymentResult;
@@ -22,19 +23,19 @@ import cz.gopay.api.v3.model.supercash.SupercashPayment;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 
-import java.io.IOException;
-import java.util.List;
-
-import javax.ws.rs.BeanParam;
-import javax.ws.rs.WebApplicationException;
-import javax.ws.rs.core.MediaType;
-
 import org.apache.http.HttpResponse;
 import org.apache.http.client.fluent.Request;
 import org.apache.http.client.fluent.Response;
 import org.apache.http.entity.ContentType;
 import org.apache.http.util.EntityUtils;
 import org.apache.log4j.Logger;
+
+import java.io.IOException;
+import java.util.List;
+
+import javax.ws.rs.BeanParam;
+import javax.ws.rs.WebApplicationException;
+import javax.ws.rs.core.MediaType;
 
 /**
  *
@@ -156,7 +157,26 @@ public class HttpClientPaymentClientImpl extends AbstractImpl implements Payment
 
         return unMarshall(response, PaymentResult.class);
     }
-
+    
+    @Override
+    public PaymentResult capturePayment(AuthHeader authHeader, Long id, CapturePayment capturePayment) {
+        Response response = null;
+    
+        try {
+            response = Request.
+                    Post(apiUrl + "/payments/payment/" + id + "/capture")
+                    .addHeader(ACCEPT, MediaType.APPLICATION_JSON)
+                    .addHeader(CONTENT_TYPE, MediaType.APPLICATION_FORM_URLENCODED)
+                    .addHeader(AUTHORIZATION, authHeader.getAuhorization())
+                    .bodyString(marshall(capturePayment), ContentType.APPLICATION_JSON)
+                    .execute();
+        } catch (IOException ex) {
+            throw new WebApplicationException(ex);
+        }
+    
+        return unMarshall(response, PaymentResult.class);
+    }
+    
     @Override
     public PaymentResult voidAuthorization(AuthHeader authHeader, Long id) {
         Response response = null;

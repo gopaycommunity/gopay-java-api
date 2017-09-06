@@ -11,6 +11,7 @@ import cz.gopay.api.v3.model.common.Currency;
 import cz.gopay.api.v3.model.eet.EETReceipt;
 import cz.gopay.api.v3.model.eet.EETReceiptFilter;
 import cz.gopay.api.v3.model.payment.BasePayment;
+import cz.gopay.api.v3.model.payment.CapturePayment;
 import cz.gopay.api.v3.model.payment.NextPayment;
 import cz.gopay.api.v3.model.payment.Payment;
 import cz.gopay.api.v3.model.payment.PaymentResult;
@@ -203,6 +204,27 @@ public abstract class AbstractGPConnector implements IGPConnector {
 			return paymentClient.capturePayment(AuthHeader
 							.build(accessToken != null ? accessToken.getAccessToken() : null),
 					id);
+			
+		} catch (WebApplicationException e) {
+			logger.fatal(getClass().getSimpleName() + ": capture payment Error [" + id + "] RC ["
+					+ e.getResponse().getStatus() + "] Ex: " + e.getResponse().getStatusInfo(), e);
+			GPExceptionHandler.handleException(e);
+		}
+		
+		return null;
+	}
+	
+	@Override
+	public PaymentResult capturePayment(Long id, CapturePayment capturePayment) throws GPClientException {
+		try {
+			logger.debug(getClass().getSimpleName() + ": capture payment with amount [" + id + "]");
+			
+			PaymentClient paymentClient = createRESTClientProxy(apiUrl, PaymentClient.class);
+			
+			return paymentClient.capturePayment(AuthHeader
+							.build(accessToken != null ? accessToken.getAccessToken() : null),
+					id,
+					capturePayment);
 			
 		} catch (WebApplicationException e) {
 			logger.fatal(getClass().getSimpleName() + ": capture payment Error [" + id + "] RC ["
