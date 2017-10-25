@@ -38,6 +38,8 @@ import javax.ws.rs.WebApplicationException;
  */
 public abstract class AbstractGPConnector implements IGPConnector {
 	
+	public static final String VERSION = "${project.version}";
+	
 	protected static final Logger logger = Logger.getLogger(AbstractGPConnector.class);
 	
 	public static int CONNECTION_POOL_SIZE = 1;
@@ -518,4 +520,11 @@ public abstract class AbstractGPConnector implements IGPConnector {
 	public void setAccessToken(AccessToken accessToken) {
 		this.accessToken = accessToken;
 	}
+	
+	protected abstract String getImplementationName();
+	
+	public String getVersion() {
+		return VERSION;
+	}
+	
 }

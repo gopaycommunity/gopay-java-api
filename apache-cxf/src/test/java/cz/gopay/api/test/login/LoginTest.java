@@ -14,7 +14,7 @@ public class LoginTest {
 
     private static final Logger logger = Logger.getLogger(LoginTest.class);
 
-
+    @Test
     public void testAuthClientCXF() {
         try {
             IGPConnector connector = CXFGPConnector.build(TestUtils.API_URL).getAppToken(TestUtils.CLIENT_ID, TestUtils.CLIENT_SECRET);

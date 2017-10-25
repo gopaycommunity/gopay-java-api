@@ -4,6 +4,7 @@ import cz.gopay.api.v3.AbstractGPConnector;
 import cz.gopay.api.v3.model.access.AccessToken;
 import cz.gopay.api.v3.model.access.OAuth;
 
+import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Date;
@@ -17,6 +18,9 @@ import org.jboss.resteasy.client.jaxrs.ResteasyClientBuilder;
 import org.jboss.resteasy.client.jaxrs.ResteasyWebTarget;
 import org.jboss.resteasy.client.jaxrs.engines.URLConnectionEngine;
 import org.jboss.resteasy.spi.ResteasyProviderFactory;
+
+import javax.ws.rs.client.ClientRequestContext;
+import javax.ws.rs.client.ClientRequestFilter;
 
 /**
  *
@@ -50,15 +54,19 @@ public class ResteasyGPConnector extends AbstractGPConnector {
             throw new RuntimeException(ex);
         }
         ResteasyClientBuilder builder = new ResteasyClientBuilder();
-
         builder.connectionCheckoutTimeout(CONNECTION_SETUP_TO, TimeUnit.SECONDS);
         builder.socketTimeout(CONNECTION_SETUP_TO, TimeUnit.SECONDS);
         builder.httpEngine(new URLConnectionEngine());
-
+        
         ResteasyProviderFactory.getInstance().register(builder);
 
         ResteasyClient client = builder.build();
-
+        client.register(new ClientRequestFilter() {
+            @Override
+            public void filter(ClientRequestContext requestContext) throws IOException {
+                requestContext.getHeaders().add("User-Agent", getImplementationName() + "=" + getVersion());
+            }
+        });
         ObjectMapper mapper = new ObjectMapper();
         JacksonJaxbJsonProvider jaxbProvider
                 = new JacksonJaxbJsonProvider(mapper, JacksonJaxbJsonProvider.DEFAULT_ANNOTATIONS);
@@ -71,4 +79,10 @@ public class ResteasyGPConnector extends AbstractGPConnector {
         ResteasyWebTarget resteasyWebTarget = client.target(i);
         return resteasyWebTarget.proxy(proxy);
     }
+    
+    @Override
+    public String getImplementationName() {
+        return "${project.artifactId}";
+    }
+    
 }

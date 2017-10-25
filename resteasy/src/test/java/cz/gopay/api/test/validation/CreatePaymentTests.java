@@ -2,10 +2,8 @@ package cz.gopay.api.test.validation;
 
 import cz.gopay.api.test.payment.AbstractPaymentTests;
 import cz.gopay.api.test.utils.TestUtils;
-import cz.gopay.api.v3.GPClientException;
 import cz.gopay.api.v3.IGPConnector;
 import cz.gopay.api.v3.impl.resteasy.ResteasyGPConnector;
-import cz.gopay.api.v3.model.access.OAuth;
 import cz.gopay.api.v3.model.common.Currency;
 import cz.gopay.api.v3.model.payment.BasePayment;
 import cz.gopay.api.v3.model.payment.BasePaymentBuilder;

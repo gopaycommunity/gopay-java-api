@@ -68,4 +68,12 @@
     </dependencies>
 	
     <name>gp-java-api-common</name>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>templating-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
 </project>

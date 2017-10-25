@@ -31,5 +31,9 @@ public class HttpClientGPConnector extends AbstractGPConnector {
         }
         throw new IllegalArgumentException("Unknown interface");
     }
-
+    
+    @Override
+    protected String getImplementationName() {
+        return "${project.artifactId}";
+    }
 }

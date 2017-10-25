@@ -58,6 +58,7 @@ public class HttpClientPaymentClientImpl extends AbstractImpl implements Payment
                     .addHeader(CONTENT_TYPE, MediaType.APPLICATION_JSON)
                     .addHeader(AUTHORIZATION, authHeader.
                             getAuhorization())
+                    .addHeader(USER_AGENT, IMPLEMENTATION_NAME + "=" + VERSION)
                     .bodyString(marshall(createPayment), ContentType.APPLICATION_JSON)
                     .execute();
         } catch (IOException ex) {
@@ -77,6 +78,7 @@ public class HttpClientPaymentClientImpl extends AbstractImpl implements Payment
                     .addHeader(ACCEPT, MediaType.APPLICATION_JSON)
                     .addHeader(CONTENT_TYPE, MediaType.APPLICATION_FORM_URLENCODED)
                     .addHeader(AUTHORIZATION, authHeader.getAuhorization())
+                    .addHeader(USER_AGENT, IMPLEMENTATION_NAME + "=" + VERSION)
                     .bodyString("amount=" + amount, ContentType.APPLICATION_JSON)
                     .execute();
         } catch (IOException ex) {
@@ -95,6 +97,7 @@ public class HttpClientPaymentClientImpl extends AbstractImpl implements Payment
                     .addHeader(ACCEPT, MediaType.APPLICATION_JSON)
                     .addHeader(CONTENT_TYPE, MediaType.APPLICATION_JSON)
                     .addHeader(AUTHORIZATION, authHeader.getAuhorization())
+                    .addHeader(USER_AGENT, IMPLEMENTATION_NAME + "=" + VERSION)
                     .bodyString(marshall(refundPayment), ContentType.APPLICATION_JSON)
                     .execute();
         } catch (IOException ex) {
@@ -113,6 +116,7 @@ public class HttpClientPaymentClientImpl extends AbstractImpl implements Payment
                     .addHeader(ACCEPT, MediaType.APPLICATION_JSON)
                     .addHeader(CONTENT_TYPE, MediaType.APPLICATION_JSON)
                     .addHeader(AUTHORIZATION, authHeader.getAuhorization())
+                    .addHeader(USER_AGENT, IMPLEMENTATION_NAME + "=" + VERSION)
                     .bodyString(marshall(createPayment), ContentType.TEXT_XML)
                     .execute();
         } catch (IOException ex) {
@@ -132,6 +136,7 @@ public class HttpClientPaymentClientImpl extends AbstractImpl implements Payment
                     .addHeader(ACCEPT, MediaType.APPLICATION_JSON)
                     .addHeader(CONTENT_TYPE, MediaType.APPLICATION_FORM_URLENCODED)
                     .addHeader(AUTHORIZATION, authHeader.getAuhorization())
+                    .addHeader(USER_AGENT, IMPLEMENTATION_NAME + "=" + VERSION)
                     .execute();
         } catch (IOException ex) {
             throw new RuntimeException(ex);
@@ -150,6 +155,7 @@ public class HttpClientPaymentClientImpl extends AbstractImpl implements Payment
                     .addHeader(ACCEPT, MediaType.APPLICATION_JSON)
                     .addHeader(CONTENT_TYPE, MediaType.APPLICATION_FORM_URLENCODED)
                     .addHeader(AUTHORIZATION, authHeader.getAuhorization())
+                    .addHeader(USER_AGENT, IMPLEMENTATION_NAME + "=" + VERSION)
                     .execute();
         } catch (IOException ex) {
             throw new WebApplicationException(ex);
@@ -168,6 +174,7 @@ public class HttpClientPaymentClientImpl extends AbstractImpl implements Payment
                     .addHeader(ACCEPT, MediaType.APPLICATION_JSON)
                     .addHeader(CONTENT_TYPE, MediaType.APPLICATION_FORM_URLENCODED)
                     .addHeader(AUTHORIZATION, authHeader.getAuhorization())
+                    .addHeader(USER_AGENT, IMPLEMENTATION_NAME + "=" + VERSION)
                     .bodyString(marshall(capturePayment), ContentType.APPLICATION_JSON)
                     .execute();
         } catch (IOException ex) {
@@ -187,6 +194,7 @@ public class HttpClientPaymentClientImpl extends AbstractImpl implements Payment
                     .addHeader(ACCEPT, MediaType.APPLICATION_JSON)
                     .addHeader(CONTENT_TYPE, MediaType.APPLICATION_FORM_URLENCODED)
                     .addHeader(AUTHORIZATION, authHeader.getAuhorization())
+                    .addHeader(USER_AGENT, IMPLEMENTATION_NAME + "=" + VERSION)
                     .execute();
         } catch (IOException ex) {
             throw new WebApplicationException(ex);
@@ -204,6 +212,7 @@ public class HttpClientPaymentClientImpl extends AbstractImpl implements Payment
                     .addHeader(ACCEPT, MediaType.APPLICATION_JSON)
                     .addHeader(CONTENT_TYPE, MediaType.APPLICATION_FORM_URLENCODED)
                     .addHeader(AUTHORIZATION, authHeader.getAuhorization())
+                    .addHeader(USER_AGENT, IMPLEMENTATION_NAME + "=" + VERSION)
                     .execute();
         } catch (IOException ex) {
             throw new WebApplicationException(ex);
@@ -220,6 +229,7 @@ public class HttpClientPaymentClientImpl extends AbstractImpl implements Payment
             response = Request.Get(apiUrl + "/eshops/eshop/" + goId + "/payment-instruments/" + currency)
                     .addHeader(ACCEPT, MediaType.APPLICATION_JSON)
                     .addHeader(AUTHORIZATION, authHeader.getAuhorization())
+                    .addHeader(USER_AGENT, IMPLEMENTATION_NAME + "=" + VERSION)
                     .execute();
         } catch (IOException ex) {
             throw new WebApplicationException(ex);
@@ -237,6 +247,7 @@ public class HttpClientPaymentClientImpl extends AbstractImpl implements Payment
                     .addHeader(ACCEPT, MediaType.APPLICATION_JSON)
                     .addHeader(CONTENT_TYPE, MediaType.APPLICATION_JSON)
                     .addHeader(AUTHORIZATION, authHeader.getAuhorization())
+                    .addHeader(USER_AGENT, IMPLEMENTATION_NAME + "=" + VERSION)
                     .bodyString(marshall(filter), ContentType.APPLICATION_JSON)
                     .execute();
         } catch (IOException ex) {
@@ -255,6 +266,7 @@ public class HttpClientPaymentClientImpl extends AbstractImpl implements Payment
                     .addHeader(ACCEPT, MediaType.APPLICATION_JSON)
                     .addHeader(CONTENT_TYPE, MediaType.APPLICATION_JSON)
                     .addHeader(AUTHORIZATION, authHeader.getAuhorization())
+                    .addHeader(USER_AGENT, IMPLEMENTATION_NAME + "=" + VERSION)
                     .execute();
         } catch (IOException ex) {
             throw new WebApplicationException(ex);
@@ -272,6 +284,7 @@ public class HttpClientPaymentClientImpl extends AbstractImpl implements Payment
                     .addHeader(ACCEPT, MediaType.APPLICATION_JSON)
                     .addHeader(CONTENT_TYPE, MediaType.APPLICATION_JSON)
                     .addHeader(AUTHORIZATION, authHeader.getAuhorization())
+                    .addHeader(USER_AGENT, IMPLEMENTATION_NAME + "=" + VERSION)
                     .bodyString(marshall(accountStatement), ContentType.APPLICATION_JSON)
                     .execute();
             HttpResponse httpresponse = response.returnResponse();
@@ -291,6 +304,7 @@ public class HttpClientPaymentClientImpl extends AbstractImpl implements Payment
                     .addHeader(CONTENT_TYPE, MediaType.APPLICATION_JSON)
                     .addHeader(AUTHORIZATION, authHeader.
                             getAuhorization())
+                    .addHeader(USER_AGENT, IMPLEMENTATION_NAME + "=" + VERSION)
                     .bodyString(marshall(couponRequest), ContentType.APPLICATION_JSON)
                     .execute();
         } catch (IOException ex) {
@@ -310,6 +324,7 @@ public class HttpClientPaymentClientImpl extends AbstractImpl implements Payment
                     .addHeader(CONTENT_TYPE, MediaType.APPLICATION_JSON)
                     .addHeader(AUTHORIZATION, authHeader.
                             getAuhorization())
+                    .addHeader(USER_AGENT, IMPLEMENTATION_NAME + "=" + VERSION)
                     .bodyString(marshall(batchRequest), ContentType.APPLICATION_JSON)
                     .execute();
         } catch (IOException ex) {
@@ -327,6 +342,7 @@ public class HttpClientPaymentClientImpl extends AbstractImpl implements Payment
                     .addHeader(ACCEPT, MediaType.APPLICATION_JSON)
                     .addHeader(CONTENT_TYPE, MediaType.APPLICATION_FORM_URLENCODED)
                     .addHeader(AUTHORIZATION, authHeader.getAuhorization())
+                    .addHeader(USER_AGENT, IMPLEMENTATION_NAME + "=" + VERSION)
                     .execute();
         } catch (IOException ex) {
             throw new WebApplicationException(ex);
@@ -343,6 +359,7 @@ public class HttpClientPaymentClientImpl extends AbstractImpl implements Payment
                     .addHeader(ACCEPT, MediaType.APPLICATION_JSON)
                     .addHeader(CONTENT_TYPE, MediaType.APPLICATION_FORM_URLENCODED)
                     .addHeader(AUTHORIZATION, authHeader.getAuhorization())
+                    .addHeader(USER_AGENT, IMPLEMENTATION_NAME + "=" + VERSION)
                     .execute();
         } catch (IOException ex) {
             throw new WebApplicationException(ex);
@@ -369,6 +386,7 @@ public class HttpClientPaymentClientImpl extends AbstractImpl implements Payment
                     .addHeader(ACCEPT, MediaType.APPLICATION_JSON)
                     .addHeader(CONTENT_TYPE, MediaType.APPLICATION_FORM_URLENCODED)
                     .addHeader(AUTHORIZATION, authHeader.getAuhorization())
+                    .addHeader(USER_AGENT, IMPLEMENTATION_NAME + "=" + VERSION)
                     .execute();
         } catch (IOException ex) {
             throw new WebApplicationException(ex);
@@ -385,6 +403,7 @@ public class HttpClientPaymentClientImpl extends AbstractImpl implements Payment
                     .addHeader(ACCEPT, MediaType.APPLICATION_JSON)
                     .addHeader(CONTENT_TYPE, MediaType.APPLICATION_FORM_URLENCODED)
                     .addHeader(AUTHORIZATION, authHeader.getAuhorization())
+                    .addHeader(USER_AGENT, IMPLEMENTATION_NAME + "=" + VERSION)
                     .execute();
         } catch (IOException ex) {
             throw new WebApplicationException(ex);

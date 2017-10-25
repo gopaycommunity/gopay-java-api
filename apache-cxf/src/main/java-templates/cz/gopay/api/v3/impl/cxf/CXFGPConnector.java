@@ -9,10 +9,14 @@ import cz.gopay.api.v3.AbstractGPConnector;
 import cz.gopay.api.v3.model.access.AccessToken;
 import cz.gopay.api.v3.model.access.OAuth;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+
+import org.apache.cxf.jaxrs.client.Client;
 import org.apache.cxf.jaxrs.client.JAXRSClientFactory;
 import org.apache.cxf.jaxrs.client.WebClient;
+import org.apache.cxf.transport.http.Headers;
 import org.apache.cxf.transports.http.configuration.HTTPClientPolicy;
 
 /**
@@ -49,11 +53,13 @@ public class CXFGPConnector extends AbstractGPConnector {
                 = new JacksonJaxbJsonProvider(mapper, JacksonJaxbJsonProvider.DEFAULT_ANNOTATIONS);
         providers.add(jsonProvider);
         T t = JAXRSClientFactory.create(apiUrl, proxy, providers, true);
-
-        HTTPClientPolicy client = WebClient.getConfig(t).getHttpConduit().getClient();
-        client.setReceiveTimeout(CONNECTION_SETUP_TO * 1000);
-        client.setConnectionTimeout(CONNECTION_SERVICE_TO * 1000);
+        Client client = (Client) t;
+        client.header("User-Agent", getImplementationName() + "=" + getVersion());
         return t;
     }
-
+    
+    @Override
+    protected String getImplementationName() {
+        return "${project.artifactId}";
+    }
 }

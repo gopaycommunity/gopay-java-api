@@ -22,12 +22,16 @@ import org.apache.log4j.Logger;
  * @author Frantisek Sichinger
  */
 public class AbstractImpl {
-
+    
+    protected static final String IMPLEMENTATION_NAME = "${project.artifactId}";
+    protected static final String VERSION = "${project.artifactId}";
+    
     protected static final String AUTHORIZATION = "Authorization";
     protected static final String SCOPE = "scope";
     protected static final String GRANT_TYPE = "grant_type";
     protected static final String CONTENT_TYPE = "Content-Type";
     protected static final String ACCEPT = "Accept";
+    protected static final String USER_AGENT = "User-Agent";
 
     protected String apiUrl;
     private final ObjectMapper mapper;

@@ -14,7 +14,6 @@ import cz.gopay.api.v3.model.payment.BasePayment;
 import cz.gopay.api.v3.model.payment.BasePaymentBuilder;
 import cz.gopay.api.v3.model.payment.Lang;
 import cz.gopay.api.v3.model.payment.NextPayment;
-import cz.gopay.api.v3.model.payment.NextPaymentBuilder;
 import cz.gopay.api.v3.model.payment.Payment;
 import cz.gopay.api.v3.model.payment.PaymentFactory;
 import cz.gopay.api.v3.model.payment.PaymentResult;
