@@ -12,6 +12,6 @@ public enum PaymentInstrument {
     PAYPAL,
     BITCOIN,
     MASTERPASS,
-    ACCOUNT,
-	GPAY;
+    GPAY,
+    ACCOUNT
 }
