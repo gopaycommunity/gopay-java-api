@@ -3,7 +3,7 @@
     <groupId>cz.gopay</groupId>
 	
     <artifactId>gp-java-api-v3-apache-http-client</artifactId>
-    <version>3.4.6</version>
+    <version>3.4.7</version>
 
     <description>
         GOPAY project - java api
@@ -18,7 +18,7 @@
     <parent>
         <groupId>cz.gopay</groupId>
         <artifactId>gp-java-api-v3-parent</artifactId>
-        <version>3.4.6</version>
+        <version>3.4.7</version>
         <relativePath>../</relativePath>
     </parent>
 
@@ -42,7 +42,7 @@
         <dependency>
             <groupId>cz.gopay</groupId>
             <artifactId>gp-java-api-v3-common</artifactId>   
-            <version>3.4.6</version>
+            <version>3.4.7</version>
         </dependency>
      		 
         <!-- Apache http client -->
@@ -74,6 +74,12 @@
             <artifactId>junit</artifactId>
             <version>4.8.1</version>
             <scope>test</scope>
+        </dependency>
+    
+        <dependency>
+            <groupId>cz.gopay</groupId>
+            <artifactId>common-tests</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
         </dependency>
     </dependencies>
     <name>gp-java-api-apache-http-client</name>

@@ -1,0 +1,5 @@
+test/RestClientTest.class
+test/payment/AbstractPaymentTests.class
+test/utils/TestUtils.class
+test/login/LoginTests.class
+test/payment/PaymentTest.class

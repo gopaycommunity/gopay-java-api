@@ -2,9 +2,8 @@
  * To change this license header, choose License Headers in Project Properties. To change this
  * template file, choose Tools | Templates and open the template in the editor.
  */
-package cz.gopay.api.test.payment;
+package test.payment;
 
-import cz.gopay.api.test.utils.TestUtils;
 import cz.gopay.api.v3.GPClientException;
 import cz.gopay.api.v3.IGPConnector;
 import cz.gopay.api.v3.model.access.OAuth;
@@ -20,8 +19,8 @@ import cz.gopay.api.v3.model.payment.PaymentResult;
 import cz.gopay.api.v3.model.payment.support.AccountStatement;
 import cz.gopay.api.v3.model.payment.support.Payer;
 import cz.gopay.api.v3.model.payment.support.PayerBuilder;
-import cz.gopay.api.v3.model.payment.support.PaymentInstrument;
 import cz.gopay.api.v3.model.payment.support.PayerContact;
+import cz.gopay.api.v3.model.payment.support.PaymentInstrument;
 import cz.gopay.api.v3.model.payment.support.PaymentInstrumentRoot;
 import cz.gopay.api.v3.model.payment.support.Recurrence;
 import cz.gopay.api.v3.model.payment.support.RecurrenceCycle;
@@ -44,11 +43,14 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import test.RestClientTest;
+import test.utils.TestUtils;
+
 /**
  *
  * @author František Sichinger
  */
-public class AbstractPaymentTests {
+public abstract class AbstractPaymentTests implements RestClientTest {
 
     private static final Logger logger = Logger.getLogger(AbstractPaymentTests.class);
 
@@ -63,7 +65,7 @@ public class AbstractPaymentTests {
                 .build();
         BasePaymentBuilder builder = PaymentFactory.createBasePaymentBuilder();
         return builder.withCallback(url+"notify", url+"return")
-               .order("123", 100000L, Currency.EUR, "description")
+               .order("123", 1L, Currency.EUR, "description")
                .withPaymentInstrument(PaymentInstrument.PAYMENT_CARD)
                 .inLang("cs")
                .addAdditionalParameter("AKey2", "AValue")
@@ -117,7 +119,7 @@ public class AbstractPaymentTests {
         try {
             PaymentResult refundPayment = connector.
                     getAppToken(TestUtils.CLIENT_ID, TestUtils.CLIENT_SECRET, OAuth.SCOPE_PAYMENT_ALL).
-                    refundPayment(3000030735L, 100000L);
+                    refundPayment(3000030735L, 1L);
             Assert.assertTrue(refundPayment.getId() == 3000030735L);
         } catch (GPClientException ex) {
             TestUtils.handleException(ex, logger);
@@ -147,7 +149,7 @@ public class AbstractPaymentTests {
             recurrence.setRecurrenceState(Recurrence.RecurrenceState.STARTED);
             recurrence.setRecurrenceCycle(RecurrenceCycle.WEEK);
             Calendar calendar = Calendar.getInstance();
-            calendar.set(Calendar.YEAR, 2017);
+            calendar.set(Calendar.YEAR, 2022);
             calendar.set(Calendar.MONTH, 2);
             calendar.set(Calendar.DAY_OF_MONTH, 1);
             recurrence.setRecurrenceDateTo(calendar.getTime());
@@ -217,12 +219,12 @@ public class AbstractPaymentTests {
         Calendar calendarFrom = Calendar.getInstance();
         calendarFrom.set(Calendar.DAY_OF_MONTH, 10);
         calendarFrom.set(Calendar.MONTH, 1);
-        calendarFrom.set(Calendar.YEAR, 2017);
+        calendarFrom.set(Calendar.YEAR, 2016);
         
         Calendar calendarTo = Calendar.getInstance();
         calendarTo.set(Calendar.DAY_OF_MONTH, 20);
         calendarTo.set(Calendar.MONTH, 1);
-        calendarTo.set(Calendar.YEAR, 2017);
+        calendarTo.set(Calendar.YEAR, 2022);
         
         EETReceiptFilter filter = EETReceiptFilter.create(12, calendarFrom.getTime(), calendarTo.getTime());
         

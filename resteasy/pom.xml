@@ -4,7 +4,7 @@
 	<groupId>cz.gopay</groupId>
 	
 	<artifactId>gp-java-api-v3-resteasy</artifactId>
-	<version>3.4.6</version>
+	<version>3.4.7</version>
 	
 	<description>
 		GOPAY project - java api
@@ -19,7 +19,7 @@
 	<parent>
 		<groupId>cz.gopay</groupId>
 		<artifactId>gp-java-api-v3-parent</artifactId>
-		<version>3.4.6</version>
+		<version>3.4.7</version>
 		<relativePath>../</relativePath>
 	</parent>
 	
@@ -29,7 +29,7 @@
 		<dependency>
 			<groupId>cz.gopay</groupId>
 			<artifactId>gp-java-api-v3-common</artifactId>
-			<version>3.4.6</version>
+			<version>3.4.7</version>
 		</dependency>
 		
 		<!-- REST easy -->
@@ -79,6 +79,14 @@
 			<version>4.8.1</version>
 			<scope>test</scope>
 		</dependency>
+		
+		<dependency>
+			<groupId>cz.gopay</groupId>
+			<artifactId>common-tests</artifactId>
+			<version>1.0.0-SNAPSHOT</version>
+			<scope>test</scope>
+		</dependency>
+		
 	</dependencies>
 	<name>gp-java-api-resteasy</name>
 	<build>
