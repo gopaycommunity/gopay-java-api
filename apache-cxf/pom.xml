@@ -3,7 +3,7 @@
     <groupId>cz.gopay</groupId>
 	
     <artifactId>gp-java-api-v3-apache-cxf</artifactId>
-    <version>3.4.7</version>
+    <version>3.4.8</version>
 
     <description>
         GOPAY project - java api
@@ -18,7 +18,7 @@
     <parent>
         <groupId>cz.gopay</groupId>
         <artifactId>gp-java-api-v3-parent</artifactId>
-        <version>3.4.7</version>
+        <version>3.4.8</version>
         <relativePath>../</relativePath>
     </parent>
 
@@ -29,7 +29,7 @@
         <dependency>
             <groupId>cz.gopay</groupId>
             <artifactId>gp-java-api-v3-common</artifactId>
-            <version>3.4.7</version>
+            <version>3.4.8</version>
         </dependency>
                 
         <!-- jackson -->
@@ -78,13 +78,6 @@
             <version>1.2.16</version>
         </dependency>
 
-        <!-- TESTING -->
-        <dependency>
-            <groupId>cz.gopay</groupId>
-            <artifactId>common-tests</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
-            <scope>test</scope>
-        </dependency>
     </dependencies>
     <name>gp-java-api-cxf</name>
     <build>
@@ -92,6 +85,11 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>templating-maven-plugin</artifactId>
+            </plugin>
+    
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
             </plugin>
         </plugins>
     </build>

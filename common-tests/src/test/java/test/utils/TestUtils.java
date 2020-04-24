@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package cz.gopay.api.test.utils;
+package test.utils;
 
 import cz.gopay.api.v3.GPClientException;
 import cz.gopay.api.v3.model.ErrorElement;

@@ -1,12 +1,12 @@
-package cz.gopay.api.test.login;
+package test.payment;
 
 import cz.gopay.api.v3.IGPConnector;
 import cz.gopay.api.v3.impl.resteasy.ResteasyGPConnector;
 
-import test.login.LoginTests;
 import test.utils.TestUtils;
 
-public class ResteasyLoginTests extends LoginTests {
+public class ResteasyPaymentTest extends PaymentTest {
+    
     @Override
     public IGPConnector getConnector() {
         return ResteasyGPConnector.build(TestUtils.API_URL);

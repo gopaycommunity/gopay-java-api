@@ -1,6 +1,7 @@
 
 package cz.gopay.api.v3.impl.apacheclient;
 
+import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
@@ -45,9 +46,10 @@ public class AbstractImpl {
     }
 
     protected <T> T unMarshall(Response response, Class<T> entity) {
+        String json = null;
         try {
             HttpResponse httpresponse = response.returnResponse();
-            String json = entityToString(httpresponse);
+            json = entityToString(httpresponse);
             JsonNode tree = mapper.readTree(json);
             APIError error = mapper.treeToValue(tree, APIError.class);
             if (error.getDateIssued() != null) {
@@ -55,8 +57,10 @@ public class AbstractImpl {
                 throw new WebApplicationException(new APIResponse(error,code));
             }                    
             return mapper.treeToValue(tree, entity);
+        } catch (JsonParseException | RuntimeException e) {
+            throw new WebApplicationException("Could not parse json " + json);
         } catch (IOException ex) {
-            throw new RuntimeException(ex);
+            throw new WebApplicationException(ex);
         }
     }
 

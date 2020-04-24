@@ -2,22 +2,19 @@
  * To change this license header, choose License Headers in Project Properties. To change this
  * template file, choose Tools | Templates and open the template in the editor.
  */
-package cz.gopay.api.test.payment;
+package test.payment;
 
-import cz.gopay.api.test.utils.TestUtils;
+import test.utils.TestUtils;
 import cz.gopay.api.v3.GPClientException;
 import cz.gopay.api.v3.IGPConnector;
-import cz.gopay.api.v3.model.ErrorElement;
 import cz.gopay.api.v3.model.access.OAuth;
 import cz.gopay.api.v3.model.common.Currency;
-import cz.gopay.api.v3.model.common.StatementGeneratingFormat;
 import cz.gopay.api.v3.model.payment.BasePayment;
 import cz.gopay.api.v3.model.payment.Lang;
 import cz.gopay.api.v3.model.payment.Payment;
 import cz.gopay.api.v3.model.payment.BasePaymentBuilder;
 import cz.gopay.api.v3.model.payment.PaymentFactory;
 import cz.gopay.api.v3.model.payment.PaymentResult;
-import cz.gopay.api.v3.model.payment.support.AccountStatement;
 import cz.gopay.api.v3.model.payment.support.Payer;
 import cz.gopay.api.v3.model.payment.support.PaymentInstrument;
 import cz.gopay.api.v3.model.payment.support.PayerBuilder;

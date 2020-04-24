@@ -2,6 +2,8 @@
 /apache-cxf/target/
 /apache-http-client/target/
 /common/target/
+/common-tests/target/
 .settings
 .idea
 *.iml
+*.jar
