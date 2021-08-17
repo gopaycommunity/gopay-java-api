@@ -30,7 +30,6 @@ public enum CheckoutGroup {
 			PaymentInstrument.PRSMS,
 			PaymentInstrument.MPAYMENT,
 			PaymentInstrument.PAYSAFECARD,
-			PaymentInstrument.SUPERCASH,
 			PaymentInstrument.MASTERPASS))
 	;
 	

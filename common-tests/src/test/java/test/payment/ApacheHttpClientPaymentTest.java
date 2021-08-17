@@ -7,7 +7,6 @@ import test.utils.TestUtils;
 
 public class ApacheHttpClientPaymentTest extends PaymentTest {
     
-    @Override
     public IGPConnector getConnector() {
         return HttpClientGPConnector.build(TestUtils.API_URL);
     }

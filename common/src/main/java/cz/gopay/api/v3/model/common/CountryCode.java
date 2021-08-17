@@ -4,13 +4,7 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
-/**
- *
- * @author Zbynek Novak | novak.zbynek@gmail.com
- * @author pvalenta //FIXME - refactoring az prejdeme na JAVA 7 - tato verze to jiz podporuje
- *         3numeric ISO cody a 2 ALPHA cody v Locale
- *
- */
+
 public enum CountryCode {
   CZE(1), // Czech Republic
   SVK(2), // Slovakia
@@ -326,111 +320,6 @@ public enum CountryCode {
 
     return result;
 
-  }
-
-  public static CountryCode fromAlpha2CodeNonFatal(String code) {
-    try {
-      Locale locale = new Locale("", code);
-      CountryCode result = fromCodeStrict(locale.getISO3Country());
-
-      return result;
-
-    } catch (Exception e) {
-      return null;
-    }
-  }
-
-  // FIXME - odstranit vyreseno obecne fromIso3ToIso2
-  public String toAlpha2Code() {
-    com.neovisionaries.i18n.CountryCode c = com.neovisionaries.i18n.CountryCode.getByCode(this.name());
-
-    return c.getAlpha2();
-  }
-
-  /**
-   * @return numeric code ISO 3166-1
-   */
-  public Integer getNumericCode() {
-
-    com.neovisionaries.i18n.CountryCode c = com.neovisionaries.i18n.CountryCode.getByCode(this.toString());
-
-    return Integer.valueOf(c.getNumeric());
-  }
-
-  public static CountryCode getByNumericalCode(Integer numericCode) {
-
-    numericCode = changeOldISOCodesToNewISOCode(numericCode);
-
-    return resolveCountryCode(numericCode);
-  }
-
-  private static boolean isNumericCodeDeprecated(Integer numericCode) {
-    if (numericCode != null) {
-      if (numericCode.intValue() == 900) { // user-assigned UNMIK
-        return true;
-      }
-      if (numericCode.intValue() == 720) { // South Yemen ma ISO 887
-        return true;
-      }
-      if (numericCode.intValue() == 886) { // Yemen republic ma ISO 887
-        return true;
-      }
-      if (numericCode.intValue() == 0) { // 0
-        return true;
-      }
-      return false;
-    } else {
-      throw new IllegalStateException("ISO numeric value for CountryCode canont be null!");
-    }
-  }
-
-  private static CountryCode resolveCountryCode(Integer numericCode) {
-
-    if (isNumericCodeDeprecated(numericCode)) {
-      if (numericCode.intValue() == 0) { // 0
-        return null;
-      }
-      if (numericCode.intValue() == 900) { // user-assigned UNMIK
-        return CountryCode.UNK;
-      }
-      if (numericCode.intValue() == 720 || numericCode.intValue() == 886) { // South Yemen ma ISO
-                                                                            // 887
-        return CountryCode.YEM;
-      }
-      throw new IllegalStateException("CountryCode from numeric value[" + numericCode + "] cannot be resolved");
-    } else {
-      com.neovisionaries.i18n.CountryCode c = com.neovisionaries.i18n.CountryCode.getByCode(numericCode);
-      return CountryCode.fromCodeStrict(c.getAlpha3());
-    }
-  }
-
-  /**
-   * Dle Wiki http://en.wikipedia.org/wiki/ISO_3166-1_numeric dochazi k odebirani a zmenam ISO kodu
-   * na jine kody. Musim tedy menit take.
-   *
-   * @param numericCode
-   * @return numericCode, if numericCode is old or removed, method returns new ISO or null(value
-   *         null still not implemented)
-   */
-  private static Integer changeOldISOCodesToNewISOCode(Integer numericCode) {
-
-    if (numericCode != null) {
-      // Germany use before unification 278 and 280 - now is 276
-      if (numericCode.intValue() == 278 || numericCode.intValue() == 280) {
-        return Integer.valueOf(276);
-      }
-
-      // Ethiopia used numeric code 230 before Eritrea split - now is 231
-      if (numericCode.intValue() == 230) {
-        return Integer.valueOf(231);
-      }
-
-      // Sudan used numeric code 736 before South Sudan split - now is 729
-      if (numericCode.intValue() == 736) {
-        return Integer.valueOf(729);
-      }
-    }
-    return numericCode;
   }
 
   public int getPosition() {

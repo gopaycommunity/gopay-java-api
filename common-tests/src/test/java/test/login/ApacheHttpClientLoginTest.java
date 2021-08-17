@@ -8,7 +8,6 @@ import test.utils.TestUtils;
 
 public class ApacheHttpClientLoginTest extends LoginTests {
     
-    @Override
     public IGPConnector getConnector() {
         return HttpClientGPConnector.build(TestUtils.API_URL);
     }

@@ -7,7 +7,7 @@ import test.login.LoginTests;
 import test.utils.TestUtils;
 
 public class ResteasyLoginTests extends LoginTests {
-    @Override
+
     public IGPConnector getConnector() {
         return ResteasyGPConnector.build(TestUtils.API_URL);
     }

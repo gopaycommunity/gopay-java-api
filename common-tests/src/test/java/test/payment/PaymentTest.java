@@ -1,7 +1,7 @@
 package test.payment;
 
-import org.junit.Test;
 
+import org.junit.jupiter.api.Test;
 
 public abstract class PaymentTest extends AbstractPaymentTests {
 
@@ -18,11 +18,6 @@ public abstract class PaymentTest extends AbstractPaymentTests {
     @Test
     public void testHttpClientPaymentStataus() {
         testPaymentStatus(getConnector());
-    }
-    
-    @Test
-    public void testHttpClientPaymentStatausWithId() {
-        testPaymentStatus(getConnector(), 3048532578L);
     }
     
     @Test
@@ -53,43 +48,13 @@ public abstract class PaymentTest extends AbstractPaymentTests {
     
     
     @Test
-    public void testPaymentInstrumentRootHttp(){
+    public void testPaymentInstrumentRoot(){
         testPaymentInstrumentRoot(getConnector());
     }
     
     @Test
     public void testGenerateStatementHttp() {
         testGenerateStatement(getConnector());
-    }
-    
-    //@Test
-    public void testCreateSupercashCoupon() {
-        testCreateSupercashCoupon(getConnector());
-    }
-    
-    @Test
-    public void testCreateSupercashCouponBatch() {
-        testCreateSupercashCouponBatch(getConnector());
-    }
-    
-    @Test
-    public void testGetSupercashCouponBatchStatus() {
-        testGetSupercashCouponBatchStatus(getConnector());
-    }
-    
-    @Test
-    public void testGetSupercashCouponBatch() {
-        testGetSupercashCouponBatch(getConnector());
-    }
-    
-    @Test
-    public void testFindSupercashCoupons() {
-        testFindSupercashCoupons(getConnector());
-    }
-    
-    @Test
-    public void testGetSupercashCoupon() {
-        testGetSupercashCoupon(getConnector());
     }
     
 }

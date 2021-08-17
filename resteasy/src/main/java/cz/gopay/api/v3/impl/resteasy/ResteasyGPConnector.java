@@ -3,21 +3,31 @@ package cz.gopay.api.v3.impl.resteasy;
 import cz.gopay.api.v3.AbstractGPConnector;
 import cz.gopay.api.v3.model.access.AccessToken;
 import cz.gopay.api.v3.model.access.OAuth;
+import cz.gopay.api.v3.model.common.CheckoutGroup;
+
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.Version;
+import com.fasterxml.jackson.databind.DeserializationContext;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.JsonDeserializer;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.module.SimpleModule;
+import com.fasterxml.jackson.databind.type.TypeFactory;
+import com.fasterxml.jackson.jaxrs.json.JacksonJaxbJsonProvider;
+import com.fasterxml.jackson.module.jaxb.JaxbAnnotationIntrospector;
+
+import org.jboss.resteasy.client.jaxrs.ResteasyClientBuilder;
+import org.jboss.resteasy.client.jaxrs.ResteasyWebTarget;
+import org.jboss.resteasy.client.jaxrs.internal.ResteasyClientBuilderImpl;
+import org.jboss.resteasy.client.jaxrs.internal.ResteasyClientImpl;
+import org.jboss.resteasy.spi.ResteasyProviderFactory;
 
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
-import org.codehaus.jackson.jaxrs.JacksonJaxbJsonProvider;
-import org.codehaus.jackson.map.DeserializationConfig.Feature;
-import org.codehaus.jackson.map.ObjectMapper;
-import org.codehaus.jackson.xc.JaxbAnnotationIntrospector;
-import org.jboss.resteasy.client.jaxrs.ResteasyClient;
-import org.jboss.resteasy.client.jaxrs.ResteasyClientBuilder;
-import org.jboss.resteasy.client.jaxrs.ResteasyWebTarget;
-import org.jboss.resteasy.client.jaxrs.engines.URLConnectionEngine;
-import org.jboss.resteasy.spi.ResteasyProviderFactory;
 
 import javax.ws.rs.client.ClientRequestContext;
 import javax.ws.rs.client.ClientRequestFilter;
@@ -53,14 +63,14 @@ public class ResteasyGPConnector extends AbstractGPConnector {
         } catch (URISyntaxException ex) {
             throw new RuntimeException(ex);
         }
-        ResteasyClientBuilder builder = new ResteasyClientBuilder();
-        builder.connectionCheckoutTimeout(CONNECTION_SETUP_TO, TimeUnit.SECONDS);
-        builder.socketTimeout(CONNECTION_SETUP_TO, TimeUnit.SECONDS);
-        builder.httpEngine(new URLConnectionEngine());
+        
+        ResteasyClientBuilder builder = new ResteasyClientBuilderImpl();
+        builder.connectTimeout(CONNECTION_SETUP_TO, TimeUnit.SECONDS);
+        builder.readTimeout(CONNECTION_SETUP_TO, TimeUnit.SECONDS);
         
         ResteasyProviderFactory.getInstance().register(builder);
-
-        ResteasyClient client = builder.build();
+    
+        ResteasyClientImpl client = (ResteasyClientImpl) builder.build();
         client.register(new ClientRequestFilter() {
             @Override
             public void filter(ClientRequestContext requestContext) throws IOException {
@@ -68,16 +78,27 @@ public class ResteasyGPConnector extends AbstractGPConnector {
             }
         });
         ObjectMapper mapper = new ObjectMapper();
+    
+        SimpleModule module = new SimpleModule("GoPay", new Version(1,1,1,""));
+        module.addDeserializer(CheckoutGroup.class, new JsonDeserializer<CheckoutGroup>() {
+            @Override
+            public CheckoutGroup deserialize(JsonParser jsonParser, DeserializationContext deserializationContext)
+                    throws IOException, JsonProcessingException {
+                return null;
+            }
+    
+        });
+        mapper.registerModule(module);
         JacksonJaxbJsonProvider jaxbProvider
                 = new JacksonJaxbJsonProvider(mapper, JacksonJaxbJsonProvider.DEFAULT_ANNOTATIONS);
-        mapper.setAnnotationIntrospector(new JaxbAnnotationIntrospector());
+        mapper.setAnnotationIntrospector(new JaxbAnnotationIntrospector(TypeFactory.defaultInstance()));
 
-        mapper.configure(Feature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+        mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+        
         builder.register(jaxbProvider);
-        builder.register(proxy);
-
-        ResteasyWebTarget resteasyWebTarget = client.target(i);
-        return resteasyWebTarget.proxy(proxy);
+    
+        ResteasyWebTarget target = client.target(i);
+        return target.proxy(proxy);
     }
     
     @Override

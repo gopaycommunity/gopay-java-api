@@ -8,7 +8,6 @@ public enum PaymentInstrument {
     MPAYMENT,
     COUPON,
     PAYSAFECARD,
-    SUPERCASH,
     GOPAY,
     PAYPAL,
     BITCOIN,

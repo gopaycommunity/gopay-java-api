@@ -7,7 +7,6 @@ import test.utils.TestUtils;
 
 public class ResteasyPaymentTest extends PaymentTest {
     
-    @Override
     public IGPConnector getConnector() {
         return ResteasyGPConnector.build(TestUtils.API_URL);
     }

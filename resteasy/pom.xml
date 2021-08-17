@@ -4,7 +4,7 @@
 	<groupId>cz.gopay</groupId>
 	
 	<artifactId>gp-java-api-v3-resteasy</artifactId>
-	<version>3.4.8</version>
+	<version>3.4.9</version>
 	
 	<description>
 		GOPAY project - java api
@@ -12,16 +12,30 @@
 	
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<resteasy.version>3.5.1.Final</resteasy.version>
+		<resteasy.version>4.7.1.Final</resteasy.version>
+		<maven.compiler.source>11</maven.compiler.source>
+		<maven.compiler.target>11</maven.compiler.target>
 	</properties>
 	
 	<packaging>jar</packaging>
 	<parent>
 		<groupId>cz.gopay</groupId>
 		<artifactId>gp-java-api-v3-parent</artifactId>
-		<version>3.4.8</version>
+		<version>3.4.9</version>
 		<relativePath>../</relativePath>
 	</parent>
+	
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.jboss.resteasy</groupId>
+				<artifactId>resteasy-bom</artifactId>
+				<version>${resteasy.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 	
 	<dependencies>
 		
@@ -29,38 +43,33 @@
 		<dependency>
 			<groupId>cz.gopay</groupId>
 			<artifactId>gp-java-api-v3-common</artifactId>
-			<version>3.4.8</version>
+			<version>3.4.9</version>
 		</dependency>
 		
-		<!-- REST easy -->
+		<!-- REST easy
 		<dependency>
 			<groupId>org.jboss.resteasy</groupId>
 			<artifactId>resteasy-jaxrs</artifactId>
-			<version>${resteasy.version}</version>
 		</dependency>
-		
+		-->
 		<dependency>
 			<groupId>org.jboss.resteasy</groupId>
 			<artifactId>resteasy-client</artifactId>
-			<version>${resteasy.version}</version>
 		</dependency>
 		
 		<dependency>
 			<groupId>org.jboss.resteasy</groupId>
 			<artifactId>resteasy-jaxb-provider</artifactId>
-			<version>${resteasy.version}</version>
 		</dependency>
 		
 		<dependency>
 			<groupId>org.jboss.resteasy</groupId>
-			<artifactId>resteasy-jackson-provider</artifactId>
-			<version>${resteasy.version}</version>
+			<artifactId>resteasy-jackson2-provider</artifactId>
 		</dependency>
 		
 		<dependency>
 			<groupId>org.jboss.resteasy</groupId>
 			<artifactId>resteasy-multipart-provider</artifactId>
-			<version>${resteasy.version}</version>
 		</dependency>
 		
 		
@@ -68,7 +77,7 @@
 		<dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
-			<version>1.2.16</version>
+			<version>1.2.17</version>
 		</dependency>
 		
 	</dependencies>
@@ -80,8 +89,8 @@
 				<artifactId>templating-maven-plugin</artifactId>
 			</plugin>
 			<plugin>
-			<groupId>org.apache.maven.plugins</groupId>
-			<artifactId>maven-javadoc-plugin</artifactId>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
 			</plugin>
 		</plugins>
 	</build>

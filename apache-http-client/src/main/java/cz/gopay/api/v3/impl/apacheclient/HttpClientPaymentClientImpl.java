@@ -13,13 +13,6 @@ import cz.gopay.api.v3.model.payment.PaymentResult;
 import cz.gopay.api.v3.model.payment.RefundPayment;
 import cz.gopay.api.v3.model.payment.support.AccountStatement;
 import cz.gopay.api.v3.model.payment.support.PaymentInstrumentRoot;
-import cz.gopay.api.v3.model.supercash.SupercashBatch;
-import cz.gopay.api.v3.model.supercash.SupercashBatchRequest;
-import cz.gopay.api.v3.model.supercash.SupercashBatchResult;
-import cz.gopay.api.v3.model.supercash.SupercashBatchState;
-import cz.gopay.api.v3.model.supercash.SupercashCoupon;
-import cz.gopay.api.v3.model.supercash.SupercashCouponRequest;
-import cz.gopay.api.v3.model.supercash.SupercashPayment;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 
@@ -292,124 +285,6 @@ public class HttpClientPaymentClientImpl extends AbstractImpl implements Payment
         } catch (IOException ex) {
             throw new WebApplicationException(ex);
         }
-    }
-    
-    @Override
-    public SupercashCoupon createSupercashCoupon(AuthHeader authHeader, SupercashCouponRequest couponRequest) {
-        Response response = null;
-    
-        try {
-            response = Request.Post(apiUrl + "/supercash/coupon")
-                    .addHeader(ACCEPT, MediaType.APPLICATION_JSON)
-                    .addHeader(CONTENT_TYPE, MediaType.APPLICATION_JSON)
-                    .addHeader(AUTHORIZATION, authHeader.
-                            getAuhorization())
-                    .addHeader(USER_AGENT, IMPLEMENTATION_NAME + "=" + VERSION)
-                    .bodyString(marshall(couponRequest), ContentType.APPLICATION_JSON)
-                    .execute();
-        } catch (IOException ex) {
-            throw new WebApplicationException(ex);
-        }
-    
-        return unMarshall(response, SupercashCoupon.class);
-    }
-    
-    @Override
-    public SupercashBatchResult createSupercashCouponBatch(AuthHeader authHeader, SupercashBatchRequest batchRequest) {
-        Response response = null;
-    
-        try {
-            response = Request.Post(apiUrl + "/supercash/coupon/batch")
-                    .addHeader(ACCEPT, MediaType.APPLICATION_JSON)
-                    .addHeader(CONTENT_TYPE, MediaType.APPLICATION_JSON)
-                    .addHeader(AUTHORIZATION, authHeader.
-                            getAuhorization())
-                    .addHeader(USER_AGENT, IMPLEMENTATION_NAME + "=" + VERSION)
-                    .bodyString(marshall(batchRequest), ContentType.APPLICATION_JSON)
-                    .execute();
-        } catch (IOException ex) {
-            throw new WebApplicationException(ex);
-        }
-    
-        return unMarshall(response, SupercashBatchResult.class);
-    }
-    
-    @Override
-    public SupercashBatchState getSupercashCouponBatchStatus(AuthHeader authHeader, Long batchId) {
-        Response response = null;
-        try {
-            response = Request.Get(apiUrl + "/batch/" + batchId)
-                    .addHeader(ACCEPT, MediaType.APPLICATION_JSON)
-                    .addHeader(CONTENT_TYPE, MediaType.APPLICATION_FORM_URLENCODED)
-                    .addHeader(AUTHORIZATION, authHeader.getAuhorization())
-                    .addHeader(USER_AGENT, IMPLEMENTATION_NAME + "=" + VERSION)
-                    .execute();
-        } catch (IOException ex) {
-            throw new WebApplicationException(ex);
-        }
-        
-        return unMarshall(response, SupercashBatchState.class);
-    }
-    
-    @Override
-    public SupercashBatch getSupercashCouponBatch(AuthHeader authHeader, Long goId, Long batchId) {
-        Response response = null;
-        try {
-            response = Request.Get(apiUrl + "/supercash/coupon/find?batch_request_id=" + batchId + "&go_id=" + goId)
-                    .addHeader(ACCEPT, MediaType.APPLICATION_JSON)
-                    .addHeader(CONTENT_TYPE, MediaType.APPLICATION_FORM_URLENCODED)
-                    .addHeader(AUTHORIZATION, authHeader.getAuhorization())
-                    .addHeader(USER_AGENT, IMPLEMENTATION_NAME + "=" + VERSION)
-                    .execute();
-        } catch (IOException ex) {
-            throw new WebApplicationException(ex);
-        }
-        
-        return unMarshall(response, SupercashBatch.class);
-    }
-    
-    public SupercashBatch findSupercashCoupons(AuthHeader authHeader, Long goId, Long...paymentSessionIds){
-        String convertedOutput = "";
-        for (Long paymentId : paymentSessionIds) {
-            convertedOutput += paymentId + ",";
-        }
-        convertedOutput = convertedOutput.substring(0, convertedOutput.length() - 1);
-        return findSupercashCoupons(authHeader, goId, convertedOutput);
-    }
-    
-    @Override
-    public SupercashBatch findSupercashCoupons(AuthHeader authHeader, Long goId, String paymentSessionIds) {
-        Response response = null;
-    
-        try {
-            response = Request.Get(apiUrl + "/supercash/coupon/find?payment_session_id_list=" + paymentSessionIds + "&go_id=" + goId)
-                    .addHeader(ACCEPT, MediaType.APPLICATION_JSON)
-                    .addHeader(CONTENT_TYPE, MediaType.APPLICATION_FORM_URLENCODED)
-                    .addHeader(AUTHORIZATION, authHeader.getAuhorization())
-                    .addHeader(USER_AGENT, IMPLEMENTATION_NAME + "=" + VERSION)
-                    .execute();
-        } catch (IOException ex) {
-            throw new WebApplicationException(ex);
-        }
-        
-        return unMarshall(response, SupercashBatch.class);
-    }
-    
-    @Override
-    public SupercashPayment getSupercashCoupon(AuthHeader authHeader, Long couponId) {
-        Response response = null;
-        try {
-            response = Request.Get(apiUrl + "/supercash/coupon/" + couponId)
-                    .addHeader(ACCEPT, MediaType.APPLICATION_JSON)
-                    .addHeader(CONTENT_TYPE, MediaType.APPLICATION_FORM_URLENCODED)
-                    .addHeader(AUTHORIZATION, authHeader.getAuhorization())
-                    .addHeader(USER_AGENT, IMPLEMENTATION_NAME + "=" + VERSION)
-                    .execute();
-        } catch (IOException ex) {
-            throw new WebApplicationException(ex);
-        }
-        
-        return unMarshall(response, SupercashPayment.class);
     }
     
 }

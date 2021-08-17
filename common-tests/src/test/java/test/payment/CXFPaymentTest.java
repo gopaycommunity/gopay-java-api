@@ -7,7 +7,6 @@ import test.utils.TestUtils;
 
 public class CXFPaymentTest extends PaymentTest {
     
-    @Override
     public IGPConnector getConnector() {
         return CXFGPConnector.build(TestUtils.API_URL);
     }

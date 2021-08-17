@@ -57,7 +57,7 @@ public class AbstractImpl {
                 throw new WebApplicationException(new APIResponse(error,code));
             }                    
             return mapper.treeToValue(tree, entity);
-        } catch (JsonParseException | RuntimeException e) {
+        } catch (JsonParseException e) {
             throw new WebApplicationException("Could not parse json " + json);
         } catch (IOException ex) {
             throw new WebApplicationException(ex);

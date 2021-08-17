@@ -2,12 +2,11 @@ package cz.gopay.api.v3.model.access;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.Base64;
 
 import javax.ws.rs.HeaderParam;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-
-import org.apache.commons.codec.binary.Base64;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 public class AuthHeader {
@@ -34,7 +33,7 @@ public class AuthHeader {
 
             String toEncode = clientId + ":" + clientSecret;
             String ulrEncoded = URLEncoder.encode(toEncode, "UTF-8");
-            String base64 = "Basic " + Base64.encodeBase64String(ulrEncoded.getBytes());
+            String base64 = "Basic " + Base64.getEncoder().encodeToString(ulrEncoded.getBytes());
 
             result.setAuhorization(base64);
 
