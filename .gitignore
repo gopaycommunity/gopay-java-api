@@ -7,3 +7,6 @@
 .idea
 *.iml
 *.jar
+release.properties
+*.releaseBackup
+dependency-reduced-pom.xml
