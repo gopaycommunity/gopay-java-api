@@ -172,9 +172,9 @@
 	<name>gp-java-api-parent</name>
 	<url>https://www.gopay.com/</url>
 	<scm>
-		<connection>scm:git:https://github.com/gopaycommunity/gopay-java-api.git</connection>
-		<url>scm:git:https://github.com/gopaycommunity/gopay-java-api.git</url>
-		<developerConnection>scm:git:https://github.com/gopaycommunity/gopay-java-api.git</developerConnection>
+		<connection>scm:git:ssh://github.com/gopaycommunity/gopay-java-api.git</connection>
+		<url>scm:git:ssh://github.com/gopaycommunity/gopay-java-api.git</url>
+		<developerConnection>scm:git:ssh://github.com/gopaycommunity/gopay-java-api.git</developerConnection>
 	  <tag>3.4.9</tag>
   </scm>
 </project>
