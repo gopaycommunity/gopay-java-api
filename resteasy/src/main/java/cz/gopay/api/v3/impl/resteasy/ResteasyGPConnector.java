@@ -78,17 +78,6 @@ public class ResteasyGPConnector extends AbstractGPConnector {
             }
         });
         ObjectMapper mapper = new ObjectMapper();
-    
-        SimpleModule module = new SimpleModule("GoPay", new Version(1,1,1,""));
-        module.addDeserializer(CheckoutGroup.class, new JsonDeserializer<CheckoutGroup>() {
-            @Override
-            public CheckoutGroup deserialize(JsonParser jsonParser, DeserializationContext deserializationContext)
-                    throws IOException, JsonProcessingException {
-                return null;
-            }
-    
-        });
-        mapper.registerModule(module);
         JacksonJaxbJsonProvider jaxbProvider
                 = new JacksonJaxbJsonProvider(mapper, JacksonJaxbJsonProvider.DEFAULT_ANNOTATIONS);
         mapper.setAnnotationIntrospector(new JaxbAnnotationIntrospector(TypeFactory.defaultInstance()));

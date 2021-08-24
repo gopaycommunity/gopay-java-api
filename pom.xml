@@ -49,7 +49,7 @@
 		</snapshotRepository>
 		<repository>
 			<id>ossrh</id>
-			<url>https://oss.sonatype.org/service/repositories/releases</url>
+			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
 		</repository>
 	</distributionManagement>
 	<build>
@@ -116,6 +116,10 @@
 							<goals>
 								<goal>sign</goal>
 							</goals>
+							<configuration>
+								<keyname>${gpg.keyname}</keyname>
+								<executable>${gpg.executable}</executable>
+							</configuration>
 						</execution>
 					</executions>
 				</plugin>
