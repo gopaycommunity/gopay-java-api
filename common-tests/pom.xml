@@ -19,23 +19,23 @@
         <dependency>
             <groupId>cz.gopay</groupId>
             <artifactId>gp-java-api-v3-common</artifactId>
-            <version>3.4.9</version>
+            <version>3.4.10</version>
         </dependency>
         <dependency>
             <groupId>cz.gopay</groupId>
             <artifactId>gp-java-api-v3-apache-http-client</artifactId>
-            <version>3.4.9</version>
+            <version>3.4.10</version>
         </dependency>
         <dependency>
             <groupId>cz.gopay</groupId>
             <artifactId>gp-java-api-v3-apache-cxf</artifactId>
-            <version>3.4.9</version>
+            <version>3.4.10</version>
         </dependency>
     
         <dependency>
             <groupId>cz.gopay</groupId>
             <artifactId>gp-java-api-v3-resteasy</artifactId>
-            <version>3.4.9</version>
+            <version>3.4.10</version>
         </dependency>
         <!-- TESTING -->
         <dependency>
