@@ -6,7 +6,7 @@ Detailed guide: [https://doc.gopay.com](https://doc.gopay.com)
 
 # Requirements
 
- - Java 7+
+ - Java 11+
 
 # Building
 
