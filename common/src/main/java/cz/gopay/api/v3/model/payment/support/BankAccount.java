@@ -27,6 +27,9 @@ public class BankAccount {
 	@XmlElement(name="country")
 	private CountryCode country;
 	
+	@XmlElement(name="account_token")
+	private String accountToken;
+	
 	public String getPrefix() {
 		return prefix;
 	}
@@ -83,10 +86,17 @@ public class BankAccount {
 		this.country = country;
 	}
 	
+	public String getAccountToken() {
+		return accountToken;
+	}
+	
+	public void setAccountToken(String accountToken) {
+		this.accountToken = accountToken;
+	}
+	
 	@Override
 	public String toString() {
-		return String
-				.format("BankAccount [prefix=%s, accountNumber=%s, bankCode=%s, IBAN=%s, BIC=%s, accountName=%s, country=%s]",
-						prefix, accountNumber, bankCode, IBAN, BIC, accountName, country);
+		return String.format("BankAccount [prefix=%s, accountNumber=%s, bankCode=%s, IBAN=%s, BIC=%s, accountName=%s, country=%s, accountToken=%s]",
+						prefix, accountNumber, bankCode, IBAN, BIC, accountName, country, accountToken);
 	}
 }

@@ -5,7 +5,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 	<artifactId>gp-java-api-v3-parent</artifactId>
-	<version>3.4.10</version>
+	<version>3.4.11-SNAPSHOT</version>
 	
 	<description>
 		GOPAY project - java api
@@ -43,7 +43,7 @@
 		</developer>
 	</developers>
 	<distributionManagement>
-		<snapshotRepository>
+		<!--<snapshotRepository>
 			<id>ossrh</id>
 			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
 		</snapshotRepository>
@@ -51,6 +51,16 @@
 			<id>ossrh</id>
 			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
 		</repository>
+		-->
+			<repository>
+				<id>GOPAY</id>
+				<name>Internal Releases</name>
+				<url>http://devel:8081/nexus/content/repositories/releases</url>
+			</repository>
+			<snapshotRepository>
+				<id>GOPAY</id>
+				<url>http://devel:8081/nexus/content/repositories/snapshots</url>
+			</snapshotRepository>
 	</distributionManagement>
 	<build>
 		<pluginManagement>
