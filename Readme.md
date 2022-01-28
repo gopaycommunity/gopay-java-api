@@ -6,7 +6,7 @@ Detailed guide: [https://doc.gopay.com](https://doc.gopay.com)
 
 # Requirements
 
- - Java 7+
+ - Java 11+
 
 # Building
 
@@ -33,13 +33,13 @@ http://mvnrepository.com/artifact/cz.gopay
 <dependency>
     <groupId>cz.gopay</groupId>
     <artifactId>gp-java-api-v3-common</artifactId>
-    <version>3.4.9</version>
+    <version>3.4.10</version>
 </dependency>
 <!-- GPAPI Apache Http Client -->
 <dependency>
    	<groupId>cz.gopay</groupId>
    	<artifactId>gp-java-api-v3-apache-http-client</artifactId>
-   	<version>3.4.9</version>
+   	<version>3.4.10</version>
 </dependency>
 ```
 ## OAuth
