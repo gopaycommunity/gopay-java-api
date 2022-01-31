@@ -2,10 +2,8 @@
  * To change this license header, choose License Headers in Project Properties. To change this
  * template file, choose Tools | Templates and open the template in the editor.
  */
-package test.payment;
+package test.utils;
 
-import test.RestClientTest;
-import test.utils.TestUtils;
 import cz.gopay.api.v3.GPClientException;
 import cz.gopay.api.v3.IGPConnector;
 import cz.gopay.api.v3.model.access.OAuth;
@@ -31,7 +29,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.Assertions;
 
 /**
@@ -40,7 +39,7 @@ import org.junit.jupiter.api.Assertions;
  */
 public abstract class AbstractPaymentTests implements RestClientTest {
 
-    private static final Logger logger = Logger.getLogger(AbstractPaymentTests.class);
+    private static final Logger logger = LogManager.getLogger(AbstractPaymentTests.class);
 
     private BasePayment createTestBasePayment() {
         String url = "https://www.eshop123.cz/";

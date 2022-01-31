@@ -1,5 +1,4 @@
-package test.payment;
-
+package test.utils;
 
 import org.junit.jupiter.api.Test;
 

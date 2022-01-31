@@ -8,7 +8,7 @@ package test.utils;
 import cz.gopay.api.v3.GPClientException;
 import cz.gopay.api.v3.model.ErrorElement;
 import java.util.List;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.Assertions;
 
 /**

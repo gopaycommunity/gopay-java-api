@@ -21,7 +21,7 @@ import org.apache.http.client.fluent.Request;
 import org.apache.http.client.fluent.Response;
 import org.apache.http.entity.ContentType;
 import org.apache.http.util.EntityUtils;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 
 import java.io.IOException;
 import java.util.List;
@@ -38,7 +38,7 @@ public class HttpClientPaymentClientImpl extends AbstractImpl implements Payment
 
     protected HttpClientPaymentClientImpl(String apiUrl) {
         super(apiUrl);
-        logger = Logger.getLogger(HttpClientAuthClientImpl.class);
+        logger = LogManager.getLogger(HttpClientAuthClientImpl.class);
     }
 
     @Override

@@ -17,12 +17,12 @@ import javax.ws.rs.core.MediaType;
  *
  */
 public interface AuthClient {
-
+    
     @POST
     @Path("/oauth2/token")
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-    public AccessToken loginApplication(@BeanParam AuthHeader authHeader,
+    AccessToken loginApplication(@BeanParam AuthHeader authHeader,
             @FormParam(value = "grant_type") String grantType,
             @FormParam(value = "scope") String scope);
 

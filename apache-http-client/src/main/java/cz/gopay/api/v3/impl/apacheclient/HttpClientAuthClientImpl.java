@@ -13,13 +13,13 @@ import org.apache.http.client.fluent.Form;
 import org.apache.http.client.fluent.Request;
 import org.apache.http.client.fluent.Response;
 import org.apache.http.entity.ContentType;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 
 public class HttpClientAuthClientImpl extends AbstractImpl implements AuthClient {
 
     protected HttpClientAuthClientImpl(String apiUrl) {
         super(apiUrl);
-        super.logger = Logger.getLogger(HttpClientAuthClientImpl.class);
+        super.logger = LogManager.getLogger(HttpClientAuthClientImpl.class);
     }
 
     @Override

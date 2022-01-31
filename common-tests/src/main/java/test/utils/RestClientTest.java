@@ -1,4 +1,4 @@
-package test;
+package test.utils;
 
 import cz.gopay.api.v3.IGPConnector;
 

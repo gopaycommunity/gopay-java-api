@@ -3,7 +3,7 @@
     <groupId>cz.gopay</groupId>
 	
     <artifactId>gp-java-api-v3-apache-cxf</artifactId>
-    <version>3.4.11-SNAPSHOT</version>
+    <version>3.4.11</version>
 
     <description>
         GOPAY project - java api
@@ -11,7 +11,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <cxf.version>3.4.4</cxf.version>
+        <cxf.version>3.5.0</cxf.version>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
     </properties>  
@@ -20,7 +20,7 @@
     <parent>
         <groupId>cz.gopay</groupId>
         <artifactId>gp-java-api-v3-parent</artifactId>
-        <version>3.4.11-SNAPSHOT</version>
+        <version>3.4.11</version>
         <relativePath>../</relativePath>
     </parent>
 
@@ -31,14 +31,13 @@
         <dependency>
             <groupId>cz.gopay</groupId>
             <artifactId>gp-java-api-v3-common</artifactId>
-            <version>3.4.11-SNAPSHOT</version>
+            <version>3.4.11</version>
         </dependency>
                 
         <!-- jackson -->
         <dependency>
             <groupId>com.fasterxml.jackson.jaxrs</groupId>
             <artifactId>jackson-jaxrs-json-provider</artifactId>
-            <version>2.12.4</version>
         </dependency>
 
         
@@ -75,11 +74,16 @@
         
         <!-- Logging -->
         <dependency>
-            <groupId>log4j</groupId>
-            <artifactId>log4j</artifactId>
-            <version>1.2.17</version>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
         </dependency>
-
+    
+        <dependency>
+            <groupId>cz.gopay</groupId>
+            <artifactId>common-tests</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
     <name>gp-java-api-cxf</name>
     <build>

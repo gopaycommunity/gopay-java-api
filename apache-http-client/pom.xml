@@ -3,7 +3,7 @@
     <groupId>cz.gopay</groupId>
 	
     <artifactId>gp-java-api-v3-apache-http-client</artifactId>
-    <version>3.4.11-SNAPSHOT</version>
+    <version>3.4.11</version>
 
     <description>
         GOPAY project - java api
@@ -20,33 +20,22 @@
     <parent>
         <groupId>cz.gopay</groupId>
         <artifactId>gp-java-api-v3-parent</artifactId>
-        <version>3.4.11-SNAPSHOT</version>
+        <version>3.4.11</version>
         <relativePath>../</relativePath>
     </parent>
 
     <dependencies>
-    
-        <!--
-        <dependency>
-            <groupId>org.glassfish.jersey.core</groupId>
-            <artifactId>jersey-common</artifactId>
-            <version>3.0.2</version>
-            <scope>test</scope>
-        </dependency>
-        -->
         
-        <!-- Jackson -->
         <dependency>
             <groupId>com.fasterxml.jackson.jaxrs</groupId>
             <artifactId>jackson-jaxrs-json-provider</artifactId>
-            <version>2.12.4</version>
         </dependency>
 
         <!-- GP-common -->
         <dependency>
             <groupId>cz.gopay</groupId>
             <artifactId>gp-java-api-v3-common</artifactId>   
-            <version>3.4.11-SNAPSHOT</version>
+            <version>3.4.11</version>
         </dependency>
      		 
         <!-- Apache http client -->
@@ -63,14 +52,19 @@
             <version>4.5.13</version>
         </dependency>
         
-        <!-- Logging -->
         <dependency>
-            <groupId>log4j</groupId>
-            <artifactId>log4j</artifactId>
-            <version>1.2.17</version>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
         </dependency>
-        
+    
+        <dependency>
+            <groupId>cz.gopay</groupId>
+            <artifactId>common-tests</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
+    
     <name>gp-java-api-apache-http-client</name>
     <build>
         <plugins>
