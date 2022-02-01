@@ -13,5 +13,6 @@ public enum PaymentInstrument {
     BITCOIN,
     MASTERPASS,
     GPAY,
-    ACCOUNT
+    ACCOUNT,
+    CLICK_TO_PAY
 }
