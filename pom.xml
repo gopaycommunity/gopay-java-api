@@ -193,6 +193,6 @@
 		<connection>scm:git:ssh://github.com/gopaycommunity/gopay-java-api.git</connection>
 		<url>scm:git:ssh://github.com/gopaycommunity/gopay-java-api.git</url>
 		<developerConnection>scm:git:ssh://github.com/gopaycommunity/gopay-java-api.git</developerConnection>
-	  <tag>3.4.9</tag>
+	  <tag>${project.version}</tag>
   </scm>
 </project>
