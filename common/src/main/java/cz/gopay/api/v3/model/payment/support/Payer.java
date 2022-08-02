@@ -46,6 +46,16 @@ public class Payer {
     @XmlElement(name="verify_pin")
     private String verifyPin;
     
+    @XmlElement(name = "email")
+    private String email;
+    
+    public String getEmail() {
+        return email;
+    }
+    
+    public void setEmail(String email) {
+        this.email = email;
+    }
     
     public PaymentInstrument getPaymentInstrument() {
         return paymentInstrument;

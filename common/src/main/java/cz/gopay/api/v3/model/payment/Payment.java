@@ -72,7 +72,7 @@ public class Payment {
 
     @XmlElement(name = "eet_code")
     private EETCode eetCode;
-    
+
     public Long getId() {
         return id;
     }
@@ -192,6 +192,7 @@ public class Payment {
     public void setParentId(Long parentId) {
         this.parentId = parentId;
     }
+
     
     public EETCode getEetCode() {
         return eetCode;

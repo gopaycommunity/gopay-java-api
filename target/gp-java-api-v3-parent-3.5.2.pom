@@ -66,8 +66,8 @@
 			<url>http://devel:8081/nexus/content/repositories/snapshots</url>
 		</snapshotRepository>
 		<repository>
-			<id>GOPAY</id>
-			<url>http://devel:8081/nexus/content/repositories/releases</url>
+			<id>ossrh</id>
+			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
 		</repository>
 	</distributionManagement>
 	<build>

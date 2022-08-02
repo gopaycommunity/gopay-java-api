@@ -33,13 +33,13 @@ http://mvnrepository.com/artifact/cz.gopay
 <dependency>
     <groupId>cz.gopay</groupId>
     <artifactId>gp-java-api-v3-common</artifactId>
-    <version>3.5.1</version>
+    <version>3.5.2</version>
 </dependency>
 <!-- GPAPI Apache Http Client -->
 <dependency>
    	<groupId>cz.gopay</groupId>
    	<artifactId>gp-java-api-v3-apache-http-client</artifactId>
-   	<version>3.5.1</version>
+   	<version>3.5.2</version>
 </dependency>
 ```
 ## OAuth
