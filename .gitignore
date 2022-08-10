@@ -3,6 +3,7 @@
 /apache-http-client/target/
 /common/target/
 /common-tests/target/
+/target/
 .settings
 .idea
 *.iml
