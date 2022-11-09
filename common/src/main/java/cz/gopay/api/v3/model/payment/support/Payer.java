@@ -37,6 +37,9 @@ public class Payer {
     @XmlElement(name="payment_card")
     private PayerPaymentCard paymentCard;
     
+    @XmlElement(name="card_id")
+    private String cardId;
+    
     @XmlElement(name="bank_account")
     private BankAccount bankAccount;
     
@@ -56,6 +59,12 @@ public class Payer {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    @XmlElement(name="request_card_token")
+    private Boolean requestCardToken;
+    
+    @XmlElement(name="masked_pan")
+    private String maskedPan;
     
     public PaymentInstrument getPaymentInstrument() {
         return paymentInstrument;
@@ -137,11 +146,38 @@ public class Payer {
         this.verifyPin = verifyPin;
     }
     
+    public Boolean getRequestCardToken() {
+        return requestCardToken;
+    }
+    
+    public void setRequestCardToken(Boolean requestCardToken) {
+        this.requestCardToken = requestCardToken;
+    }
+    
+    public String getMaskedPan() {
+        return maskedPan;
+    }
+    
+    public void setMaskedPan(String maskedPan) {
+        this.maskedPan = maskedPan;
+    }
+    
+    public String getCardId() {
+        return cardId;
+    }
+    
+    public void setCardId(String cardId) {
+        this.cardId = cardId;
+    }
+    
     @Override
     public String toString() {
         return String.format(
-                "PayerParty [paymentInstrument=%s, allowedPaymentInstruments=%s, allowedSwifts=%s, defaultPaymentInstrument=%s, defaultSwift=%s, contact=%s, paymentCard=%s, bankAccount=%s, allowedCardToken=%s, verifyPin=%s]",
-                paymentInstrument, allowedPaymentInstruments, allowedSwifts, defaultPaymentInstrument, defaultSwift, contact, paymentCard, bankAccount, allowedCardToken, verifyPin);
+                "PayerParty [paymentInstrument=%s, allowedPaymentInstruments=%s, allowedSwifts=%s, "
+                        + "defaultPaymentInstrument=%s, defaultSwift=%s, contact=%s, paymentCard=%s, bankAccount=%s, "
+                        + "allowedCardToken=%s, verifyPin=%s, requestCardToken=%s, maskedPan=%s, cardId=%s]",
+                paymentInstrument, allowedPaymentInstruments, allowedSwifts, defaultPaymentInstrument, defaultSwift,
+                contact, paymentCard, bankAccount, allowedCardToken, verifyPin, requestCardToken, maskedPan, cardId);
     }
 
     public static Payer build() {

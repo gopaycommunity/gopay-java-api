@@ -22,6 +22,8 @@ public class PayerBuilder implements Builder<Payer> {
     private PayerContact contact;
     private String allowedCardToken;
     private String verifyPin;
+    private Boolean requestCardToken;
+    private String maskedPan;
     
     
     @Override
@@ -34,6 +36,8 @@ public class PayerBuilder implements Builder<Payer> {
         payer.setPaymentInstrument(paymentInstrument);
         payer.setAllowedCardToken(allowedCardToken);
         payer.setVerifyPin(verifyPin);
+        payer.setRequestCardToken(requestCardToken);
+        payer.setMaskedPan(maskedPan);
         return payer;
     }
     
@@ -87,6 +91,16 @@ public class PayerBuilder implements Builder<Payer> {
     
     public PayerBuilder withVerificationPin(String verificationPin) {
         this.verifyPin = verificationPin;
+        return this;
+    }
+    
+    public PayerBuilder withRequestCardToken(Boolean requestCardToken) {
+        this.requestCardToken = requestCardToken;
+        return this;
+    }
+    
+    public PayerBuilder withMaskedPan(String maskedPan){
+        this.maskedPan = maskedPan;
         return this;
     }
 }
