@@ -25,25 +25,25 @@ public abstract class PaymentTest extends AbstractPaymentTests {
     }
 
     //@Test
-    public void testHttpClientVoidAuthorization() {
+    /*public void testHttpClientVoidAuthorization() {
         testPaymentVoidAuthorization(getConnector());
-    }
+    }*/
 
     //@Test
-    public void testPaymentRefund() {
+    /*public void testPaymentRefund() {
         testPaymentRefund(getConnector());
-    }
+    }*/
     
     
    // @Test
-    public void testEETREceiptFindByFilter() {
+    /*public void testEETREceiptFindByFilter() {
         testEETREceiptFindByFilter(getConnector());
-    }
+    }*/
     
    // @Test
-    public void testEETReceiptFindByPayment() {
+    /*public void testEETReceiptFindByPayment() {
         testEETReceiptFindByPayment(getConnector());
-    }
+    }*/
     
     
     @Test
