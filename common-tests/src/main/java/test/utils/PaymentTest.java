@@ -15,7 +15,7 @@ public abstract class PaymentTest extends AbstractPaymentTests {
     }
 
     @Test
-    public void testHttpClientPaymentStataus() {
+    public void testHttpClientPaymentStatus() {
         testPaymentStatus(getConnector());
     }
     
