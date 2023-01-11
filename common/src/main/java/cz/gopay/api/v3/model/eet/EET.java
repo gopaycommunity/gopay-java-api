@@ -2,6 +2,8 @@ package cz.gopay.api.v3.model.eet;
 
 import cz.gopay.api.v3.model.common.Currency;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -9,6 +11,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  * Created by František Sichinger on 30.1.17.
  */
 @XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
 public class EET {
 	
 	@XmlElement(name = "celk_trzba")

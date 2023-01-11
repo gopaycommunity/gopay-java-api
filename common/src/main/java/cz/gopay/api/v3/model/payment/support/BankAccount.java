@@ -2,8 +2,11 @@ package cz.gopay.api.v3.model.payment.support;
 
 import cz.gopay.api.v3.model.common.CountryCode;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 
+@XmlAccessorType(XmlAccessType.FIELD)
 public class BankAccount {
 	
 	@XmlElement(name="prefix")

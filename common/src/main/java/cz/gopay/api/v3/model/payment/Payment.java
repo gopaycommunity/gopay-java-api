@@ -1,17 +1,25 @@
 package cz.gopay.api.v3.model.payment;
 
+import cz.gopay.api.v3.model.common.Currency;
+import cz.gopay.api.v3.model.common.SessionSubState;
+import cz.gopay.api.v3.model.eet.EETCode;
+import cz.gopay.api.v3.model.payment.support.AdditionalParam;
+import cz.gopay.api.v3.model.payment.support.Payer;
+import cz.gopay.api.v3.model.payment.support.PaymentInstrument;
+import cz.gopay.api.v3.model.payment.support.Preauthorization;
+import cz.gopay.api.v3.model.payment.support.Recurrence;
+import cz.gopay.api.v3.model.payment.support.Target;
+
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import cz.gopay.api.v3.model.common.Currency;
-import cz.gopay.api.v3.model.eet.EETCode;
-import cz.gopay.api.v3.model.common.SessionSubState;
-import cz.gopay.api.v3.model.payment.support.*;
-
 @XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Payment {
 
     public enum SessionState {

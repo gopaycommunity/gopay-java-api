@@ -1,5 +1,7 @@
 package cz.gopay.api.v3.model.eet;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -7,6 +9,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  * Created by František Sichinger on 7.2.17.
  */
 @XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
 public class EETCode {
 	
 	@XmlElement(name = "fik")
