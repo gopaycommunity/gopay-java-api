@@ -16,5 +16,19 @@ public class Lang {
    public static final String SK = "SK";
    public static final String DE = "DE";
    public static final String RU = "RU";
-    
+   
+   public static final String FR = "FR";
+   public static final String HU = "HU";
+   public static final String PL = "PL";
+   public static final String RO = "RO";
+   public static final String BG = "BG";
+   public static final String HR = "HR";
+   public static final String IT = "IT";
+   public static final String ES = "ES";
+   public static final String UK = "UK";
+   public static final String EE = "EE";
+   public static final String LT = "LT";
+   public static final String LV = "LV";
+   public static final String SI = "SI";
+   public static final String PT = "PT";
 }
