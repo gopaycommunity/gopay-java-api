@@ -3,7 +3,7 @@
     <groupId>cz.gopay</groupId>
 	
     <artifactId>gp-java-api-v3-apache-http-client</artifactId>
-    <version>3.5.4</version>
+    <version>3.6.0</version>
 
     <description>
         GOPAY project - java api
@@ -20,7 +20,7 @@
     <parent>
         <groupId>cz.gopay</groupId>
         <artifactId>gp-java-api-v3-parent</artifactId>
-        <version>3.5.4</version>
+        <version>3.6.0</version>
         <relativePath>../</relativePath>
     </parent>
 
