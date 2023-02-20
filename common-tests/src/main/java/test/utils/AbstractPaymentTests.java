@@ -144,7 +144,7 @@ public abstract class AbstractPaymentTests implements RestClientTest {
         try {
             PaymentInstrumentRoot instrumentsList = connector
                     .getAppToken(TestUtils.CLIENT_ID, TestUtils.CLIENT_SECRET, OAuth.SCOPE_PAYMENT_ALL)
-                    .generatePaymentInstruments(TestUtils.GOID, Currency.CZK);
+                    .getPaymentInstruments(TestUtils.GOID, Currency.CZK);
             Assertions.assertNotNull(instrumentsList);
         } catch (GPClientException ex) {
             TestUtils.handleException(ex, logger);
