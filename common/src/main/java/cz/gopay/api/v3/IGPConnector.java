@@ -46,7 +46,7 @@ public interface IGPConnector {
 
     List<EETReceipt> findEETREceiptsByFilter(EETReceiptFilter filter) throws GPClientException;
     
-    PaymentInstrumentRoot generatePaymentInstruments(Long goId, Currency currency) throws GPClientException;
+    PaymentInstrumentRoot getPaymentInstruments(Long goId, Currency currency) throws GPClientException;
     
     List<EETReceipt> getEETReceiptByPaymentId(Long id) throws GPClientException;
     

@@ -272,7 +272,7 @@ public abstract class AbstractGPConnector implements IGPConnector {
 	
 	//  TODO   GPMAIN-3351  Nutne snizeni scopu
 	@Override
-	public PaymentInstrumentRoot generatePaymentInstruments(Long goId, Currency currency) throws GPClientException {
+	public PaymentInstrumentRoot getPaymentInstruments(Long goId, Currency currency) throws GPClientException {
 		try {
 			logger.info(getClass().getSimpleName() + ": payment-instruments [" + goId + "][" + currency + "]");
 			
