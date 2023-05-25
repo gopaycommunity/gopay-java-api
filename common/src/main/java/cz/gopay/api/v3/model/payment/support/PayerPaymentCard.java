@@ -35,6 +35,9 @@ public class PayerPaymentCard {
     @XmlElement(name="3ds_result")
     private String threeDResult;
     
+    @XmlElement(name = "card_fingerprint")
+    private String cardFingerPrint;
+    
     public String getCardNumber() {
         return cardNumber;
     }
@@ -91,11 +94,19 @@ public class PayerPaymentCard {
         this.threeDResult = threeDResult;
     }
     
+    public String getCardFingerPrint() {
+        return cardFingerPrint;
+    }
+    
+    public void setCardFingerPrint(String cardFingerPrint) {
+        this.cardFingerPrint = cardFingerPrint;
+    }
+    
     @Override
     public String toString() {
         return String
-                .format("PayerPaymentCard [cardNumber=%s, cardExpiration=%s, cardBrand=%s, cardIssuerCountry=%s, cardIssuerBank=%s, cardToken=%s, threeDResult=%s]",
-                        cardNumber, cardExpiration, cardBrand, cardIssuerCountry, cardIssuerBank, cardToken, threeDResult);
+                .format("PayerPaymentCard [cardNumber=%s, cardExpiration=%s, cardBrand=%s, cardIssuerCountry=%s, cardIssuerBank=%s, cardToken=%s, threeDResult=%s, cardFingerPrint=%s]",
+                        cardNumber, cardExpiration, cardBrand, cardIssuerCountry, cardIssuerBank, cardToken, threeDResult, cardFingerPrint);
     }
     
     
