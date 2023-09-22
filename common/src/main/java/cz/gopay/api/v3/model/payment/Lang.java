@@ -26,9 +26,9 @@ public class Lang {
    public static final String IT = "IT";
    public static final String ES = "ES";
    public static final String UK = "UK";
-   public static final String EE = "EE";
+   public static final String ET = "ET";
    public static final String LT = "LT";
    public static final String LV = "LV";
-   public static final String SI = "SI";
+   public static final String SL = "SL";
    public static final String PT = "PT";
 }
