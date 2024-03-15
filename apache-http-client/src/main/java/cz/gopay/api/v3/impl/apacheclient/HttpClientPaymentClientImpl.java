@@ -165,7 +165,7 @@ public class HttpClientPaymentClientImpl extends AbstractImpl implements Payment
             response = Request.
                     Post(apiUrl + "/payments/payment/" + id + "/capture")
                     .addHeader(ACCEPT, MediaType.APPLICATION_JSON)
-                    .addHeader(CONTENT_TYPE, MediaType.APPLICATION_FORM_URLENCODED)
+                    .addHeader(CONTENT_TYPE, MediaType.APPLICATION_JSON)
                     .addHeader(AUTHORIZATION, authHeader.getAuhorization())
                     .addHeader(USER_AGENT, IMPLEMENTATION_NAME + "=" + VERSION)
                     .bodyString(marshall(capturePayment), ContentType.APPLICATION_JSON)
