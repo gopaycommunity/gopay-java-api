@@ -122,6 +122,14 @@ public class BasePaymentBuilder extends AbstractPaymentBuilder<BasePayment,BaseP
         return this;
     }
     
+    public BasePaymentBuilder withDefaultBnplType(String type) {
+        if (this.payer == null) {
+            this.payer = Payer.build();
+        }
+        this.payer.setDefaultBnplType(type);
+        return this;
+    }
+    
     @Override
     protected BasePaymentBuilder getInstance() {
         return this;

@@ -19,6 +19,8 @@ public class PayerBuilder implements Builder<Payer> {
     private PaymentInstrument defaultPaymentInstrument;
     private List<PaymentInstrument> allowedPaymentInstruments = new ArrayList<>();
     private List<String> allowedSwifts = new ArrayList<>();
+    private List<String> allowedBnplTypes = new ArrayList<>();
+    private String defaultBnplType = "";
     private PayerContact contact;
     private String allowedCardToken;
     private String verifyPin;
@@ -38,6 +40,8 @@ public class PayerBuilder implements Builder<Payer> {
         payer.setVerifyPin(verifyPin);
         payer.setRequestCardToken(requestCardToken);
         payer.setMaskedPan(maskedPan);
+        payer.setAllowedBnplTypes(allowedBnplTypes);
+        payer.setDefaultBnplType(defaultBnplType);
         return payer;
     }
     
@@ -101,6 +105,16 @@ public class PayerBuilder implements Builder<Payer> {
     
     public PayerBuilder withMaskedPan(String maskedPan){
         this.maskedPan = maskedPan;
+        return this;
+    }
+    
+    public PayerBuilder withAllowedBnplTypes(List<String> allowedBnplTypes) {
+        this.allowedBnplTypes = allowedBnplTypes;
+        return this;
+    }
+    
+    public PayerBuilder addDefaultBnplType(String defaultBnplType) {
+        this.defaultBnplType = defaultBnplType;
         return this;
     }
 }

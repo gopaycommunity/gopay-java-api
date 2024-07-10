@@ -21,7 +21,7 @@ public class TestUtils {
     public static final String CLIENT_ID = "1744960415";
     public static final String CLIENT_SECRET = "h9wyRz2s";
     public static final Long GOID = 8339303643L;
-  // public static final String API_URL = "http://gopay-gw:8180/gp/api";
+  // public static final String API_URL = "https://gw.pmaryska.dev.gopay.com/gp/api";
   // public static final String CLIENT_ID = "app@musicshop.cz";
   // public static final String CLIENT_SECRET = "VpnJVcTn";
   // public static final Long GOID = 8761908826L;
