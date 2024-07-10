@@ -14,5 +14,7 @@ public enum PaymentInstrument {
     MASTERPASS,
     GPAY,
     ACCOUNT,
-    CLICK_TO_PAY
+    CLICK_TO_PAY,
+    TWISTO,
+    SKIPPAY
 }

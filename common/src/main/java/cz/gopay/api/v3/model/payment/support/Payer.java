@@ -30,6 +30,12 @@ public class Payer {
 
     @XmlElement(name = "default_swift")
     private String defaultSwift;
+    
+    @XmlElement(name = "allowed_bnpl_types")
+    private List<String> allowedBnplTypes;
+    
+    @XmlElement(name = "default_bnpl_type")
+    private String defaultBnplType;
 
     @XmlElement(name = "contact")
     private PayerContact contact;
@@ -170,16 +176,44 @@ public class Payer {
         this.cardId = cardId;
     }
     
+    public List<String> getAllowedBnplTypes() {
+        return allowedBnplTypes;
+    }
+    
+    public void setAllowedBnplTypes(List<String> allowedBnplTypes) {
+        this.allowedBnplTypes = allowedBnplTypes;
+    }
+    
+    public String getDefaultBnplType() {
+        return defaultBnplType;
+    }
+    
+    public void setDefaultBnplType(String defaultBnplType) {
+        this.defaultBnplType = defaultBnplType;
+    }
+    
     @Override
     public String toString() {
-        return String.format(
-                "PayerParty [paymentInstrument=%s, allowedPaymentInstruments=%s, allowedSwifts=%s, "
-                        + "defaultPaymentInstrument=%s, defaultSwift=%s, contact=%s, paymentCard=%s, bankAccount=%s, "
-                        + "allowedCardToken=%s, verifyPin=%s, requestCardToken=%s, maskedPan=%s, cardId=%s]",
-                paymentInstrument, allowedPaymentInstruments, allowedSwifts, defaultPaymentInstrument, defaultSwift,
-                contact, paymentCard, bankAccount, allowedCardToken, verifyPin, requestCardToken, maskedPan, cardId);
+        return "Payer{" +
+                "paymentInstrument=" + paymentInstrument +
+                ", allowedPaymentInstruments=" + allowedPaymentInstruments +
+                ", allowedSwifts=" + allowedSwifts +
+                ", defaultPaymentInstrument=" + defaultPaymentInstrument +
+                ", defaultSwift='" + defaultSwift + '\'' +
+                ", allowedBnplTypes=" + allowedBnplTypes +
+                ", defaultBnplType='" + defaultBnplType + '\'' +
+                ", contact=" + contact +
+                ", paymentCard=" + paymentCard +
+                ", cardId='" + cardId + '\'' +
+                ", bankAccount=" + bankAccount +
+                ", allowedCardToken='" + allowedCardToken + '\'' +
+                ", verifyPin='" + verifyPin + '\'' +
+                ", email='" + email + '\'' +
+                ", requestCardToken=" + requestCardToken +
+                ", maskedPan='" + maskedPan + '\'' +
+                '}';
     }
-
+    
     public static Payer build() {
         return new Payer();
     }

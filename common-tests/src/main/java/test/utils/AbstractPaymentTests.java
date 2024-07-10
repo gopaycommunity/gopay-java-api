@@ -57,6 +57,23 @@ public abstract class AbstractPaymentTests implements RestClientTest {
                .toEshop(TestUtils.GOID)
                .payer(payer).build();
     }
+    
+    private BasePayment createBnplTestBasePayment() {
+        String url = "https://www.eshop123.cz/";
+        
+        Payer payer = new PayerBuilder().withAllowedPaymentInstruments(Arrays.asList(PaymentInstrument.TWISTO, PaymentInstrument.SKIPPAY))
+                .withDefaultPaymentInstrument(PaymentInstrument.TWISTO)
+                .withAllowedBnplTypes(Arrays.asList("LATER", "THIRDS"))
+                .addDefaultBnplType("THIRDS").build();
+        BasePaymentBuilder builder = PaymentFactory.createBasePaymentBuilder();
+        return builder.withCallback(url+"notify", url+"return")
+                .order("123", 10000L, Currency.EUR, "description")
+                .inLang(Lang.EN)
+                .addAdditionalParameter("AKey2", "AValue")
+                .addItem("An item", 1L, 1L)
+                .toEshop(TestUtils.GOID)
+                .payer(payer).build();
+    }
 
     protected long testConnectorCreatePayment(IGPConnector connector) {
         Payment payment = null;
