@@ -6,6 +6,7 @@ import cz.gopay.api.v3.model.eet.EETReceipt;
 import cz.gopay.api.v3.model.eet.EETReceiptFilter;
 import cz.gopay.api.v3.model.payment.BasePayment;
 import cz.gopay.api.v3.model.payment.CapturePayment;
+import cz.gopay.api.v3.model.payment.Card;
 import cz.gopay.api.v3.model.payment.NextPayment;
 import cz.gopay.api.v3.model.payment.Payment;
 import cz.gopay.api.v3.model.payment.PaymentResult;
@@ -57,4 +58,8 @@ public interface IGPConnector {
     AccessToken getAccessToken();
     
     void setAccessToken(AccessToken accessToken);
+    
+    Card getCardDetail(Long cardId) throws GPClientException;
+    
+    void deleteCard(Long cardId) throws GPClientException;
 }

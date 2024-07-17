@@ -7,6 +7,7 @@ import cz.gopay.api.v3.model.eet.EETReceipt;
 import cz.gopay.api.v3.model.eet.EETReceiptFilter;
 import cz.gopay.api.v3.model.payment.BasePayment;
 import cz.gopay.api.v3.model.payment.CapturePayment;
+import cz.gopay.api.v3.model.payment.Card;
 import cz.gopay.api.v3.model.payment.NextPayment;
 import cz.gopay.api.v3.model.payment.Payment;
 import cz.gopay.api.v3.model.payment.PaymentResult;
@@ -266,6 +267,36 @@ public class HttpClientPaymentClientImpl extends AbstractImpl implements Payment
         }
         
         return unMarshallComplexResponse(response, new TypeReference<List<EETReceipt>>() {});
+    }
+    
+    @Override
+    public Card getCardDetail(AuthHeader authHeader, Long cardId) {
+        Response response = null;
+        
+        try {
+            response = Request.Get(apiUrl + "/payments/cards/" + cardId)
+                    .addHeader(ACCEPT, MediaType.APPLICATION_JSON)
+                    .addHeader(CONTENT_TYPE, MediaType.APPLICATION_JSON)
+                    .addHeader(AUTHORIZATION, authHeader.getAuhorization())
+                    .addHeader(USER_AGENT, IMPLEMENTATION_NAME + "=" + VERSION)
+                    .execute();
+        } catch (IOException ex) {
+            throw new WebApplicationException(ex);
+        }
+        
+        return unMarshall(response, Card.class);
+    }
+    
+    @Override
+    public void deleteCard(AuthHeader authHeader, Long cardId) {
+        try {
+            Request.Delete(apiUrl + "/payments/cards/" + cardId)
+                    .addHeader(AUTHORIZATION, authHeader.getAuhorization())
+                    .addHeader(USER_AGENT, IMPLEMENTATION_NAME + "=" + VERSION)
+                    .execute();
+        } catch (IOException ex) {
+            throw new WebApplicationException(ex);
+        }
     }
     
     @Override

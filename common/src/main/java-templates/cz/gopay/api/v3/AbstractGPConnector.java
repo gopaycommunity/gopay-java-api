@@ -12,6 +12,7 @@ import cz.gopay.api.v3.model.eet.EETReceipt;
 import cz.gopay.api.v3.model.eet.EETReceiptFilter;
 import cz.gopay.api.v3.model.payment.BasePayment;
 import cz.gopay.api.v3.model.payment.CapturePayment;
+import cz.gopay.api.v3.model.payment.Card;
 import cz.gopay.api.v3.model.payment.NextPayment;
 import cz.gopay.api.v3.model.payment.Payment;
 import cz.gopay.api.v3.model.payment.PaymentResult;
@@ -371,6 +372,42 @@ public abstract class AbstractGPConnector implements IGPConnector {
 	public void setAccessToken(AccessToken accessToken) {
 		this.accessToken = accessToken;
 	}
+	
+	@Override
+	public Card getCardDetail(Long cardId) throws GPClientException {
+		try {
+			logger.info(getClass().getSimpleName() + ": get card detail [" + cardId + "]");
+			
+			PaymentClient paymentClient = createRESTClientProxy(apiUrl, PaymentClient.class);
+			
+			return paymentClient.getCardDetail(
+					AuthHeader.build(accessToken != null ? accessToken.getAccessToken() : null), cardId);
+			
+		} catch (WebApplicationException e) {
+			logger.fatal(getClass().getSimpleName() + ": get card detail Error [" + cardId + "] RC ["
+					+ e.getResponse().getStatus() + "] Ex: " + e.getResponse().getStatusInfo(), e);
+			GPExceptionHandler.handleException(e);
+		}
+		return null;
+	}
+	
+	@Override
+	public void deleteCard(Long cardId) throws GPClientException {
+		try {
+			logger.info(getClass().getSimpleName() + ": deleting card  [" + cardId + "]");
+			
+			PaymentClient paymentClient = createRESTClientProxy(apiUrl, PaymentClient.class);
+			
+			paymentClient.deleteCard(
+					AuthHeader.build(accessToken != null ? accessToken.getAccessToken() : null), cardId);
+			
+		} catch (WebApplicationException e) {
+			logger.fatal(getClass().getSimpleName() + ": delete car Error [" + cardId + "] RC ["
+					+ e.getResponse().getStatus() + "] Ex: " + e.getResponse().getStatusInfo(), e);
+			GPExceptionHandler.handleException(e);
+		}
+	}
+	
 	
 	protected abstract String getImplementationName();
 	

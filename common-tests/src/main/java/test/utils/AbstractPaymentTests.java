@@ -12,26 +12,28 @@ import cz.gopay.api.v3.model.common.StatementGeneratingFormat;
 import cz.gopay.api.v3.model.eet.EETReceipt;
 import cz.gopay.api.v3.model.eet.EETReceiptFilter;
 import cz.gopay.api.v3.model.payment.BasePayment;
+import cz.gopay.api.v3.model.payment.BasePaymentBuilder;
+import cz.gopay.api.v3.model.payment.Card;
 import cz.gopay.api.v3.model.payment.Lang;
 import cz.gopay.api.v3.model.payment.Payment;
-import cz.gopay.api.v3.model.payment.BasePaymentBuilder;
 import cz.gopay.api.v3.model.payment.PaymentFactory;
 import cz.gopay.api.v3.model.payment.PaymentResult;
 import cz.gopay.api.v3.model.payment.support.AccountStatement;
 import cz.gopay.api.v3.model.payment.support.Payer;
-import cz.gopay.api.v3.model.payment.support.PaymentInstrument;
 import cz.gopay.api.v3.model.payment.support.PayerBuilder;
+import cz.gopay.api.v3.model.payment.support.PaymentInstrument;
 import cz.gopay.api.v3.model.payment.support.PaymentInstrumentRoot;
 import cz.gopay.api.v3.model.payment.support.Recurrence;
 import cz.gopay.api.v3.model.payment.support.RecurrenceCycle;
-import java.util.Arrays;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.Assertions;
+
+import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 
 /**
  *
@@ -146,6 +148,26 @@ public abstract class AbstractPaymentTests implements RestClientTest {
                     .getAppToken(TestUtils.CLIENT_ID, TestUtils.CLIENT_SECRET, OAuth.SCOPE_PAYMENT_ALL)
                     .getPaymentInstruments(TestUtils.GOID, Currency.CZK);
             Assertions.assertNotNull(instrumentsList);
+        } catch (GPClientException ex) {
+            TestUtils.handleException(ex, logger);
+        }
+    }
+    
+    protected void testCardDetail(IGPConnector connector){
+        try {
+            Card card = connector
+                    .getAppToken(TestUtils.CLIENT_ID, TestUtils.CLIENT_SECRET, OAuth.SCOPE_PAYMENT_ALL)
+                    .getCardDetail(3824914275L);
+            Assertions.assertNotNull(card);
+        } catch (GPClientException ex) {
+            TestUtils.handleException(ex, logger);
+        }
+    }
+    
+    protected void testDeleteCard(IGPConnector connector) {
+        try {
+            connector.getAppToken(TestUtils.CLIENT_ID, TestUtils.CLIENT_SECRET, OAuth.SCOPE_PAYMENT_ALL)
+                    .deleteCard(3824515290L);
         } catch (GPClientException ex) {
             TestUtils.handleException(ex, logger);
         }

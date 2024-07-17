@@ -6,23 +6,25 @@ import cz.gopay.api.v3.model.eet.EETReceipt;
 import cz.gopay.api.v3.model.eet.EETReceiptFilter;
 import cz.gopay.api.v3.model.payment.BasePayment;
 import cz.gopay.api.v3.model.payment.CapturePayment;
+import cz.gopay.api.v3.model.payment.Card;
 import cz.gopay.api.v3.model.payment.NextPayment;
 import cz.gopay.api.v3.model.payment.Payment;
 import cz.gopay.api.v3.model.payment.PaymentResult;
 import cz.gopay.api.v3.model.payment.RefundPayment;
 import cz.gopay.api.v3.model.payment.support.AccountStatement;
 import cz.gopay.api.v3.model.payment.support.PaymentInstrumentRoot;
+
 import java.util.List;
 
 import javax.ws.rs.BeanParam;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 /**
@@ -127,5 +129,13 @@ public interface PaymentClient {
     @Consumes(MediaType.APPLICATION_JSON)
     List<EETReceipt> getEETReceiptByPaymentId(@BeanParam AuthHeader authHeader, @PathParam("id") Long id);
     
+    @GET
+    @Path("/payments/cards/{card_id}")
+    @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+    @Consumes(MediaType.APPLICATION_JSON)
+    Card getCardDetail(@BeanParam AuthHeader authHeader, @PathParam("card_id") Long cardId);
     
+    @DELETE
+    @Path("payments/cards/{card_id}")
+    void deleteCard(@BeanParam AuthHeader authHeader, @PathParam("card_id") Long cardId);
 }
