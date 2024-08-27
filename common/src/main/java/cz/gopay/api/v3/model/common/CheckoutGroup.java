@@ -25,6 +25,9 @@ public enum CheckoutGroup {
 			PaymentInstrument.BITCOIN,
 			PaymentInstrument.PAYPAL)),
 	
+	@XmlEnumValue("bnpl")
+	BNPL("bnpl", EnumSet.of(PaymentInstrument.TWISTO, PaymentInstrument.SKIPPAY)),
+	
 	@XmlEnumValue("others")
 	OTHERS("others", EnumSet.of(
 			PaymentInstrument.PRSMS,
