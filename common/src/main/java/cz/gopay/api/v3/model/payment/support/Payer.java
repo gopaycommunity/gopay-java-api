@@ -32,10 +32,10 @@ public class Payer {
     private String defaultSwift;
     
     @XmlElement(name = "allowed_bnpl_types")
-    private List<String> allowedBnplTypes;
+    private List<BnplType> allowedBnplTypes;
     
     @XmlElement(name = "default_bnpl_type")
-    private String defaultBnplType;
+    private BnplType defaultBnplType;
 
     @XmlElement(name = "contact")
     private PayerContact contact;
@@ -176,19 +176,19 @@ public class Payer {
         this.cardId = cardId;
     }
     
-    public List<String> getAllowedBnplTypes() {
+    public List<BnplType> getAllowedBnplTypes() {
         return allowedBnplTypes;
     }
     
-    public void setAllowedBnplTypes(List<String> allowedBnplTypes) {
+    public void setAllowedBnplTypes(List<BnplType> allowedBnplTypes) {
         this.allowedBnplTypes = allowedBnplTypes;
     }
     
-    public String getDefaultBnplType() {
+    public BnplType getDefaultBnplType() {
         return defaultBnplType;
     }
     
-    public void setDefaultBnplType(String defaultBnplType) {
+    public void setDefaultBnplType(BnplType defaultBnplType) {
         this.defaultBnplType = defaultBnplType;
     }
     

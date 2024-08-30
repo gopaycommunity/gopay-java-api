@@ -20,6 +20,7 @@ import cz.gopay.api.v3.model.payment.PaymentFactory;
 import cz.gopay.api.v3.model.payment.PaymentResult;
 import cz.gopay.api.v3.model.payment.Refund;
 import cz.gopay.api.v3.model.payment.support.AccountStatement;
+import cz.gopay.api.v3.model.payment.support.BnplType;
 import cz.gopay.api.v3.model.payment.support.Payer;
 import cz.gopay.api.v3.model.payment.support.PayerBuilder;
 import cz.gopay.api.v3.model.payment.support.PaymentInstrument;
@@ -64,8 +65,8 @@ public abstract class AbstractPaymentTests implements RestClientTest {
         
         Payer payer = new PayerBuilder().withAllowedPaymentInstruments(Arrays.asList(PaymentInstrument.TWISTO, PaymentInstrument.SKIPPAY))
                 .withDefaultPaymentInstrument(PaymentInstrument.TWISTO)
-                .withAllowedBnplTypes(Arrays.asList("LATER", "THIRDS"))
-                .addDefaultBnplType("THIRDS").build();
+                .withAllowedBnplTypes(Arrays.asList(BnplType.DEFERRED_PAYMENT, BnplType.PAY_IN_THREE))
+                .addDefaultBnplType(BnplType.DEFERRED_PAYMENT).build();
         BasePaymentBuilder builder = PaymentFactory.createBasePaymentBuilder();
         return builder.withCallback(url+"notify", url+"return")
                 .order("123", 10000L, Currency.EUR, "description")

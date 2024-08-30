@@ -16,7 +16,7 @@ public class EnabledPaymentInstrument {
 	private Image image;
 	private String group;
 	private List<Swift> enabledSwifts;
-	private List<BnplType> enabledBnplTypes;
+	private List<Bnpl> enabledBnplTypes;
 	
 	/*
 	* Default constructor to enable instantiation from JSON object
@@ -82,11 +82,11 @@ public class EnabledPaymentInstrument {
 		return this;
 	}
 	
-	public List<BnplType> getEnabledBnplTypes() {
+	public List<Bnpl> getEnabledBnplTypes() {
 		return enabledBnplTypes;
 	}
 	
-	public EnabledPaymentInstrument addEnabledBnplType(BnplType bnplType) {
+	public EnabledPaymentInstrument addEnabledBnplType(Bnpl bnplType) {
 		if (this.enabledBnplTypes == null) {
 			this.enabledBnplTypes = new ArrayList<>();
 		}
@@ -95,7 +95,7 @@ public class EnabledPaymentInstrument {
 		return this;
 	}
 	
-	public void setEnabledBnplTypes(List<BnplType> enabledBnplTypes) {
+	public void setEnabledBnplTypes(List<Bnpl> enabledBnplTypes) {
 		this.enabledBnplTypes = enabledBnplTypes;
 	}
 	

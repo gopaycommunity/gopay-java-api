@@ -1,9 +1,9 @@
 package cz.gopay.api.v3.model.payment;
 
+import cz.gopay.api.v3.model.payment.support.BnplType;
 import cz.gopay.api.v3.model.payment.support.Callback;
 import cz.gopay.api.v3.model.payment.support.Payer;
 import cz.gopay.api.v3.model.payment.support.PayerContact;
-import cz.gopay.api.v3.model.payment.support.PayerPaymentCard;
 import cz.gopay.api.v3.model.payment.support.PaymentInstrument;
 import cz.gopay.api.v3.model.payment.support.Recurrence;
 import cz.gopay.api.v3.model.payment.support.RecurrenceCycle;
@@ -122,7 +122,7 @@ public class BasePaymentBuilder extends AbstractPaymentBuilder<BasePayment,BaseP
         return this;
     }
     
-    public BasePaymentBuilder withDefaultBnplType(String type) {
+    public BasePaymentBuilder withDefaultBnplType(BnplType type) {
         if (this.payer == null) {
             this.payer = Payer.build();
         }
