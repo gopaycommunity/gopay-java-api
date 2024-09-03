@@ -10,6 +10,7 @@ import cz.gopay.api.v3.model.payment.Card;
 import cz.gopay.api.v3.model.payment.NextPayment;
 import cz.gopay.api.v3.model.payment.Payment;
 import cz.gopay.api.v3.model.payment.PaymentResult;
+import cz.gopay.api.v3.model.payment.Refund;
 import cz.gopay.api.v3.model.payment.RefundPayment;
 import cz.gopay.api.v3.model.payment.support.AccountStatement;
 import cz.gopay.api.v3.model.payment.support.PaymentInstrumentRoot;
@@ -138,4 +139,10 @@ public interface PaymentClient {
     @DELETE
     @Path("payments/cards/{card_id}")
     void deleteCard(@BeanParam AuthHeader authHeader, @PathParam("card_id") Long cardId);
+    
+    @GET
+    @Path("payments/payment/{id}/refunds")
+    @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+    @Consumes(MediaType.APPLICATION_JSON)
+    List<Refund> getHistoryOfRefunds(@BeanParam AuthHeader authHeader, @PathParam("id") Long id);
 }

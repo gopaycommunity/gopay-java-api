@@ -16,6 +16,7 @@ import cz.gopay.api.v3.model.payment.Card;
 import cz.gopay.api.v3.model.payment.NextPayment;
 import cz.gopay.api.v3.model.payment.Payment;
 import cz.gopay.api.v3.model.payment.PaymentResult;
+import cz.gopay.api.v3.model.payment.Refund;
 import cz.gopay.api.v3.model.payment.RefundPayment;
 import cz.gopay.api.v3.model.payment.support.AccountStatement;
 import cz.gopay.api.v3.model.payment.support.PaymentInstrumentRoot;
@@ -385,6 +386,24 @@ public abstract class AbstractGPConnector implements IGPConnector {
 			
 		} catch (WebApplicationException e) {
 			logger.fatal(getClass().getSimpleName() + ": get card detail Error [" + cardId + "] RC ["
+					+ e.getResponse().getStatus() + "] Ex: " + e.getResponse().getStatusInfo(), e);
+			GPExceptionHandler.handleException(e);
+		}
+		return null;
+	}
+	
+	@Override
+	public List<Refund> getHistoryOfRefunds(Long id) throws GPClientException {
+		try {
+			logger.info(getClass().getSimpleName() + ": getHistoryOfRefunds [" + id + "]");
+			
+			PaymentClient paymentClient = createRESTClientProxy(apiUrl, PaymentClient.class);
+			
+			return paymentClient.getHistoryOfRefunds(
+					AuthHeader.build(accessToken != null ? accessToken.getAccessToken() : null), id);
+			
+		} catch (WebApplicationException e) {
+			logger.fatal(getClass().getSimpleName() + ": getHistoryOfRefunds error [" + id + "] RC ["
 					+ e.getResponse().getStatus() + "] Ex: " + e.getResponse().getStatusInfo(), e);
 			GPExceptionHandler.handleException(e);
 		}

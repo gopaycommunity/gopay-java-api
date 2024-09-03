@@ -18,6 +18,7 @@ import cz.gopay.api.v3.model.payment.Lang;
 import cz.gopay.api.v3.model.payment.Payment;
 import cz.gopay.api.v3.model.payment.PaymentFactory;
 import cz.gopay.api.v3.model.payment.PaymentResult;
+import cz.gopay.api.v3.model.payment.Refund;
 import cz.gopay.api.v3.model.payment.support.AccountStatement;
 import cz.gopay.api.v3.model.payment.support.Payer;
 import cz.gopay.api.v3.model.payment.support.PayerBuilder;
@@ -251,6 +252,17 @@ public abstract class AbstractPaymentTests implements RestClientTest {
             Assertions.assertTrue(!receipts.isEmpty());
         } catch (GPClientException e) {
             TestUtils.handleException(e, logger);
+        }
+    }
+    
+    protected void testRefunds(IGPConnector connector){
+        try {
+            List<Refund> refund = connector
+                    .getAppToken(TestUtils.CLIENT_ID, TestUtils.CLIENT_SECRET, OAuth.SCOPE_PAYMENT_ALL)
+                    .getHistoryOfRefunds(3178283550L);
+            Assertions.assertNotNull(refund);
+        } catch (GPClientException ex) {
+            TestUtils.handleException(ex, logger);
         }
     }
 }

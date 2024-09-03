@@ -10,6 +10,7 @@ import cz.gopay.api.v3.model.payment.Card;
 import cz.gopay.api.v3.model.payment.NextPayment;
 import cz.gopay.api.v3.model.payment.Payment;
 import cz.gopay.api.v3.model.payment.PaymentResult;
+import cz.gopay.api.v3.model.payment.Refund;
 import cz.gopay.api.v3.model.payment.RefundPayment;
 import cz.gopay.api.v3.model.payment.support.AccountStatement;
 import cz.gopay.api.v3.model.payment.support.PaymentInstrumentRoot;
@@ -62,4 +63,6 @@ public interface IGPConnector {
     Card getCardDetail(Long cardId) throws GPClientException;
     
     void deleteCard(Long cardId) throws GPClientException;
+    
+    List<Refund> getHistoryOfRefunds(Long id) throws GPClientException;
 }

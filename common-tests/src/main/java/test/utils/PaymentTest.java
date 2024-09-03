@@ -56,6 +56,11 @@ public abstract class PaymentTest extends AbstractPaymentTests {
         testGenerateStatement(getConnector());
     }
     
+/*   @Test
+    public void testRefunds() {
+        testRefunds(getConnector());
+    } */
+    
     /* @Test
     public void testCardDetail() {
         testCardDetail(getConnector());
@@ -65,5 +70,4 @@ public abstract class PaymentTest extends AbstractPaymentTests {
     public void deleteCard() {
         testDeleteCard(getConnector());
     } */
-    
 }

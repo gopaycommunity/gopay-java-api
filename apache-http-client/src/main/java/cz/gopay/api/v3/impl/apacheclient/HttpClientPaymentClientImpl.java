@@ -11,6 +11,7 @@ import cz.gopay.api.v3.model.payment.Card;
 import cz.gopay.api.v3.model.payment.NextPayment;
 import cz.gopay.api.v3.model.payment.Payment;
 import cz.gopay.api.v3.model.payment.PaymentResult;
+import cz.gopay.api.v3.model.payment.Refund;
 import cz.gopay.api.v3.model.payment.RefundPayment;
 import cz.gopay.api.v3.model.payment.support.AccountStatement;
 import cz.gopay.api.v3.model.payment.support.PaymentInstrumentRoot;
@@ -297,6 +298,24 @@ public class HttpClientPaymentClientImpl extends AbstractImpl implements Payment
         } catch (IOException ex) {
             throw new WebApplicationException(ex);
         }
+    }
+    
+    @Override
+    public List<Refund> getHistoryOfRefunds(AuthHeader authHeader, Long id) {
+        Response response = null;
+        
+        try {
+            response = Request.Get(apiUrl + "/payments/payment/" + id + "/refunds")
+                    .addHeader(ACCEPT, MediaType.APPLICATION_JSON)
+                    .addHeader(CONTENT_TYPE, MediaType.APPLICATION_JSON)
+                    .addHeader(AUTHORIZATION, authHeader.getAuhorization())
+                    .addHeader(USER_AGENT, IMPLEMENTATION_NAME + "=" + VERSION)
+                    .execute();
+        } catch (IOException ex) {
+            throw new WebApplicationException(ex);
+        }
+        
+        return unMarshallComplexResponse(response, new TypeReference<List<Refund>>() {});
     }
     
     @Override
