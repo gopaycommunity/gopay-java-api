@@ -1,22 +1,26 @@
 
 package cz.gopay.api.v3.impl.apacheclient;
 
+import cz.gopay.api.v3.AbstractGPConnector;
+import cz.gopay.api.v3.model.APIError;
+
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.deser.DeserializationProblemHandler;
 import com.fasterxml.jackson.databind.type.TypeFactory;
 import com.fasterxml.jackson.module.jaxb.JaxbAnnotationIntrospector;
-import cz.gopay.api.v3.model.APIError;
-import java.io.IOException;
-import javax.ws.rs.WebApplicationException;
+
 import org.apache.http.HttpResponse;
 import org.apache.http.client.fluent.Response;
 import org.apache.http.util.EntityUtils;
 import org.apache.logging.log4j.Logger;
+
+import java.io.IOException;
+
+import javax.ws.rs.WebApplicationException;
 
 /**
  *
@@ -24,8 +28,8 @@ import org.apache.logging.log4j.Logger;
  */
 public class AbstractImpl {
     
-    protected static final String IMPLEMENTATION_NAME = "${project.artifactId}";
-    protected static final String VERSION = "${project.artifactId}";
+    protected static final String IMPLEMENTATION_NAME = "Gopay Java Apache-http-client";
+    protected static final String VERSION = AbstractGPConnector.VERSION;
     
     protected static final String AUTHORIZATION = "Authorization";
     protected static final String SCOPE = "scope";

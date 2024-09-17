@@ -32,6 +32,14 @@ public class CXFGPConnector extends AbstractGPConnector {
     private CXFGPConnector(String api, AccessToken token) {
         super(api, token);
     }
+    
+    private CXFGPConnector(String api, AccessToken token, String customUserAgent) {
+        super(api, token, customUserAgent);
+    }
+    
+    public static CXFGPConnector build(String api, AccessToken token, String customUserAgent) {
+        return new CXFGPConnector(api, token, customUserAgent);
+    }
 
     public static CXFGPConnector build(String api) {
         return new CXFGPConnector(api);
@@ -60,6 +68,6 @@ public class CXFGPConnector extends AbstractGPConnector {
     
     @Override
     protected String getImplementationName() {
-        return "Gopay Java Apache-cfx";
+        return customUserAgent == null ? "Gopay Java Apache-cfx" : customUserAgent;
     }
 }

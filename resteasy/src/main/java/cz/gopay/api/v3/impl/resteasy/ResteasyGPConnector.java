@@ -36,9 +36,17 @@ public class ResteasyGPConnector extends AbstractGPConnector {
     private ResteasyGPConnector(String api, AccessToken accessToken) {
         super(api, accessToken);
     }
+    
+    private ResteasyGPConnector(String api, AccessToken accessToken, String customUserAgent) {
+        super(api, accessToken, customUserAgent);
+    }
 
     public static ResteasyGPConnector build(String api) {
         return new ResteasyGPConnector(api);
+    }
+    
+    public static ResteasyGPConnector build(String api, AccessToken accessToken, String customerUserAgent) {
+        return new ResteasyGPConnector(api, accessToken, customerUserAgent);
     }
 
     public static ResteasyGPConnector build(String api, String accessToken, String refreshToken, Date expiresIn) {
@@ -79,7 +87,7 @@ public class ResteasyGPConnector extends AbstractGPConnector {
     
     @Override
     public String getImplementationName() {
-        return "GoPay Java Resteasy";
+        return customUserAgent == null ? "GoPay Java Resteasy" : customUserAgent;
     }
     
 }

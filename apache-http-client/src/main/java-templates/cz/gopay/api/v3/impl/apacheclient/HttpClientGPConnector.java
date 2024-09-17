@@ -7,6 +7,7 @@ package cz.gopay.api.v3.impl.apacheclient;
 import cz.gopay.api.v3.AbstractGPConnector;
 import cz.gopay.api.v3.AuthClient;
 import cz.gopay.api.v3.PaymentClient;
+import cz.gopay.api.v3.model.access.AccessToken;
 
 /**
  *
@@ -21,6 +22,10 @@ public class HttpClientGPConnector extends AbstractGPConnector {
     private HttpClientGPConnector(String apiUrl) {
         super(apiUrl);
     }
+    
+    private HttpClientGPConnector(String api, AccessToken accessToken, String customUserAgent) {
+        super(api, accessToken, customUserAgent);
+    }
 
     @Override
     protected <T> T createRESTClientProxy(String apiUrl, Class<T> proxy) {
@@ -34,6 +39,6 @@ public class HttpClientGPConnector extends AbstractGPConnector {
     
     @Override
     protected String getImplementationName() {
-        return "Gopay Java Apache-http-client";
+        return customUserAgent == null ? "Gopay Java Apache-http-client" : customUserAgent;
     }
 }

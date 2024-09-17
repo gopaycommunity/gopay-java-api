@@ -46,6 +46,8 @@ public abstract class AbstractGPConnector implements IGPConnector {
 	
 	protected AccessToken accessToken;
 	
+	protected String customUserAgent;
+	
 	public AbstractGPConnector(String apiUrl) {
 		this.apiUrl = apiUrl;
 	}
@@ -53,6 +55,11 @@ public abstract class AbstractGPConnector implements IGPConnector {
 	public AbstractGPConnector(String apiUrl, AccessToken token) {
 		this(apiUrl);
 		this.accessToken = token;
+	}
+	
+	public AbstractGPConnector(String apiUrl, AccessToken token, String customUserAgent) {
+		this(apiUrl, token);
+		this.customUserAgent = customUserAgent;
 	}
 	
 	protected abstract <T> T createRESTClientProxy(String apiUrl, Class<T> proxy);
