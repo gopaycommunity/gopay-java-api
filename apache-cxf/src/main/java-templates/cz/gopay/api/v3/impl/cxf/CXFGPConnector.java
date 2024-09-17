@@ -60,6 +60,6 @@ public class CXFGPConnector extends AbstractGPConnector {
     
     @Override
     protected String getImplementationName() {
-        return "${project.artifactId}";
+        return "Gopay Java Apache-cfx";
     }
 }

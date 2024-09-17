@@ -79,7 +79,7 @@ public class ResteasyGPConnector extends AbstractGPConnector {
     
     @Override
     public String getImplementationName() {
-        return "${project.artifactId}";
+        return "GoPay Java Resteasy";
     }
     
 }
