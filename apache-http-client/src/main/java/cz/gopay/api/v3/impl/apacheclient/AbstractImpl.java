@@ -28,7 +28,7 @@ import javax.ws.rs.WebApplicationException;
  */
 public class AbstractImpl {
     
-    protected static final String IMPLEMENTATION_NAME = "Gopay Java Apache-http-client";
+    protected static final String IMPLEMENTATION_NAME = "GoPay Java Apache-http-client";
     protected static final String VERSION = AbstractGPConnector.VERSION;
     
     protected static final String AUTHORIZATION = "Authorization";

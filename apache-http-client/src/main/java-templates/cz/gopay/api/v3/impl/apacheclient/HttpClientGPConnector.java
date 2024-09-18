@@ -39,6 +39,6 @@ public class HttpClientGPConnector extends AbstractGPConnector {
     
     @Override
     protected String getImplementationName() {
-        return customUserAgent == null ? "Gopay Java Apache-http-client" : customUserAgent;
+        return customUserAgent == null ? "GoPay Java Apache-http-client" : customUserAgent;
     }
 }
