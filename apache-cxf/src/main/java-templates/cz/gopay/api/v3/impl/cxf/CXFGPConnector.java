@@ -62,7 +62,7 @@ public class CXFGPConnector extends AbstractGPConnector {
         providers.add(jsonProvider);
         T t = JAXRSClientFactory.create(apiUrl, proxy, providers, true);
         Client client = (Client) t;
-        client.header("User-Agent", getImplementationName() + "=" + getVersion());
+        client.header("User-Agent", getImplementationName() + " " + getVersion());
         return t;
     }
     

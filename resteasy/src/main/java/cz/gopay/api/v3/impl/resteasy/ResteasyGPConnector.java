@@ -70,7 +70,7 @@ public class ResteasyGPConnector extends AbstractGPConnector {
         ResteasyProviderFactory.getInstance().register(builder);
     
         ResteasyClientImpl client = (ResteasyClientImpl) builder.build();
-        client.register((ClientRequestFilter) requestContext -> requestContext.getHeaders().add("User-Agent", getImplementationName() + "=" + getVersion()));
+        client.register((ClientRequestFilter) requestContext -> requestContext.getHeaders().add("User-Agent", getImplementationName() + " " + getVersion()));
         
         ObjectMapper mapper = new ObjectMapper();
         JacksonJaxbJsonProvider jaxbProvider
