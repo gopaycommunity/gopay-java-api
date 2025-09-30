@@ -37,9 +37,9 @@ http://mvnrepository.com/artifact/cz.gopay
 </dependency>
 <!-- GPAPI Apache Http Client -->
 <dependency>
-   	<groupId>cz.gopay</groupId>
-   	<artifactId>gp-java-api-v3-apache-http-client</artifactId>
-   	<version>3.8.1</version>
+    <groupId>cz.gopay</groupId>
+    <artifactId>gp-java-api-v3-apache-http-client</artifactId>
+    <version>3.8.1</version>
 </dependency>
 ```
 ## OAuth
@@ -93,7 +93,7 @@ BasePayment payment = PaymentFactory.createBasePaymentBuilder()
 try {
     Payment result = connector.createPayment(payment);
 } catch (GPClientException e) {
-    
+    //
 }
  ```
 
@@ -103,7 +103,7 @@ try {
 try {
     Payment payment = connector.paymentStatus(<PAYMENT_ID>);
 } catch (GPClientException e) {
-     //
+    //
 }
 ```
  
@@ -111,9 +111,9 @@ try {
 
 ```Java
 try {
-      PaymentResult result = connector.refundPayment(<PAYMENT_ID>, <AMOUNT>);
+    PaymentResult result = connector.refundPayment(<PAYMENT_ID>, <AMOUNT>);
 } catch (GPClientException e) {
-      //
+    //
 }
 ```
  
@@ -173,7 +173,7 @@ try {
 try {
     PaymentResult voidRecurrency = connector.voidRecurrency(<ID>);
 } catch (GPClientException ex) {
-     //
+    //
 }
 ```
 
@@ -234,7 +234,7 @@ Each integration has its own maven module.
     
      Requires apache cxf connector:
      
-   ```xml
+    ```xml
      <dependency>
          <groupId>cz.gopay</groupId>
          <artifactId>gp-java-api-v3-apache-cxf</artifactId>
@@ -279,5 +279,5 @@ Contributions from others would be very much appreciated! Send pull request/ iss
 
 ## License
 
-Copyright (c) 2016 GoPay.com. MIT Licensed, see LICENSE for details.
+Copyright (c) 2025 GoPay.com. MIT Licensed, see LICENSE for details.
 
