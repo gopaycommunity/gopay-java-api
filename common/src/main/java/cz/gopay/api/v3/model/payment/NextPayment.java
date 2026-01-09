@@ -1,16 +1,14 @@
 package cz.gopay.api.v3.model.payment;
 
+import cz.gopay.api.v3.model.common.Currency;
+import cz.gopay.api.v3.model.eet.EET;
+import cz.gopay.api.v3.model.payment.support.AdditionalParam;
+import cz.gopay.api.v3.model.payment.support.OrderItem;
+
 import java.util.List;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-
-import cz.gopay.api.v3.model.common.Currency;
-import cz.gopay.api.v3.model.payment.support.AdditionalParam;
-import cz.gopay.api.v3.model.eet.EET;
-import cz.gopay.api.v3.model.payment.support.OrderItem;
+import jakarta.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.XmlRootElement;
 
 /**
  *

@@ -161,6 +161,7 @@ public abstract class AbstractPaymentTests implements RestClientTest {
             TestUtils.handleException(ex, logger);
         }
     }
+    
     protected void testPaymentInstrumentRoot(IGPConnector connector){
         try {
             PaymentInstrumentRoot instrumentsList = connector

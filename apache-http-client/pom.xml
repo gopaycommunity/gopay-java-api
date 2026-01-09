@@ -3,7 +3,7 @@
     <groupId>cz.gopay</groupId>
 	
     <artifactId>gp-java-api-v3-apache-http-client</artifactId>
-    <version>3.8.1</version>
+    <version>3.9.0</version>
 
     <description>
         GOPAY project - java api
@@ -20,15 +20,15 @@
     <parent>
         <groupId>cz.gopay</groupId>
         <artifactId>gp-java-api-v3-parent</artifactId>
-        <version>3.8.1</version>
+        <version>3.9.0</version>
         <relativePath>../</relativePath>
     </parent>
 
     <dependencies>
         
         <dependency>
-            <groupId>com.fasterxml.jackson.jaxrs</groupId>
-            <artifactId>jackson-jaxrs-json-provider</artifactId>
+			<groupId>com.fasterxml.jackson.jakarta.rs</groupId>
+			<artifactId>jackson-jakarta-rs-json-provider</artifactId>
         </dependency>
 
         <!-- GP-common -->
@@ -39,17 +39,16 @@
         </dependency>
      		 
         <!-- Apache http client -->
-        
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpclient</artifactId>
-            <version>4.5.13</version>
+            <version>4.5.14</version>
         </dependency>
         
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>fluent-hc</artifactId>
-            <version>4.5.13</version>
+            <version>4.5.14</version>
         </dependency>
         
         <dependency>

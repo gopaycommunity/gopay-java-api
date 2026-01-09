@@ -7,13 +7,16 @@ package cz.gopay.api.v3.impl.apacheclient;
 import cz.gopay.api.v3.AuthClient;
 import cz.gopay.api.v3.model.access.AccessToken;
 import cz.gopay.api.v3.model.access.AuthHeader;
-import java.io.IOException;
-import javax.ws.rs.WebApplicationException;
+
 import org.apache.http.client.fluent.Form;
 import org.apache.http.client.fluent.Request;
 import org.apache.http.client.fluent.Response;
 import org.apache.http.entity.ContentType;
 import org.apache.logging.log4j.LogManager;
+
+import java.io.IOException;
+
+import jakarta.ws.rs.WebApplicationException;
 
 public class HttpClientAuthClientImpl extends AbstractImpl implements AuthClient {
 

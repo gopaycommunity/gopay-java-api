@@ -28,9 +28,9 @@ import org.apache.logging.log4j.LogManager;
 import java.io.IOException;
 import java.util.List;
 
-import javax.ws.rs.BeanParam;
-import javax.ws.rs.WebApplicationException;
-import javax.ws.rs.core.MediaType;
+import jakarta.ws.rs.BeanParam;
+import jakarta.ws.rs.WebApplicationException;
+import jakarta.ws.rs.core.MediaType;
 
 /**
  *

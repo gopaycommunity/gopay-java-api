@@ -26,7 +26,7 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.List;
 
-import javax.ws.rs.WebApplicationException;
+import jakarta.ws.rs.WebApplicationException;
 
 /**
  * @author Zbynek Novak novak.zbynek@gmail.com
