@@ -1,10 +1,10 @@
 package cz.gopay.api.v3;
 
-import javax.ws.rs.ClientErrorException;
-import javax.ws.rs.ProcessingException;
-import javax.ws.rs.WebApplicationException;
-
 import cz.gopay.api.v3.model.APIError;
+
+import jakarta.ws.rs.ClientErrorException;
+import jakarta.ws.rs.ProcessingException;
+import jakarta.ws.rs.WebApplicationException;
 
 /**
  *

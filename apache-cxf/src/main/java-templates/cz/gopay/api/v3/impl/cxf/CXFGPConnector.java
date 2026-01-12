@@ -1,23 +1,22 @@
 package cz.gopay.api.v3.impl.cxf;
 
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.type.TypeFactory;
-import com.fasterxml.jackson.jaxrs.json.JacksonJaxbJsonProvider;
-import com.fasterxml.jackson.module.jaxb.JaxbAnnotationIntrospector;
 import cz.gopay.api.v3.AbstractGPConnector;
 import cz.gopay.api.v3.model.access.AccessToken;
 import cz.gopay.api.v3.model.access.OAuth;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Date;
-import java.util.List;
+
+import com.fasterxml.jackson.databind.AnnotationIntrospector;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.introspect.JacksonAnnotationIntrospector;
+import com.fasterxml.jackson.jakarta.rs.json.JacksonXmlBindJsonProvider;
+import com.fasterxml.jackson.module.jakarta.xmlbind.JakartaXmlBindAnnotationIntrospector;
 
 import org.apache.cxf.jaxrs.client.Client;
 import org.apache.cxf.jaxrs.client.JAXRSClientFactory;
-import org.apache.cxf.jaxrs.client.WebClient;
-import org.apache.cxf.transport.http.Headers;
-import org.apache.cxf.transports.http.configuration.HTTPClientPolicy;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 /**
  *
@@ -55,10 +54,17 @@ public class CXFGPConnector extends AbstractGPConnector {
         List providers = new ArrayList();
         ObjectMapper mapper = new ObjectMapper();
         mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-        mapper.setAnnotationIntrospector(new JaxbAnnotationIntrospector(TypeFactory.defaultInstance()));
-
-        JacksonJaxbJsonProvider jsonProvider
-                = new JacksonJaxbJsonProvider(mapper, JacksonJaxbJsonProvider.DEFAULT_ANNOTATIONS);
+		
+		AnnotationIntrospector jacksonIntrospector = new JacksonAnnotationIntrospector();
+		AnnotationIntrospector jakartaXmlBindIntrospector =
+				new JakartaXmlBindAnnotationIntrospector(mapper.getTypeFactory());
+		
+		// Combine Jackson and Jakarta XML Binding introspectors
+		AnnotationIntrospector pair = AnnotationIntrospector.pair(jacksonIntrospector, jakartaXmlBindIntrospector);
+        mapper.setAnnotationIntrospector(pair);
+		
+		JacksonXmlBindJsonProvider jsonProvider
+				= new JacksonXmlBindJsonProvider(mapper, JacksonXmlBindJsonProvider.DEFAULT_ANNOTATIONS);
         providers.add(jsonProvider);
         T t = JAXRSClientFactory.create(apiUrl, proxy, providers, true);
         Client client = (Client) t;

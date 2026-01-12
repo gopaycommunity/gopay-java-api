@@ -1,6 +1,6 @@
 package cz.gopay.api.v3.model.payment;
 
-import javax.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.XmlElement;
 
 public class Card {
 	

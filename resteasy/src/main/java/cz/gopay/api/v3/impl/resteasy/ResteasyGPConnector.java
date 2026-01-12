@@ -4,11 +4,12 @@ import cz.gopay.api.v3.AbstractGPConnector;
 import cz.gopay.api.v3.model.access.AccessToken;
 import cz.gopay.api.v3.model.access.OAuth;
 
+import com.fasterxml.jackson.databind.AnnotationIntrospector;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.type.TypeFactory;
-import com.fasterxml.jackson.jaxrs.json.JacksonJaxbJsonProvider;
-import com.fasterxml.jackson.module.jaxb.JaxbAnnotationIntrospector;
+import com.fasterxml.jackson.databind.introspect.JacksonAnnotationIntrospector;
+import com.fasterxml.jackson.jakarta.rs.json.JacksonXmlBindJsonProvider;
+import com.fasterxml.jackson.module.jakarta.xmlbind.JakartaXmlBindAnnotationIntrospector;
 
 import org.jboss.resteasy.client.jaxrs.ResteasyClientBuilder;
 import org.jboss.resteasy.client.jaxrs.ResteasyWebTarget;
@@ -21,7 +22,7 @@ import java.net.URISyntaxException;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
-import javax.ws.rs.client.ClientRequestFilter;
+import jakarta.ws.rs.client.ClientRequestFilter;
 
 /**
  *
@@ -73,13 +74,19 @@ public class ResteasyGPConnector extends AbstractGPConnector {
         client.register((ClientRequestFilter) requestContext -> requestContext.getHeaders().add("User-Agent", getImplementationName() + " " + getVersion()));
         
         ObjectMapper mapper = new ObjectMapper();
-        JacksonJaxbJsonProvider jaxbProvider
-                = new JacksonJaxbJsonProvider(mapper, JacksonJaxbJsonProvider.DEFAULT_ANNOTATIONS);
-        mapper.setAnnotationIntrospector(new JaxbAnnotationIntrospector(TypeFactory.defaultInstance()));
+		
+		// Combine Jackson and Jakarta XML Binding introspectors
+		AnnotationIntrospector jacksonIntrospector = new JacksonAnnotationIntrospector();
+		AnnotationIntrospector jakartaXmlBindIntrospector =
+				new JakartaXmlBindAnnotationIntrospector(mapper.getTypeFactory());
+		AnnotationIntrospector pair = AnnotationIntrospector.pair(jacksonIntrospector, jakartaXmlBindIntrospector);
+        mapper.setAnnotationIntrospector(pair);
 
         mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-        
-        builder.register(jaxbProvider);
+		
+		JacksonXmlBindJsonProvider jaxbProvider
+				= new JacksonXmlBindJsonProvider(mapper, JacksonXmlBindJsonProvider.DEFAULT_ANNOTATIONS);
+		client.register(jaxbProvider);
     
         ResteasyWebTarget target = client.target(i);
         return target.proxy(proxy);

@@ -47,7 +47,7 @@ public abstract class PaymentTest extends AbstractPaymentTests {
     
     
     @Test
-    public void testPaymentInstrumentRoot(){
+    public void testPaymentInstrumentRoot() {
         testPaymentInstrumentRoot(getConnector());
     }
     
