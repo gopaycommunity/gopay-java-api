@@ -95,7 +95,7 @@
 		<dependency>
 			<groupId>cz.gopay</groupId>
 			<artifactId>common-tests</artifactId>
-			<version>1.0.0-SNAPSHOT</version>
+			<version>3.9.0</version>
 			<scope>test</scope>
 		</dependency>
 		
