@@ -18,6 +18,7 @@ import cz.gopay.api.v3.model.payment.Lang;
 import cz.gopay.api.v3.model.payment.Payment;
 import cz.gopay.api.v3.model.payment.PaymentFactory;
 import cz.gopay.api.v3.model.payment.PaymentResult;
+import cz.gopay.api.v3.model.payment.QrPaymentInfo;
 import cz.gopay.api.v3.model.payment.Refund;
 import cz.gopay.api.v3.model.payment.support.AccountStatement;
 import cz.gopay.api.v3.model.payment.support.BnplType;
@@ -25,6 +26,8 @@ import cz.gopay.api.v3.model.payment.support.Payer;
 import cz.gopay.api.v3.model.payment.support.PayerBuilder;
 import cz.gopay.api.v3.model.payment.support.PaymentInstrument;
 import cz.gopay.api.v3.model.payment.support.PaymentInstrumentRoot;
+import cz.gopay.api.v3.model.payment.support.QrFormat;
+import cz.gopay.api.v3.model.payment.support.RQrCodes;
 import cz.gopay.api.v3.model.payment.support.Recurrence;
 import cz.gopay.api.v3.model.payment.support.RecurrenceCycle;
 
@@ -272,5 +275,80 @@ public abstract class AbstractPaymentTests implements RestClientTest {
 		} catch (GPClientException ex) {
 			TestUtils.handleException(ex, logger);
 		}
+	}
+
+	/**
+	 * Creates a new payment (with BANK_ACCOUNT instrument) and then calls
+	 * GET /api/payments/payment/{id}/qr-payment to retrieve QR payment info.
+	 * Tests both without format (default = png) and with explicit QrFormat.png.
+	 */
+	protected void testGetQrPayment(IGPConnector connector) {
+		String url = "https://www.eshop123.cz/";
+
+		Payer payer = new PayerBuilder()
+				.withAllowedPaymentInstruments(List.of(PaymentInstrument.BANK_ACCOUNT))
+				.addAllowedSwift("FIOBCZPP")
+				.build();
+		BasePaymentBuilder builder = PaymentFactory.createBasePaymentBuilder();
+		BasePayment createPayment = builder
+				.withCallback(url + "notify", url + "return")
+				.order("QR-TEST-001", 10000L, Currency.CZK, "QR payment test")
+				.inLang(Lang.EN)
+				.addAdditionalParameter("AKey", "AValue")
+				.addItem("Test item", 10000L, 1L)
+				.toEshop(TestUtils.GOID)
+				.payer(payer)
+				.build();
+
+		Payment payment = null;
+		try {
+			payment = connector
+					.getAppToken(TestUtils.CLIENT_ID, TestUtils.CLIENT_SECRET)
+					.createPayment(createPayment);
+		} catch (GPClientException e) {
+			TestUtils.handleException(e, logger);
+		}
+
+		Assertions.assertNotNull(payment, "Created payment must not be null");
+		Assertions.assertNotNull(payment.getId(), "Payment ID must not be null");
+		Assertions.assertTrue(payment.getId() > 0, "Payment ID must be positive");
+		long id = payment.getId();
+		logger.info("testGetQrPayment: created paymentId=" + id);
+
+		QrPaymentInfo qrInfo = null;
+		try {
+			qrInfo = connector.getQrPayment(id, null);
+		} catch (GPClientException ex) {
+			TestUtils.handleException(ex, logger);
+		}
+
+		Assertions.assertNotNull(qrInfo, "QrPaymentInfo must not be null");
+		Assertions.assertNotNull(qrInfo.getAmount(), "QR payment amount must not be null");
+		Assertions.assertNotNull(qrInfo.getCurrency(), "QR payment currency must not be null");
+		Assertions.assertNotNull(qrInfo.getQrCode(), "QR code object must not be null");
+
+		RQrCodes codes = qrInfo.getQrCode();
+		boolean hasAtLeastOneCode = codes.getSpayd() != null
+				|| codes.getPayBySquare() != null
+				|| codes.getSepa() != null
+				|| codes.getMnbQr() != null;
+		Assertions.assertTrue(hasAtLeastOneCode, "At least one QR code variant must be present");
+
+		logger.info("testGetQrPayment (no format): paymentId=" + id
+				+ ", amount=" + qrInfo.getAmount()
+				+ ", currency=" + qrInfo.getCurrency()
+				+ ", qrCode=" + codes);
+
+		QrPaymentInfo qrInfoPng = null;
+		try {
+			qrInfoPng = connector.getQrPayment(id, QrFormat.png);
+		} catch (GPClientException ex) {
+			TestUtils.handleException(ex, logger);
+		}
+
+		Assertions.assertNotNull(qrInfoPng, "QrPaymentInfo (png) must not be null");
+		Assertions.assertNotNull(qrInfoPng.getQrCode(), "QR code object (png) must not be null");
+
+		logger.info("testGetQrPayment (png): paymentId=" + id + ", qrCode=" + qrInfoPng.getQrCode());
 	}
 }

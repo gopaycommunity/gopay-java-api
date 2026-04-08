@@ -3,7 +3,7 @@
     <groupId>cz.gopay</groupId>
 	
     <artifactId>common-tests</artifactId>
-    <version>3.9.0</version>
+    <version>3.10.0</version>
 
     <description>
         GOPAY project - java api tests
@@ -26,7 +26,7 @@
         <dependency>
             <groupId>cz.gopay</groupId>
             <artifactId>gp-java-api-v3-common</artifactId>
-            <version>3.9.0</version>
+            <version>3.10.0</version>
             <scope>provided</scope>
         </dependency>
         

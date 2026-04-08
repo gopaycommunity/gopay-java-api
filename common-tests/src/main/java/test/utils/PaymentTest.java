@@ -55,7 +55,13 @@ public abstract class PaymentTest extends AbstractPaymentTests {
     public void testGenerateStatementHttp() {
         testGenerateStatement(getConnector());
     }
-    
+
+    /*
+    @Test
+    public void testGetQrPayment() {
+        testGetQrPayment(getConnector());
+    } */
+
 /*   @Test
     public void testRefunds() {
         testRefunds(getConnector());

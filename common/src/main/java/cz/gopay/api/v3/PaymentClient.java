@@ -10,10 +10,12 @@ import cz.gopay.api.v3.model.payment.Card;
 import cz.gopay.api.v3.model.payment.NextPayment;
 import cz.gopay.api.v3.model.payment.Payment;
 import cz.gopay.api.v3.model.payment.PaymentResult;
+import cz.gopay.api.v3.model.payment.QrPaymentInfo;
 import cz.gopay.api.v3.model.payment.Refund;
 import cz.gopay.api.v3.model.payment.RefundPayment;
 import cz.gopay.api.v3.model.payment.support.AccountStatement;
 import cz.gopay.api.v3.model.payment.support.PaymentInstrumentRoot;
+import cz.gopay.api.v3.model.payment.support.QrFormat;
 
 import java.util.List;
 
@@ -26,6 +28,7 @@ import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.QueryParam;
 import jakarta.ws.rs.core.MediaType;
 
 /**
@@ -145,4 +148,12 @@ public interface PaymentClient {
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     @Consumes(MediaType.APPLICATION_JSON)
     List<Refund> getHistoryOfRefunds(@BeanParam AuthHeader authHeader, @PathParam("id") Long id);
+
+    @GET
+    @Path("/payments/payment/{id}/qr-payment")
+    @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    QrPaymentInfo getQrPayment(@BeanParam AuthHeader authHeader,
+            @PathParam("id") Long id,
+            @QueryParam("format") QrFormat format);
 }

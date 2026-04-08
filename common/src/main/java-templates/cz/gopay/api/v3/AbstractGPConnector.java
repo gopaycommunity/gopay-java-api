@@ -16,10 +16,12 @@ import cz.gopay.api.v3.model.payment.Card;
 import cz.gopay.api.v3.model.payment.NextPayment;
 import cz.gopay.api.v3.model.payment.Payment;
 import cz.gopay.api.v3.model.payment.PaymentResult;
+import cz.gopay.api.v3.model.payment.QrPaymentInfo;
 import cz.gopay.api.v3.model.payment.Refund;
 import cz.gopay.api.v3.model.payment.RefundPayment;
 import cz.gopay.api.v3.model.payment.support.AccountStatement;
 import cz.gopay.api.v3.model.payment.support.PaymentInstrumentRoot;
+import cz.gopay.api.v3.model.payment.support.QrFormat;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -434,7 +436,25 @@ public abstract class AbstractGPConnector implements IGPConnector {
 		}
 	}
 	
-	
+	@Override
+	public QrPaymentInfo getQrPayment(Long id, QrFormat format) throws GPClientException {
+		try {
+			logger.info(getClass().getSimpleName() + ": get-qr-payment [" + id + "] format[" + format + "]");
+
+			PaymentClient paymentClient = createRESTClientProxy(apiUrl, PaymentClient.class);
+
+			return paymentClient.getQrPayment(
+					AuthHeader.build(accessToken != null ? accessToken.getAccessToken() : null), id, format);
+
+		} catch (WebApplicationException e) {
+			logger.fatal(getClass().getSimpleName() + ": get-qr-payment Error [" + id + "] RC ["
+					+ e.getResponse().getStatus() + "] Ex: " + e.getResponse().getStatusInfo(), e);
+			GPExceptionHandler.handleException(e);
+		}
+		return null;
+	}
+
+
 	protected abstract String getImplementationName();
 	
 	public String getVersion() {
